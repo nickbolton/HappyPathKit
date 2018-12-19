@@ -7,14 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47A610ED4A12C9098A29FDAF /* Pods_HappyPathKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE5E7820AEFCD95A0CE99568 /* Pods_HappyPathKit.framework */; };
 		924B51DA21CAAC5300A8464B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B51D921CAAC5300A8464B /* AppDelegate.swift */; };
 		924B51DC21CAAC5300A8464B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B51DB21CAAC5300A8464B /* ViewController.swift */; };
 		924B51DF21CAAC5300A8464B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 924B51DD21CAAC5300A8464B /* Main.storyboard */; };
 		924B51E121CAAC5400A8464B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 924B51E021CAAC5400A8464B /* Assets.xcassets */; };
 		924B51E421CAAC5400A8464B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 924B51E221CAAC5400A8464B /* LaunchScreen.storyboard */; };
+		924B51F521CAAED200A8464B /* HPConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B51ED21CAAED200A8464B /* HPConfiguration.swift */; };
+		924B51F621CAAED200A8464B /* HPFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B51EE21CAAED200A8464B /* HPFont.swift */; };
+		924B51F721CAAED200A8464B /* HPComponentConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B51EF21CAAED200A8464B /* HPComponentConfig.swift */; };
+		924B51F821CAAED200A8464B /* HPColorEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B51F021CAAED200A8464B /* HPColorEntity.swift */; };
+		924B51F921CAAED200A8464B /* HPColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B51F121CAAED200A8464B /* HPColor.swift */; };
+		924B51FB21CAAED200A8464B /* HPTextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B51F321CAAED200A8464B /* HPTextStyle.swift */; };
+		924B51FC21CAAED200A8464B /* HPImportable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B51F421CAAED200A8464B /* HPImportable.swift */; };
+		92CFF99B21CAB6E00052CE86 /* SKLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CFF99A21CAB6E00052CE86 /* SKLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E9EAEC3F78CCEBEF440726D /* Pods-HappyPathKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyPathKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HappyPathKit/Pods-HappyPathKit.debug.xcconfig"; sourceTree = "<group>"; };
 		924B51D621CAAC5300A8464B /* HappyPathKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyPathKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		924B51D921CAAC5300A8464B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		924B51DB21CAAC5300A8464B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +32,16 @@
 		924B51E021CAAC5400A8464B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		924B51E321CAAC5400A8464B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		924B51E521CAAC5400A8464B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		924B51ED21CAAED200A8464B /* HPConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPConfiguration.swift; sourceTree = "<group>"; };
+		924B51EE21CAAED200A8464B /* HPFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPFont.swift; sourceTree = "<group>"; };
+		924B51EF21CAAED200A8464B /* HPComponentConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPComponentConfig.swift; sourceTree = "<group>"; };
+		924B51F021CAAED200A8464B /* HPColorEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPColorEntity.swift; sourceTree = "<group>"; };
+		924B51F121CAAED200A8464B /* HPColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPColor.swift; sourceTree = "<group>"; };
+		924B51F321CAAED200A8464B /* HPTextStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPTextStyle.swift; sourceTree = "<group>"; };
+		924B51F421CAAED200A8464B /* HPImportable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPImportable.swift; sourceTree = "<group>"; };
+		92CFF99A21CAB6E00052CE86 /* SKLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKLayer.swift; sourceTree = "<group>"; };
+		EE5E7820AEFCD95A0CE99568 /* Pods_HappyPathKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyPathKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F220D03FD853B385C5376F08 /* Pods-HappyPathKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyPathKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-HappyPathKit/Pods-HappyPathKit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +49,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47A610ED4A12C9098A29FDAF /* Pods_HappyPathKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0EF6419A12CA1D09A1B8D619 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5E9EAEC3F78CCEBEF440726D /* Pods-HappyPathKit.debug.xcconfig */,
+				F220D03FD853B385C5376F08 /* Pods-HappyPathKit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		2B0299D4EE3A44AEEFC99000 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EE5E7820AEFCD95A0CE99568 /* Pods_HappyPathKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		924B51CD21CAAC5300A8464B = {
 			isa = PBXGroup;
 			children = (
 				924B51D821CAAC5300A8464B /* HappyPathKit */,
 				924B51D721CAAC5300A8464B /* Products */,
+				0EF6419A12CA1D09A1B8D619 /* Pods */,
+				2B0299D4EE3A44AEEFC99000 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +94,7 @@
 		924B51D821CAAC5300A8464B /* HappyPathKit */ = {
 			isa = PBXGroup;
 			children = (
+				924B51EB21CAAEA100A8464B /* Source */,
 				924B51D921CAAC5300A8464B /* AppDelegate.swift */,
 				924B51DB21CAAC5300A8464B /* ViewController.swift */,
 				924B51DD21CAAC5300A8464B /* Main.storyboard */,
@@ -64,6 +105,30 @@
 			path = HappyPathKit;
 			sourceTree = "<group>";
 		};
+		924B51EB21CAAEA100A8464B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				924B51EC21CAAED200A8464B /* Models */,
+			);
+			name = Source;
+			path = ../Source;
+			sourceTree = "<group>";
+		};
+		924B51EC21CAAED200A8464B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				924B51ED21CAAED200A8464B /* HPConfiguration.swift */,
+				924B51EE21CAAED200A8464B /* HPFont.swift */,
+				924B51EF21CAAED200A8464B /* HPComponentConfig.swift */,
+				924B51F021CAAED200A8464B /* HPColorEntity.swift */,
+				924B51F121CAAED200A8464B /* HPColor.swift */,
+				924B51F321CAAED200A8464B /* HPTextStyle.swift */,
+				924B51F421CAAED200A8464B /* HPImportable.swift */,
+				92CFF99A21CAB6E00052CE86 /* SKLayer.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +136,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 924B51E821CAAC5400A8464B /* Build configuration list for PBXNativeTarget "HappyPathKit" */;
 			buildPhases = (
+				A52DB005DD5CB295D09FE17D /* [CP] Check Pods Manifest.lock */,
 				924B51D221CAAC5300A8464B /* Sources */,
 				924B51D321CAAC5300A8464B /* Frameworks */,
 				924B51D421CAAC5300A8464B /* Resources */,
+				14FEAB6C3079593D30A979CA /* [CP] Embed Pods Frameworks */,
+				2CA097B32827D8F9DC356F59 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,13 +198,75 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		14FEAB6C3079593D30A979CA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HappyPathKit/Pods-HappyPathKit-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nub/Nub.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nub.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HappyPathKit/Pods-HappyPathKit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2CA097B32827D8F9DC356F59 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HappyPathKit/Pods-HappyPathKit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A52DB005DD5CB295D09FE17D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HappyPathKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		924B51D221CAAC5300A8464B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				924B51FC21CAAED200A8464B /* HPImportable.swift in Sources */,
+				924B51FB21CAAED200A8464B /* HPTextStyle.swift in Sources */,
+				924B51F821CAAED200A8464B /* HPColorEntity.swift in Sources */,
 				924B51DC21CAAC5300A8464B /* ViewController.swift in Sources */,
 				924B51DA21CAAC5300A8464B /* AppDelegate.swift in Sources */,
+				92CFF99B21CAB6E00052CE86 /* SKLayer.swift in Sources */,
+				924B51F621CAAED200A8464B /* HPFont.swift in Sources */,
+				924B51F521CAAED200A8464B /* HPConfiguration.swift in Sources */,
+				924B51F921CAAED200A8464B /* HPColor.swift in Sources */,
+				924B51F721CAAED200A8464B /* HPComponentConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +410,7 @@
 		};
 		924B51E921CAAC5400A8464B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E9EAEC3F78CCEBEF440726D /* Pods-HappyPathKit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -298,6 +429,7 @@
 		};
 		924B51EA21CAAC5400A8464B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F220D03FD853B385C5376F08 /* Pods-HappyPathKit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
