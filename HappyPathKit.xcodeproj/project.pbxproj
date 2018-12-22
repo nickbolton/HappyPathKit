@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		47A610ED4A12C9098A29FDAF /* Pods_HappyPathKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE5E7820AEFCD95A0CE99568 /* Pods_HappyPathKit.framework */; };
+		9226CF8221CDB24800DBB143 /* HPLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CF7F21CDB24800DBB143 /* HPLayout.swift */; };
+		9226CF8321CDB24800DBB143 /* HPConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CF8021CDB24800DBB143 /* HPConstraints.swift */; };
+		9226CF8421CDB24800DBB143 /* HPConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CF8121CDB24800DBB143 /* HPConstraint.swift */; };
 		924B51DA21CAAC5300A8464B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B51D921CAAC5300A8464B /* AppDelegate.swift */; };
 		924B51DC21CAAC5300A8464B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B51DB21CAAC5300A8464B /* ViewController.swift */; };
 		924B51DF21CAAC5300A8464B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 924B51DD21CAAC5300A8464B /* Main.storyboard */; };
@@ -25,6 +28,9 @@
 
 /* Begin PBXFileReference section */
 		5E9EAEC3F78CCEBEF440726D /* Pods-HappyPathKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyPathKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HappyPathKit/Pods-HappyPathKit.debug.xcconfig"; sourceTree = "<group>"; };
+		9226CF7F21CDB24800DBB143 /* HPLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPLayout.swift; sourceTree = "<group>"; };
+		9226CF8021CDB24800DBB143 /* HPConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPConstraints.swift; sourceTree = "<group>"; };
+		9226CF8121CDB24800DBB143 /* HPConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPConstraint.swift; sourceTree = "<group>"; };
 		924B51D621CAAC5300A8464B /* HappyPathKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyPathKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		924B51D921CAAC5300A8464B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		924B51DB21CAAC5300A8464B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +124,9 @@
 			isa = PBXGroup;
 			children = (
 				924B51ED21CAAED200A8464B /* HPConfiguration.swift */,
+				9226CF8121CDB24800DBB143 /* HPConstraint.swift */,
+				9226CF8021CDB24800DBB143 /* HPConstraints.swift */,
+				9226CF7F21CDB24800DBB143 /* HPLayout.swift */,
 				924B51EE21CAAED200A8464B /* HPFont.swift */,
 				924B51EF21CAAED200A8464B /* HPComponentConfig.swift */,
 				924B51F021CAAED200A8464B /* HPColorEntity.swift */,
@@ -259,8 +268,11 @@
 			files = (
 				924B51FC21CAAED200A8464B /* HPImportable.swift in Sources */,
 				924B51FB21CAAED200A8464B /* HPTextStyle.swift in Sources */,
+				9226CF8321CDB24800DBB143 /* HPConstraints.swift in Sources */,
 				924B51F821CAAED200A8464B /* HPColorEntity.swift in Sources */,
+				9226CF8221CDB24800DBB143 /* HPLayout.swift in Sources */,
 				924B51DC21CAAC5300A8464B /* ViewController.swift in Sources */,
+				9226CF8421CDB24800DBB143 /* HPConstraint.swift in Sources */,
 				924B51DA21CAAC5300A8464B /* AppDelegate.swift in Sources */,
 				92CFF99B21CAB6E00052CE86 /* SKLayer.swift in Sources */,
 				924B51F621CAAED200A8464B /* HPFont.swift in Sources */,

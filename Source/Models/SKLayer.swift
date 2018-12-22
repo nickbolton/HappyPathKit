@@ -141,6 +141,11 @@ public struct SKColor {
     public let blue: CGFloat
     public let alpha: CGFloat
     public let rawValue: String
+    
+#if os(iOS)
+    public var uiColor: UIColor { return UIColor(displayP3Red: red / 255.0, green: green / 255.0, blue: blue / 255.0, alpha: alpha) }
+#elseif os(macOS)
+#endif
         
     public init(rawValue: String) {
         self.rawValue = rawValue
@@ -198,12 +203,14 @@ public struct SKColor {
 public struct SKBackgroundColor: Codable {
     public let backgroundColorClass: SKBackgroundColorClass
     public let rawValue: String
+    public let externalName: String
     
     public var color: SKColor { return SKColor(rawValue: rawValue) }
     
     enum CodingKeys: String, CodingKey {
         case backgroundColorClass = "<class>"
         case rawValue = "value"
+        case externalName
     }
 }
 
@@ -314,12 +321,12 @@ public struct SKAttributedString: Codable {
 }
 
 public struct SKValueClass: Codable {
-    public let valueClass, text: String
+    public let valueClass, text, externalName: String
     public let attributes: [SKAttribute]
     
     enum CodingKeys: String, CodingKey {
         case valueClass = "<class>"
-        case text, attributes
+        case text, attributes, externalName
     }
 }
 
@@ -346,6 +353,7 @@ public struct SKAttribute: Codable {
 
 public struct SKLayerFont: Codable {
     public let name: String
+    public let externalName: String
     public let attributes: SKAttributes
     public let family: String
 }

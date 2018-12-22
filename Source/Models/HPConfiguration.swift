@@ -12,4 +12,5 @@ public struct HPConfiguration: Codable {
     public let colors: [HPColor]
     public let textStyles: [HPTextStyle]
     public let components: [HPComponentConfig]
+    public let layouts: [HPLayout]
 }

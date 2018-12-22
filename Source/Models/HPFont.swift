@@ -16,6 +16,34 @@ public struct HPFont: Codable {
     public let family: String
     public let systemWeight: String?
     public let attributes: HPFontAttributes
+    
+#if os(iOS)
+    public var uiFontWeight: UIFont.Weight? {
+        switch systemWeight {
+        case "ultraLight":
+            return .ultraLight
+        case "thin":
+            return .thin
+        case "light":
+            return .light
+        case "regular":
+            return .regular
+        case "medium":
+            return .medium
+        case "semibold":
+            return .semibold
+        case "bold":
+            return .bold
+        case "heavy":
+            return .heavy
+        case "black":
+            return .black
+        default:
+            break
+        }
+        return nil
+    }
+#endif
 }
 
 public struct HPFontAttributes: Codable {

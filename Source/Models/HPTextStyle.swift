@@ -22,9 +22,10 @@ public struct HPStyleAttributes: Codable {
     public let underline: Int?
     public let strikethrough: Int?
     public let baselineOffset: CGFloat?
+    public let superscript: Int?
     public let colorName: String
     public let fontName: String
-    public let textStyleVerticalAlignmentKey: Int
+    public let textStyleVerticalAlignmentKey: Int?
     public let paragraph: HPParagraph
     
     enum CodingKeys: String, CodingKey {
@@ -34,6 +35,7 @@ public struct HPStyleAttributes: Codable {
         case underline = "NSUnderline"
         case strikethrough = "NSStrikethrough"
         case baselineOffset = "NSBaselineOffset"
+        case superscript = "NSSuperScript"
         case colorName
         case fontName
         case textStyleVerticalAlignmentKey
