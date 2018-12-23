@@ -7,47 +7,179 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3631BB1D497BBC639AE366DFBCFFAD2A /* Pods-HappyPathKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D974D645FCE4719D73A624682B12B7 /* Pods-HappyPathKit-dummy.m */; };
-		CDE5F2CFAD1DDE1B1FE388AA008A44C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		FD55E5DA043A23BAA73F88032DC2EED3 /* Pods-HappyPathKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B70B6F3FA5BAC3374CDA951C242AF4DC /* Pods-HappyPathKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0F56EDD3E1A2A263D5883A434423E677 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A628F7940A5E090C6C37FBE59F7D68A /* Platform.swift */; };
+		12E7C72B781E1C717C4D8005A81A1B47 /* Nub-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BFFB7A2B57219CB8826EA917B00A38C7 /* Nub-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		18CA82DD031DBF976218FFFB3CA602AD /* Nub-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF063BAEE8B04ADD8E1A5516916F739 /* Nub-dummy.m */; };
+		1FEFA68D990F43AFC8E71EA5C64AE51B /* CGFloat+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D199BBE612D8C63C1FD973695F1966B6 /* CGFloat+Utils.swift */; };
+		2C4B9D6E4F90BDFC4E70C2B5B697CFD6 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0531B986D0EDA9C2F28BA5F8C7A9D78 /* UIColor+Utils.swift */; };
+		2F4988C7ABF4B88150B206AD574B4DA6 /* Pods-HappyPathKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D974D645FCE4719D73A624682B12B7 /* Pods-HappyPathKit-dummy.m */; };
+		30B6F3AF311C7A21B06870900199B919 /* UIButton+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A162A259329F7D539EDE5A3D0D7D91F1 /* UIButton+Layout.swift */; };
+		35AC64232A4BBADE1F4A935A06A144D3 /* DispatchQueue+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D87E9267B055018D21CFC78A808107 /* DispatchQueue+Utils.swift */; };
+		39407265CFCFA2800547B53EB85AD755 /* OptionSet+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483FCC494C52A9FF42A76790D2FE07E7 /* OptionSet+Utils.swift */; };
+		3B03F9FBD37F20AD32AB7AC63461ED55 /* UINavigationController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF70B53A507F31725D9B62D419F5BC /* UINavigationController+Helpers.swift */; };
+		64B177FC1903A5208D9FFB08EF089D1C /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814A0CEA8343C5C8267376F86D1A0EBA /* UIViewController+Helpers.swift */; };
+		6A206B6460F4F2DAFDE066D4A69A7BC6 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E6B908F2305BC5E6B8E564EB61C1B8 /* Types.swift */; };
+		8B6D31DC1FBDD12A9BB009E73D78832C /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143C41F3050A4FC2EBF6408F04C4FF3 /* UIView+Helpers.swift */; };
+		93ABC5F0E01803D2BEDBBB88D2875760 /* Pods-HappyPathKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B70B6F3FA5BAC3374CDA951C242AF4DC /* Pods-HappyPathKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9B836E9245D48274A32DA9FC9A962D63 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		A342B1EC638498988FE51278043CBDC3 /* BackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A3EDD7DAD6346BFEAFDDF125DD37C5 /* BackgroundTask.swift */; };
+		AC8A1D1D40DA33889D687021D433CBAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		BE044A65D5938668774806BA894CA88C /* View+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE832654B25D8DA525CDAE66E0E1D4E /* View+Layout.swift */; };
+		C387D98C793D850D7BA7DA0B22405698 /* PerformOnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3689890D96928819740D632446F7B6A /* PerformOnce.swift */; };
+		D5FB193AE441564B8F93F1B48F74BE2C /* InteractionGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9666C7DC5A328B39D209BE98CCB26118 /* InteractionGuard.swift */; };
+		D6DD2F83D8900B3B9DCEF87967F7826E /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ACC3CEB5184F8A908352781966B5D5 /* String+Utils.swift */; };
+		E4A17C8EF506B752A1099E3B917C6C32 /* Int+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6D102E18D88311E65FFA5B0256AC7C /* Int+Utils.swift */; };
+		EFCB404B232D22BA348650128F6498D9 /* DispatchTaskPerformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767A654F4522C9004F0B8F310AC1EB5E /* DispatchTaskPerformer.swift */; };
+		FBAC8FFFEF1FACE9BD82C2FDFFAC9B72 /* Nub.h in Headers */ = {isa = PBXBuildFile; fileRef = 19A82C8A479E47336E31F3F685537446 /* Nub.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BBB11E8151BC8EE24B55B32FF33E59A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56A5F187126CA519C3F35AC217D12725;
+			remoteInfo = Nub;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		07A136799A206274D40D36A47B0A263B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D3A5C50DE89BDC467516E5EE201A4AE /* Pods-HappyPathKit-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-HappyPathKit-acknowledgements.markdown"; sourceTree = "<group>"; };
+		1098C123551B51F28C73E5EE43A448B8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1143C41F3050A4FC2EBF6408F04C4FF3 /* UIView+Helpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
+		168B8EC5FD16BB63968E35EE7C3D386B /* Nub.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Nub.xcconfig; sourceTree = "<group>"; };
+		19A82C8A479E47336E31F3F685537446 /* Nub.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Nub.h; sourceTree = "<group>"; };
 		39D974D645FCE4719D73A624682B12B7 /* Pods-HappyPathKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-HappyPathKit-dummy.m"; sourceTree = "<group>"; };
 		3B2074AB87D6B55CC3EC4EC7001A50C6 /* Pods-HappyPathKit-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-HappyPathKit-acknowledgements.plist"; sourceTree = "<group>"; };
 		3F66EF8D975C07CB630D10F7CEAB8342 /* Pods-HappyPathKit-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-HappyPathKit-resources.sh"; sourceTree = "<group>"; };
+		40A3EDD7DAD6346BFEAFDDF125DD37C5 /* BackgroundTask.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BackgroundTask.swift; sourceTree = "<group>"; };
+		483FCC494C52A9FF42A76790D2FE07E7 /* OptionSet+Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "OptionSet+Utils.swift"; sourceTree = "<group>"; };
+		4FF063BAEE8B04ADD8E1A5516916F739 /* Nub-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Nub-dummy.m"; sourceTree = "<group>"; };
 		50AEEF3EE98FF4964A4405EC798DD54F /* Pods-HappyPathKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HappyPathKit.release.xcconfig"; sourceTree = "<group>"; };
 		58EA08EB03B74C14F971E26C0B297068 /* Pods-HappyPathKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HappyPathKit.debug.xcconfig"; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		664E40F1DE59472DE6177F5AE86851E7 /* Nub-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nub-prefix.pch"; sourceTree = "<group>"; };
+		767A654F4522C9004F0B8F310AC1EB5E /* DispatchTaskPerformer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DispatchTaskPerformer.swift; sourceTree = "<group>"; };
+		78DC6D1DE8C5EC81EC84A671F04342DB /* Nub.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = Nub.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		7A628F7940A5E090C6C37FBE59F7D68A /* Platform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
+		814A0CEA8343C5C8267376F86D1A0EBA /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9666C7DC5A328B39D209BE98CCB26118 /* InteractionGuard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InteractionGuard.swift; sourceTree = "<group>"; };
 		9F473FA30B3CBC47D9B709EC5B5DBD6F /* Pods-HappyPathKit-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-HappyPathKit-frameworks.sh"; sourceTree = "<group>"; };
+		A162A259329F7D539EDE5A3D0D7D91F1 /* UIButton+Layout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIButton+Layout.swift"; sourceTree = "<group>"; };
+		A5CF70B53A507F31725D9B62D419F5BC /* UINavigationController+Helpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Helpers.swift"; sourceTree = "<group>"; };
+		AB6D102E18D88311E65FFA5B0256AC7C /* Int+Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Int+Utils.swift"; sourceTree = "<group>"; };
 		B70B6F3FA5BAC3374CDA951C242AF4DC /* Pods-HappyPathKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-HappyPathKit-umbrella.h"; sourceTree = "<group>"; };
-		CD96EF6BA9BD1B2D7B5F1E8D94634906 /* Pods_HappyPathKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_HappyPathKit.framework; path = "Pods-HappyPathKit.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFFB7A2B57219CB8826EA917B00A38C7 /* Nub-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nub-umbrella.h"; sourceTree = "<group>"; };
+		C9CF38FDB66059C82BA801239ECD0CD8 /* Nub.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Nub.modulemap; sourceTree = "<group>"; };
+		D0531B986D0EDA9C2F28BA5F8C7A9D78 /* UIColor+Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
+		D199BBE612D8C63C1FD973695F1966B6 /* CGFloat+Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CGFloat+Utils.swift"; sourceTree = "<group>"; };
+		D3689890D96928819740D632446F7B6A /* PerformOnce.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PerformOnce.swift; sourceTree = "<group>"; };
 		D41040D527EDAF5D5C3D0296E851EE00 /* Pods-HappyPathKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-HappyPathKit.modulemap"; sourceTree = "<group>"; };
+		DAE832654B25D8DA525CDAE66E0E1D4E /* View+Layout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "View+Layout.swift"; sourceTree = "<group>"; };
+		DCE3A479E62947BCB798701D8E7D88C5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		E1F8FFA715BDD3364331348340BF9460 /* Pods_HappyPathKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_HappyPathKit.framework; path = "Pods-HappyPathKit.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E25E702DB3CBEBA927C9BB758371C5AA /* Nub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Nub.framework; path = Nub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2D87E9267B055018D21CFC78A808107 /* DispatchQueue+Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Utils.swift"; sourceTree = "<group>"; };
+		F6ACC3CEB5184F8A908352781966B5D5 /* String+Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
+		F8E6B908F2305BC5E6B8E564EB61C1B8 /* Types.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		77C6F2983A31E744139146A375B7382B /* Frameworks */ = {
+		030B30911060C5A98365BBF78A88D542 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDE5F2CFAD1DDE1B1FE388AA008A44C1 /* Foundation.framework in Frameworks */,
+				AC8A1D1D40DA33889D687021D433CBAB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1CC2DF6441C03A09A1FDA7E14136065 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B836E9245D48274A32DA9FC9A962D63 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1FF03E9C400CA6AC2DEF8768436F69CB /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				78DC6D1DE8C5EC81EC84A671F04342DB /* Nub.podspec */,
+				DCE3A479E62947BCB798701D8E7D88C5 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		237CF8D0DB3E73E25E6E347F15162A86 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				1098C123551B51F28C73E5EE43A448B8 /* Info.plist */,
+				C9CF38FDB66059C82BA801239ECD0CD8 /* Nub.modulemap */,
+				168B8EC5FD16BB63968E35EE7C3D386B /* Nub.xcconfig */,
+				4FF063BAEE8B04ADD8E1A5516916F739 /* Nub-dummy.m */,
+				664E40F1DE59472DE6177F5AE86851E7 /* Nub-prefix.pch */,
+				BFFB7A2B57219CB8826EA917B00A38C7 /* Nub-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../HappyPathKit/Pods/Target Support Files/Nub";
+			sourceTree = "<group>";
+		};
+		32C3D5E3FE2EA0C2D4B00894FE59D6DE /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5C80437B720B19CAD121E49351CB4AD8 /* Nub */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		5C80437B720B19CAD121E49351CB4AD8 /* Nub */ = {
+			isa = PBXGroup;
+			children = (
+				F4B33FF840C5FFC938A16692697BB888 /* Core */,
+				1FF03E9C400CA6AC2DEF8768436F69CB /* Pod */,
+				237CF8D0DB3E73E25E6E347F15162A86 /* Support Files */,
+			);
+			name = Nub;
+			path = /Users/deuce/src/pixelbleed/nub;
+			sourceTree = "<absolute>";
+		};
+		619D182FF040A29A04D14AC9594E6B7A /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				40A3EDD7DAD6346BFEAFDDF125DD37C5 /* BackgroundTask.swift */,
+				767A654F4522C9004F0B8F310AC1EB5E /* DispatchTaskPerformer.swift */,
+				9666C7DC5A328B39D209BE98CCB26118 /* InteractionGuard.swift */,
+				D3689890D96928819740D632446F7B6A /* PerformOnce.swift */,
+				7A628F7940A5E090C6C37FBE59F7D68A /* Platform.swift */,
+				F8E6B908F2305BC5E6B8E564EB61C1B8 /* Types.swift */,
+			);
+			name = Util;
+			path = Source/Core/Util;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				32C3D5E3FE2EA0C2D4B00894FE59D6DE /* Development Pods */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				AA0335B9C9543CDA957FCE024E191A4F /* Products */,
+				9C8BE441485B3D05CF0EC2AB5E540206 /* Products */,
 				ECF53DCCF01A3FA47956AF34E42F262C /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		9C8BE441485B3D05CF0EC2AB5E540206 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E25E702DB3CBEBA927C9BB758371C5AA /* Nub.framework */,
+				E1F8FFA715BDD3364331348340BF9460 /* Pods_HappyPathKit.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		A7D35C4CF7DC6521F0F7C6A94A6B3B27 /* Pods-HappyPathKit */ = {
@@ -68,12 +200,32 @@
 			path = "Target Support Files/Pods-HappyPathKit";
 			sourceTree = "<group>";
 		};
-		AA0335B9C9543CDA957FCE024E191A4F /* Products */ = {
+		ACF771722FE11BF31E8C0CFA6CB49A27 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CD96EF6BA9BD1B2D7B5F1E8D94634906 /* Pods_HappyPathKit.framework */,
+				D199BBE612D8C63C1FD973695F1966B6 /* CGFloat+Utils.swift */,
+				E2D87E9267B055018D21CFC78A808107 /* DispatchQueue+Utils.swift */,
+				AB6D102E18D88311E65FFA5B0256AC7C /* Int+Utils.swift */,
+				483FCC494C52A9FF42A76790D2FE07E7 /* OptionSet+Utils.swift */,
+				F6ACC3CEB5184F8A908352781966B5D5 /* String+Utils.swift */,
+				A162A259329F7D539EDE5A3D0D7D91F1 /* UIButton+Layout.swift */,
+				D0531B986D0EDA9C2F28BA5F8C7A9D78 /* UIColor+Utils.swift */,
+				A5CF70B53A507F31725D9B62D419F5BC /* UINavigationController+Helpers.swift */,
+				1143C41F3050A4FC2EBF6408F04C4FF3 /* UIView+Helpers.swift */,
+				814A0CEA8343C5C8267376F86D1A0EBA /* UIViewController+Helpers.swift */,
+				DAE832654B25D8DA525CDAE66E0E1D4E /* View+Layout.swift */,
 			);
-			name = Products;
+			name = Extensions;
+			path = Source/Core/Extensions;
+			sourceTree = "<group>";
+		};
+		AFBA8B0BE6CEA814C4064C75D81B642A /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				19A82C8A479E47336E31F3F685537446 /* Nub.h */,
+			);
+			name = Support;
+			path = Source/Core/Support;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -100,35 +252,72 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		F4B33FF840C5FFC938A16692697BB888 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				ACF771722FE11BF31E8C0CFA6CB49A27 /* Extensions */,
+				AFBA8B0BE6CEA814C4064C75D81B642A /* Support */,
+				619D182FF040A29A04D14AC9594E6B7A /* Util */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		C1C3442FB12ED88B0B9AE840BF4C5FE7 /* Headers */ = {
+		BBF2CA1B4A04FF2A8CBA31DF045B80B1 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD55E5DA043A23BAA73F88032DC2EED3 /* Pods-HappyPathKit-umbrella.h in Headers */,
+				12E7C72B781E1C717C4D8005A81A1B47 /* Nub-umbrella.h in Headers */,
+				FBAC8FFFEF1FACE9BD82C2FDFFAC9B72 /* Nub.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9B8668AF4AD097C8CEE7051F6AEB5EF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93ABC5F0E01803D2BEDBBB88D2875760 /* Pods-HappyPathKit-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		5B4E8D114BE341B60919C725C4E06E40 /* Pods-HappyPathKit */ = {
+		56A5F187126CA519C3F35AC217D12725 /* Nub */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E8841692DF0399BBE33697841E561361 /* Build configuration list for PBXNativeTarget "Pods-HappyPathKit" */;
+			buildConfigurationList = 31BD4E374830BD9DAAE916A53A779098 /* Build configuration list for PBXNativeTarget "Nub" */;
 			buildPhases = (
-				E2B8B6C9741CCB9CA0270F7AF292ACE7 /* Sources */,
-				77C6F2983A31E744139146A375B7382B /* Frameworks */,
-				C1C3442FB12ED88B0B9AE840BF4C5FE7 /* Headers */,
+				D40295D1C6EDA7ABDE44040D18D2DE5D /* Sources */,
+				D1CC2DF6441C03A09A1FDA7E14136065 /* Frameworks */,
+				BBF2CA1B4A04FF2A8CBA31DF045B80B1 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
+			name = Nub;
+			productName = Nub;
+			productReference = E25E702DB3CBEBA927C9BB758371C5AA /* Nub.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EEE5DC0F396FF53B7BB3ADEAB3D4C809 /* Pods-HappyPathKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC25C681B6C408A1648A30A3368F5327 /* Build configuration list for PBXNativeTarget "Pods-HappyPathKit" */;
+			buildPhases = (
+				EF68FDF6190D1CD782856105662CDAE7 /* Sources */,
+				030B30911060C5A98365BBF78A88D542 /* Frameworks */,
+				C9B8668AF4AD097C8CEE7051F6AEB5EF /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F7F5D8D67C659796978457B022796BE8 /* PBXTargetDependency */,
+			);
 			name = "Pods-HappyPathKit";
 			productName = "Pods-HappyPathKit";
-			productReference = CD96EF6BA9BD1B2D7B5F1E8D94634906 /* Pods_HappyPathKit.framework */;
+			productReference = E1F8FFA715BDD3364331348340BF9460 /* Pods_HappyPathKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -148,27 +337,93 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = AA0335B9C9543CDA957FCE024E191A4F /* Products */;
+			productRefGroup = 9C8BE441485B3D05CF0EC2AB5E540206 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5B4E8D114BE341B60919C725C4E06E40 /* Pods-HappyPathKit */,
+				56A5F187126CA519C3F35AC217D12725 /* Nub */,
+				EEE5DC0F396FF53B7BB3ADEAB3D4C809 /* Pods-HappyPathKit */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E2B8B6C9741CCB9CA0270F7AF292ACE7 /* Sources */ = {
+		D40295D1C6EDA7ABDE44040D18D2DE5D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3631BB1D497BBC639AE366DFBCFFAD2A /* Pods-HappyPathKit-dummy.m in Sources */,
+				A342B1EC638498988FE51278043CBDC3 /* BackgroundTask.swift in Sources */,
+				1FEFA68D990F43AFC8E71EA5C64AE51B /* CGFloat+Utils.swift in Sources */,
+				35AC64232A4BBADE1F4A935A06A144D3 /* DispatchQueue+Utils.swift in Sources */,
+				EFCB404B232D22BA348650128F6498D9 /* DispatchTaskPerformer.swift in Sources */,
+				E4A17C8EF506B752A1099E3B917C6C32 /* Int+Utils.swift in Sources */,
+				D5FB193AE441564B8F93F1B48F74BE2C /* InteractionGuard.swift in Sources */,
+				18CA82DD031DBF976218FFFB3CA602AD /* Nub-dummy.m in Sources */,
+				39407265CFCFA2800547B53EB85AD755 /* OptionSet+Utils.swift in Sources */,
+				C387D98C793D850D7BA7DA0B22405698 /* PerformOnce.swift in Sources */,
+				0F56EDD3E1A2A263D5883A434423E677 /* Platform.swift in Sources */,
+				D6DD2F83D8900B3B9DCEF87967F7826E /* String+Utils.swift in Sources */,
+				6A206B6460F4F2DAFDE066D4A69A7BC6 /* Types.swift in Sources */,
+				30B6F3AF311C7A21B06870900199B919 /* UIButton+Layout.swift in Sources */,
+				2C4B9D6E4F90BDFC4E70C2B5B697CFD6 /* UIColor+Utils.swift in Sources */,
+				3B03F9FBD37F20AD32AB7AC63461ED55 /* UINavigationController+Helpers.swift in Sources */,
+				8B6D31DC1FBDD12A9BB009E73D78832C /* UIView+Helpers.swift in Sources */,
+				64B177FC1903A5208D9FFB08EF089D1C /* UIViewController+Helpers.swift in Sources */,
+				BE044A65D5938668774806BA894CA88C /* View+Layout.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF68FDF6190D1CD782856105662CDAE7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F4988C7ABF4B88150B206AD574B4DA6 /* Pods-HappyPathKit-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		F7F5D8D67C659796978457B022796BE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Nub;
+			target = 56A5F187126CA519C3F35AC217D12725 /* Nub */;
+			targetProxy = BBB11E8151BC8EE24B55B32FF33E59A7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		0824C2FB9691A9596128C8A30ED9D098 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 168B8EC5FD16BB63968E35EE7C3D386B /* Nub.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Nub/Nub-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Nub/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Nub/Nub.modulemap";
+				PRODUCT_NAME = Nub;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		13A95306D85E4471AB6BE665B012E60A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -232,7 +487,7 @@
 			};
 			name = Debug;
 		};
-		84CA4C69833F0E42517809678F6818B6 /* Debug */ = {
+		35D4FDF49A24B97802110D7C9040DB8C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 58EA08EB03B74C14F971E26C0B297068 /* Pods-HappyPathKit.debug.xcconfig */;
 			buildSettings = {
@@ -259,6 +514,8 @@
 				PRODUCT_NAME = Pods_HappyPathKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -323,7 +580,7 @@
 			};
 			name = Release;
 		};
-		E13643AB10FAE7521E7E60DEE70FEA5F /* Release */ = {
+		A1B1E5B0CA6E82DB2B8EF03FDBD575B4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 50AEEF3EE98FF4964A4405EC798DD54F /* Pods-HappyPathKit.release.xcconfig */;
 			buildSettings = {
@@ -350,6 +607,39 @@
 				PRODUCT_NAME = Pods_HappyPathKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A70882CE61A791B9257C514729E5109D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 168B8EC5FD16BB63968E35EE7C3D386B /* Nub.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Nub/Nub-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Nub/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Nub/Nub.modulemap";
+				PRODUCT_NAME = Nub;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -369,11 +659,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E8841692DF0399BBE33697841E561361 /* Build configuration list for PBXNativeTarget "Pods-HappyPathKit" */ = {
+		31BD4E374830BD9DAAE916A53A779098 /* Build configuration list for PBXNativeTarget "Nub" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				84CA4C69833F0E42517809678F6818B6 /* Debug */,
-				E13643AB10FAE7521E7E60DEE70FEA5F /* Release */,
+				0824C2FB9691A9596128C8A30ED9D098 /* Debug */,
+				A70882CE61A791B9257C514729E5109D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC25C681B6C408A1648A30A3368F5327 /* Build configuration list for PBXNativeTarget "Pods-HappyPathKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35D4FDF49A24B97802110D7C9040DB8C /* Debug */,
+				A1B1E5B0CA6E82DB2B8EF03FDBD575B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

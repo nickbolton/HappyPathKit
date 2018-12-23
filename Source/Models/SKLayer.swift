@@ -13,6 +13,24 @@ import Cocoa
 
 public typealias SKLayerGroup = [SKLayer]
 
+public enum SKLayerType {
+    case artboard
+    case group
+    case bitmap
+    case hotspot
+    case openGL
+    case shapePath
+    case slice
+    case text
+    case oval
+    case polygon
+    case rectangle
+    case star
+    case triangle
+    case symbolInstance
+    case unknown
+}
+
 public struct SKLayer: Codable, Equatable, Hashable {
     
     public let shouldBreakMaskChain, rotation: Int
@@ -64,6 +82,42 @@ public struct SKLayer: Codable, Equatable, Hashable {
     public let intendedDPI: Int?
     public var layers: SKLayerGroup?
     public var isRootLayer = false
+        
+    public var layerType: SKLayerType {
+        switch layerClass {
+        case "MSArtboardGroup", "MSImmutableArtboardGroup":
+            return .artboard
+        case "MSLayerGroup", "MSImmutableLayerGroup":
+            return .group
+        case "MSBitmapLayer", "MSImmutableBitmapLayer":
+            return .bitmap
+        case "MSHotspotLayer", "MSImmutableHotspotLayer":
+            return .hotspot
+        case "MSOpenGLLayer":
+            return .openGL
+        case "MSShapePathLayer", "MSImmutableShapePathLayer":
+            return .shapePath
+        case "MSSliceLayer", "MSImmutableSliceLayer":
+            return .slice
+        case "MSTextLayer", "MSImmutableTextLayer":
+            return .text
+        case "MSOvalShape", "MSImmutableOvalShape":
+            return .oval
+        case "MSPolygonShape", "MSImmutablePolygonShape", "SVGPolygonShape":
+            return .polygon
+        case "MSRectangleShape", "MSImmutableRectangleShape", "SVGRectangleShape.h":
+            return .rectangle
+        case "MSStarShape", "MSImmutableStarShape":
+            return .star
+        case "MSTriangleShape", "MSImmutableTriangleShape":
+            return .triangle
+        case "MSSymbolInstance", "MSImmutableSymbolInstance":
+            return .symbolInstance
+        default:
+            assert(false, "Unknown layer type: \(layerClass)")
+            return .unknown
+        }
+    }
     
     public var flattened: [SKLayer] {
         var result = [SKLayer]()
@@ -144,6 +198,9 @@ public struct SKColor {
     
 #if os(iOS)
     public var uiColor: UIColor { return UIColor(displayP3Red: red / 255.0, green: green / 255.0, blue: blue / 255.0, alpha: alpha) }
+    
+    public var cgColor: CGColor { return uiColor.cgColor }
+
 #elseif os(macOS)
 #endif
         
@@ -207,6 +264,19 @@ public struct SKBackgroundColor: Codable {
     
     public var color: SKColor { return SKColor(rawValue: rawValue) }
     
+    #if os(iOS)
+    public var uiColor: UIColor {
+        let color = self.color
+        return UIColor(displayP3Red: color.red / 255.0,
+                       green: color.green / 255.0,
+                       blue: color.blue / 255.0,
+                       alpha: color.alpha) }
+    
+    public var cgColor: CGColor { return uiColor.cgColor }
+    
+    #elseif os(macOS)
+    #endif
+
     enum CodingKeys: String, CodingKey {
         case backgroundColorClass = "<class>"
         case rawValue = "value"
@@ -460,6 +530,7 @@ public struct SKLayerPoint: Codable {
 
 public struct SKLayerCenter: Codable {
     public let x, y: CGFloat
+    public var cgPoint: CGPoint { return CGPoint(x: x, y: y) }
 }
 
 public enum SKPointClass: String, Codable {
@@ -493,7 +564,8 @@ public struct SKLayerBlur: Codable {
     public let radius: CGFloat
     public let center: SKLayerCenter
     public let blurClass: SKBlurClass
-    public let type, isEnabled: Int
+    public let type: Int
+    public let isEnabled: Int
     public let motionAngle, saturation: CGFloat
     
     enum CodingKeys: String, CodingKey {
@@ -524,8 +596,14 @@ public enum SKBorderOptionsClass: String, Codable {
     case msStyleBorderOptions = "MSStyleBorderOptions"
 }
 
+public enum SKBorderType: Int, Codable {
+    case center
+    case inside
+    case outside
+}
+
 public struct SKLayerBorder: Codable {
-    public let position: CGFloat
+    public let position: SKBorderType
     public let color: SKBackgroundColor
     public let borderClass: SKBorderClass
     public let gradient: SKLayerGradient
@@ -550,6 +628,10 @@ public struct SKContextSettings: Codable {
     public let opacity: CGFloat
     public let blendMode: Int
     
+    public var cgBlendMode: CGBlendMode {
+        return CGBlendMode(rawValue: Int32(blendMode)) ?? .normal
+    }
+    
     enum CodingKeys: String, CodingKey {
         case contextSettingsClass = "<class>"
         case opacity, blendMode
@@ -560,10 +642,25 @@ public enum SKContextSettingsClass: String, Codable {
     case msGraphicsContextSettings = "MSGraphicsContextSettings"
 }
 
+public enum SKLayerGradientType: Int, Codable {
+    case linear = 0
+    case radial
+    case angular
+    
+    public var caGradientLayerType: CAGradientLayerType? {
+        switch self {
+        case .linear:
+            return .axial
+        default:
+            return nil
+        }
+    }
+}
+
 public struct SKLayerGradient: Codable {
     public let stops: [SKLayerStop]
     public let gradientClass: SKGradientClass
-    public let gradientType: Int
+    public let gradientType: SKLayerGradientType
     public let to: SKLayerCenter
     public let elipseLength: CGFloat
     public let from: SKLayerCenter
@@ -611,13 +708,20 @@ public enum SKColorControlsClass: String, Codable {
     case msStyleColorControls = "MSStyleColorControls"
 }
 
+public enum SKFillType: Int, Codable {
+    case `default` = 0
+    case gradient
+}
+
 public struct SKLayerFill: Codable {
     public let contextSettings: SKContextSettings
     public let color: SKBackgroundColor
     public let fillClass: SKFillClass
     public let gradient: SKLayerGradient
-    public let fillType, noiseIntensity, patternFillType, patternTileScale: Int
-    public let noiseIndex, isEnabled: Int
+    public let fillType: SKFillType
+    public let noiseIntensity, patternFillType, patternTileScale: Int
+    public let noiseIndex: Int
+    public let isEnabled: Int
     
     enum CodingKeys: String, CodingKey {
         case contextSettings, color
@@ -891,4 +995,12 @@ public class JSONAny: Codable {
             try JSONAny.encode(to: &container, value: self.value)
         }
     }
+}
+
+public extension Int {
+    public var skBoolValue: Bool { return self != 0 }
+}
+
+public extension CGRect {
+    public var cgCenter: CGPoint { return CGPoint(x: midX, y: midY) }
 }

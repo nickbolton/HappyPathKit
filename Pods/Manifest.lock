@@ -1,3 +1,16 @@
-PODFILE CHECKSUM: 2b5db698462879d4567413241012664271a1b639
+PODS:
+  - Nub/Core (0.0.1)
+
+DEPENDENCIES:
+  - Nub/Core (from `~/src/pixelbleed/nub`)
+
+EXTERNAL SOURCES:
+  Nub:
+    :path: ~/src/pixelbleed/nub
+
+SPEC CHECKSUMS:
+  Nub: 0ca735a9959c4d9bc2cbc8f282ac75099e74316a
+
+PODFILE CHECKSUM: 821c926e9c6fa5148cbdebc1f85aed243dffdc6c
 
 COCOAPODS: 1.4.0

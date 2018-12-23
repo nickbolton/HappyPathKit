@@ -3,6 +3,7 @@ platform :ios, '11.0'
 
 target 'HappyPathKit' do
   use_frameworks!
+  pod 'Nub/Core', :path => "~/src/pixelbleed/nub"
 end
 
 post_install do |installer|

@@ -1,0 +1,226 @@
+{
+  "name": "Nub",
+  "version": "0.0.1",
+  "summary": "Nub Foundation Library",
+  "description": "Nub Foundation Library",
+  "homepage": "https://github.com/nickbolton/nub",
+  "license": "MIT",
+  "authors": {
+    "Nick Bolton": "nick@pixeol.com"
+  },
+  "platforms": {
+    "ios": "9.0",
+    "osx": "10.11"
+  },
+  "source": {
+    "git": "https://github.com/nickbolton/nub.git",
+    "branch": "master"
+  },
+  "default_subspecs": "Core",
+  "subspecs": [
+    {
+      "name": "Core",
+      "source_files": "Source/Core/**/*",
+      "exclude_files": "**/Info*.plist"
+    },
+    {
+      "name": "Bootstrap",
+      "ios": {
+        "source_files": "Source/Bootstrap/**/*.{swift,m,h}",
+        "resources": "Source/**/*.xib"
+      },
+      "dependencies": {
+        "Nub/Core": [
+
+        ],
+        "Nub/Theme": [
+
+        ]
+      },
+      "exclude_files": "**/Info*.plist"
+    },
+    {
+      "name": "Locker",
+      "ios": {
+        "source_files": "Source/Locker/**/*.{swift,m,h}",
+        "resources": "Source/**/*.xib"
+      },
+      "dependencies": {
+        "Nub/Core": [
+
+        ],
+        "FXKeychain": [
+          "~> 1.5"
+        ]
+      },
+      "exclude_files": "**/Info*.plist"
+    },
+    {
+      "name": "Localize",
+      "ios": {
+        "source_files": "Source/Localize/**/*.{swift,m,h}",
+        "resources": "Source/**/*.xib"
+      },
+      "dependencies": {
+        "Nub/Core": [
+
+        ],
+        "Nub/Theme": [
+
+        ]
+      },
+      "exclude_files": "**/Info*.plist"
+    },
+    {
+      "name": "Logger",
+      "ios": {
+        "source_files": "Source/Logger/**/*.{swift,m,h}",
+        "resources": "Source/**/*.xib"
+      },
+      "dependencies": {
+        "Nub/Core": [
+
+        ],
+        "SwiftyBeaver": [
+          "~> 1.4"
+        ]
+      },
+      "exclude_files": "**/Info*.plist"
+    },
+    {
+      "name": "Api",
+      "ios": {
+        "source_files": "Source/Api/**/*.{swift,m,h}",
+        "resources": "Source/**/*.xib"
+      },
+      "dependencies": {
+        "Nub/Core": [
+
+        ],
+        "Siesta": [
+          "~> 1.4"
+        ],
+        "Elevate": [
+          "~> 3.0"
+        ],
+        "ReachabilitySwift": [
+          "~> 4.1"
+        ]
+      },
+      "exclude_files": "**/Info*.plist"
+    },
+    {
+      "name": "Theme",
+      "ios": {
+        "source_files": "Source/Theme/**/*.{swift,m,h}",
+        "resources": "Source/**/*.xib"
+      },
+      "dependencies": {
+        "Nub/Core": [
+
+        ]
+      },
+      "exclude_files": "**/Info*.plist"
+    },
+    {
+      "name": "View",
+      "ios": {
+        "source_files": "Source/View/**/*.{swift,m,h}",
+        "resources": "Source/**/*.xib"
+      },
+      "dependencies": {
+        "Nub/Theme": [
+
+        ],
+        "SnapKit": [
+          "~> 4.0"
+        ]
+      },
+      "exclude_files": "**/Info*.plist"
+    },
+    {
+      "name": "ViewController",
+      "ios": {
+        "source_files": "Source/ViewController/**/*.{swift,m,h}",
+        "resources": "Source/**/*.xib"
+      },
+      "dependencies": {
+        "Nub/Core": [
+
+        ],
+        "Nub/Api": [
+
+        ],
+        "Nub/View": [
+
+        ],
+        "Nub/Logger": [
+
+        ],
+        "Nub/Locker": [
+
+        ]
+      },
+      "exclude_files": "**/Info*.plist"
+    },
+    {
+      "name": "MVVM",
+      "ios": {
+        "source_files": "Source/MVVM/**/*.{swift,m,h}",
+        "resources": "Source/**/*.xib"
+      },
+      "dependencies": {
+        "Nub/Core": [
+
+        ]
+      },
+      "exclude_files": "**/Info*.plist"
+    },
+    {
+      "name": "Text",
+      "ios": {
+        "source_files": "Source/Text/**/*.{swift,m,h}",
+        "resources": "Source/**/*.xib"
+      },
+      "dependencies": {
+        "Nub/Core": [
+
+        ],
+        "Cache": [
+          "~> 4.1"
+        ]
+      },
+      "exclude_files": "**/Info*.plist"
+    },
+    {
+      "name": "iOSApplication",
+      "dependencies": {
+        "Nub/Core": [
+
+        ],
+        "Nub/Locker": [
+
+        ],
+        "Nub/Localize": [
+
+        ],
+        "Nub/Api": [
+
+        ],
+        "Nub/Text": [
+
+        ],
+        "Nub/ViewController": [
+
+        ],
+        "Nub/MVVM": [
+
+        ],
+        "Nub/Logger": [
+
+        ]
+      },
+      "exclude_files": "**/Info*.plist"
+    }
+  ]
+}

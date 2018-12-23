@@ -1,0 +1,6 @@
+framework module Nub {
+  umbrella header "Nub-umbrella.h"
+
+  export *
+  module * { export * }
+}
