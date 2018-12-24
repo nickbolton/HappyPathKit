@@ -24,19 +24,17 @@ public class HPBaseAnchorConstraint: NSObject {
         if views.count == 2 {
             assert(constraint.values.count > 0, "No value was supplied")
             assert(constraint.values.count == 1, "Multiple values were supplied")
-            assert(layers.count > 0, "No layers were supplied")
-            assert(layers.count == 1, "Multiple layers were supplied")
-            let value = constraint.values.first!
+            assert(layers.count == views.count, "Layers didn't match views")
+            let value = constraint.isProportional ? constraint.proportionalValues.first! : constraint.values.first!
             return applyConstraint(source: views[0], target: views[1], value: value)
         } else if views.count == 1 {
             assert(constraint.values.count > 0, "No value was supplied")
             assert(constraint.values.count == 1, "Multiple values were supplied")
-            assert(layers.count > 0, "No layers were supplied")
-            assert(layers.count == 1, "Multiple layers were supplied")
+            assert(layers.count == views.count, "Layers didn't match views")
             guard let parent = views[0].superview else {
-                assert(false, "view must be part of a view hierarchy.")
+                assert(false, "View must be part of a view hierarchy.")
             }
-            let value = constraint.values.first!
+            let value = constraint.isProportional ? constraint.proportionalValues.first! : constraint.values.first!
             return applyConstraint(source: views[0], target: parent, value: value)
         }
         assert(false, "Unimplemented")

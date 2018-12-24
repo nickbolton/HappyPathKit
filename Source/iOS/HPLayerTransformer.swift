@@ -57,7 +57,10 @@ public struct HPLayerTransformer {
             return HPTextLayer(skLayer: layer)
         case .rectangle:
             return HPRectangleLayer(skLayer: layer)
+        case .group:
+            return HPLayer(skLayer: layer)
         default:
+            print("unimplemented layer type: \(layer.layerType)")
             return HPUnimplementedLayer(skLayer: layer)
         }
     }

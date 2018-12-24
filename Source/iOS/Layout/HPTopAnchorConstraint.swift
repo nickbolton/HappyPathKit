@@ -11,6 +11,16 @@ import Nub
 
 public class HPTopAnchorConstraint: HPBaseAnchorConstraint, HPViewConstraint {
     override internal func applyConstraint(source: UIView, target: UIView, value: CGFloat) -> NSLayoutConstraint {
+        if constraint.isProportional {
+            let scaledValue = UIScreen.main.bounds.height * value
+            return NSLayoutConstraint(item: source,
+                                      attribute: .top,
+                                      relatedBy: .equal,
+                                      toItem: target,
+                                      attribute: .top,
+                                      multiplier: 1.0,
+                                      constant: scaledValue)
+        }
         return source.topAnchor.constraint(equalTo: target.topAnchor, constant: value.halfPointRoundValue)
     }
 }

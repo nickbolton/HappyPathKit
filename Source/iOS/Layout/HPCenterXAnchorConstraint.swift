@@ -10,6 +10,16 @@ import UIKit
 
 class HPCenterXAnchorConstraint: HPBaseAnchorConstraint, HPViewConstraint {
     override internal func applyConstraint(source: UIView, target: UIView, value: CGFloat) -> NSLayoutConstraint {
+        if constraint.isProportional {
+            let scaledValue = UIScreen.main.bounds.width * value
+            return NSLayoutConstraint(item: source,
+                                      attribute: .centerX,
+                                      relatedBy: .equal,
+                                      toItem: target,
+                                      attribute: .centerX,
+                                      multiplier: 1.0,
+                                      constant: scaledValue)
+        }
         return source.centerXAnchor.constraint(equalTo: target.centerXAnchor, constant: value.halfPointRoundValue)
     }
 }

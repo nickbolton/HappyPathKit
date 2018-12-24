@@ -27,5 +27,6 @@ public enum HPConstraintType: Int, Codable {
 public struct HPConstraint: Codable {
     public let type: HPConstraintType
     public let values: [CGFloat]
+    public let proportionalValues: [CGFloat]
     public let isProportional: Bool
 }

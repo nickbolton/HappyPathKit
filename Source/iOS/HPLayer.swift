@@ -19,6 +19,7 @@ public class HPLayer: NSObject {
     public var associatedLayers = [HPLayer]()
     public var backgroundLayers = [HPLayer]()
     public var subLayers = [HPLayer]()
+    public var isUnimplemented: Bool { return false }
     public var style = HPStyle(opacity: 1.0,
                                fills: [],
                                borders: [],
@@ -32,10 +33,10 @@ public class HPLayer: NSObject {
     
     public var defaultLayout: HPLayout {
         let key = HPLayer.buildLayoutKey(layers: [self])
-        let top = HPConstraint(type: .top, values: [frame.minY], isProportional: false)
-        let left = HPConstraint(type: .left, values: [frame.minX], isProportional: false)
-        let width = HPConstraint(type: .width, values: [frame.width], isProportional: false)
-        let height = HPConstraint(type: .height, values: [frame.height], isProportional: false)
+        let top = HPConstraint(type: .top, values: [frame.minY], proportionalValues: [], isProportional: false)
+        let left = HPConstraint(type: .left, values: [frame.minX], proportionalValues: [], isProportional: false)
+        let width = HPConstraint(type: .width, values: [frame.width], proportionalValues: [], isProportional: false)
+        let height = HPConstraint(type: .height, values: [frame.height], proportionalValues: [], isProportional: false)
         return HPLayout(key: key, layout: [top, left, width, height])
     }
 

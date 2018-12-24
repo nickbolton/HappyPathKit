@@ -11,6 +11,16 @@ import Nub
 
 public class HPLeftAnchorConstraint: HPBaseAnchorConstraint, HPViewConstraint {
     override internal func applyConstraint(source: UIView, target: UIView, value: CGFloat) -> NSLayoutConstraint {
-        return source.leftAnchor.constraint(equalTo: target.leftAnchor, constant: value.halfPointRoundValue)
+        if constraint.isProportional {
+            let scaledValue = UIScreen.main.bounds.width * value
+            return NSLayoutConstraint(item: source,
+                                      attribute: .leading,
+                                      relatedBy: .equal,
+                                      toItem: target,
+                                      attribute: .leading,
+                                      multiplier: 1.0,
+                                      constant: scaledValue)
+        }
+        return source.leadingAnchor.constraint(equalTo: target.leadingAnchor, constant: value.halfPointRoundValue)
     }
 }

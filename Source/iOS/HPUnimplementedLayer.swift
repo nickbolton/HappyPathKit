@@ -9,6 +9,8 @@
 import Foundation
 
 class HPUnimplementedLayer: HPLayer {
+    
+    override var isUnimplemented: Bool { return true }
 
     override init(skLayer: SKLayer) {
         super.init(skLayer: skLayer)
