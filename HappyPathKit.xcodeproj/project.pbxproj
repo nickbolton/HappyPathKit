@@ -11,16 +11,7 @@
 		9226CF8421CDB24800DBB143 /* HPConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CF8121CDB24800DBB143 /* HPConstraint.swift */; };
 		9226CF9621CEC0E300DBB143 /* HPLayoutFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CF9521CEC0E300DBB143 /* HPLayoutFactory.swift */; };
 		9226CF9821CEC0F200DBB143 /* HPViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CF9721CEC0F200DBB143 /* HPViewLayout.swift */; };
-		9226CF9A21CEC12200DBB143 /* HPViewConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CF9921CEC12200DBB143 /* HPViewConstraint.swift */; };
-		9226CF9C21CEC19F00DBB143 /* HPTopAnchorConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CF9B21CEC19F00DBB143 /* HPTopAnchorConstraint.swift */; };
-		9226CFA221CEC1DD00DBB143 /* HPHeightAnchorConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CF9D21CEC1DC00DBB143 /* HPHeightAnchorConstraint.swift */; };
-		9226CFA321CEC1DD00DBB143 /* HPLeftAnchorConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CF9E21CEC1DC00DBB143 /* HPLeftAnchorConstraint.swift */; };
-		9226CFA421CEC1DD00DBB143 /* HPBottomAnchorConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CF9F21CEC1DC00DBB143 /* HPBottomAnchorConstraint.swift */; };
-		9226CFA521CEC1DD00DBB143 /* HPRightAnchorConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CFA021CEC1DC00DBB143 /* HPRightAnchorConstraint.swift */; };
-		9226CFA621CEC1DD00DBB143 /* HPWidthAnchorConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CFA121CEC1DD00DBB143 /* HPWidthAnchorConstraint.swift */; };
-		9226CFA821CEC53E00DBB143 /* HPBaseAnchorConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CFA721CEC53E00DBB143 /* HPBaseAnchorConstraint.swift */; };
-		9226CFAA21CEF2C200DBB143 /* HPCenterYAnchorConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CFA921CEF2C200DBB143 /* HPCenterYAnchorConstraint.swift */; };
-		9226CFAC21CEF2CC00DBB143 /* HPCenterXAnchorConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CFAB21CEF2CC00DBB143 /* HPCenterXAnchorConstraint.swift */; };
+		9226CFA821CEC53E00DBB143 /* HPViewConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CFA721CEC53E00DBB143 /* HPViewConstraint.swift */; };
 		9226CFE921D04E0300DBB143 /* HPArtboardLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CFDC21D04E0200DBB143 /* HPArtboardLayer.swift */; };
 		9226CFEA21D04E0300DBB143 /* HPBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CFDD21D04E0200DBB143 /* HPBorder.swift */; };
 		9226CFEB21D04E0300DBB143 /* HPBackgroundLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CFDE21D04E0200DBB143 /* HPBackgroundLayer.swift */; };
@@ -35,6 +26,10 @@
 		9226CFF421D04E0300DBB143 /* HPUnimplementedLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CFE721D04E0200DBB143 /* HPUnimplementedLayer.swift */; };
 		9226CFF521D04E0300DBB143 /* HPStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CFE821D04E0200DBB143 /* HPStyle.swift */; };
 		9226CFF921D04FD000DBB143 /* HPLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226CFF821D04FD000DBB143 /* HPLayout.swift */; };
+		9226D01F21D17D5300DBB143 /* HPSimpleConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226D01E21D17D5300DBB143 /* HPSimpleConstraint.swift */; };
+		9226D02121D17EA400DBB143 /* HPSimpleProportionalConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226D02021D17EA400DBB143 /* HPSimpleProportionalConstraint.swift */; };
+		9226D02321D181A000DBB143 /* HPPairedConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226D02221D181A000DBB143 /* HPPairedConstraint.swift */; };
+		9226D02521D184D300DBB143 /* HPPairedProportionalConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226D02421D184D300DBB143 /* HPPairedProportionalConstraint.swift */; };
 		924B51DA21CAAC5300A8464B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B51D921CAAC5300A8464B /* AppDelegate.swift */; };
 		924B51DC21CAAC5300A8464B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B51DB21CAAC5300A8464B /* ViewController.swift */; };
 		924B51DF21CAAC5300A8464B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 924B51DD21CAAC5300A8464B /* Main.storyboard */; };
@@ -55,16 +50,7 @@
 		9226CF8121CDB24800DBB143 /* HPConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPConstraint.swift; sourceTree = "<group>"; };
 		9226CF9521CEC0E300DBB143 /* HPLayoutFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPLayoutFactory.swift; sourceTree = "<group>"; };
 		9226CF9721CEC0F200DBB143 /* HPViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPViewLayout.swift; sourceTree = "<group>"; };
-		9226CF9921CEC12200DBB143 /* HPViewConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPViewConstraint.swift; sourceTree = "<group>"; };
-		9226CF9B21CEC19F00DBB143 /* HPTopAnchorConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPTopAnchorConstraint.swift; sourceTree = "<group>"; };
-		9226CF9D21CEC1DC00DBB143 /* HPHeightAnchorConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPHeightAnchorConstraint.swift; sourceTree = "<group>"; };
-		9226CF9E21CEC1DC00DBB143 /* HPLeftAnchorConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPLeftAnchorConstraint.swift; sourceTree = "<group>"; };
-		9226CF9F21CEC1DC00DBB143 /* HPBottomAnchorConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPBottomAnchorConstraint.swift; sourceTree = "<group>"; };
-		9226CFA021CEC1DC00DBB143 /* HPRightAnchorConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPRightAnchorConstraint.swift; sourceTree = "<group>"; };
-		9226CFA121CEC1DD00DBB143 /* HPWidthAnchorConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPWidthAnchorConstraint.swift; sourceTree = "<group>"; };
-		9226CFA721CEC53E00DBB143 /* HPBaseAnchorConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPBaseAnchorConstraint.swift; sourceTree = "<group>"; };
-		9226CFA921CEF2C200DBB143 /* HPCenterYAnchorConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPCenterYAnchorConstraint.swift; sourceTree = "<group>"; };
-		9226CFAB21CEF2CC00DBB143 /* HPCenterXAnchorConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPCenterXAnchorConstraint.swift; sourceTree = "<group>"; };
+		9226CFA721CEC53E00DBB143 /* HPViewConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPViewConstraint.swift; sourceTree = "<group>"; };
 		9226CFDC21D04E0200DBB143 /* HPArtboardLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPArtboardLayer.swift; sourceTree = "<group>"; };
 		9226CFDD21D04E0200DBB143 /* HPBorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPBorder.swift; sourceTree = "<group>"; };
 		9226CFDE21D04E0200DBB143 /* HPBackgroundLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPBackgroundLayer.swift; sourceTree = "<group>"; };
@@ -79,6 +65,10 @@
 		9226CFE721D04E0200DBB143 /* HPUnimplementedLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPUnimplementedLayer.swift; sourceTree = "<group>"; };
 		9226CFE821D04E0200DBB143 /* HPStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPStyle.swift; sourceTree = "<group>"; };
 		9226CFF821D04FD000DBB143 /* HPLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPLayout.swift; sourceTree = "<group>"; };
+		9226D01E21D17D5300DBB143 /* HPSimpleConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPSimpleConstraint.swift; sourceTree = "<group>"; };
+		9226D02021D17EA400DBB143 /* HPSimpleProportionalConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPSimpleProportionalConstraint.swift; sourceTree = "<group>"; };
+		9226D02221D181A000DBB143 /* HPPairedConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPPairedConstraint.swift; sourceTree = "<group>"; };
+		9226D02421D184D300DBB143 /* HPPairedProportionalConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPPairedProportionalConstraint.swift; sourceTree = "<group>"; };
 		924B51D621CAAC5300A8464B /* HappyPathKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyPathKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		924B51D921CAAC5300A8464B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		924B51DB21CAAC5300A8464B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -132,16 +122,11 @@
 			children = (
 				9226CF9521CEC0E300DBB143 /* HPLayoutFactory.swift */,
 				9226CF9721CEC0F200DBB143 /* HPViewLayout.swift */,
-				9226CF9921CEC12200DBB143 /* HPViewConstraint.swift */,
-				9226CFA721CEC53E00DBB143 /* HPBaseAnchorConstraint.swift */,
-				9226CF9B21CEC19F00DBB143 /* HPTopAnchorConstraint.swift */,
-				9226CF9F21CEC1DC00DBB143 /* HPBottomAnchorConstraint.swift */,
-				9226CF9E21CEC1DC00DBB143 /* HPLeftAnchorConstraint.swift */,
-				9226CFA021CEC1DC00DBB143 /* HPRightAnchorConstraint.swift */,
-				9226CFA121CEC1DD00DBB143 /* HPWidthAnchorConstraint.swift */,
-				9226CF9D21CEC1DC00DBB143 /* HPHeightAnchorConstraint.swift */,
-				9226CFA921CEF2C200DBB143 /* HPCenterYAnchorConstraint.swift */,
-				9226CFAB21CEF2CC00DBB143 /* HPCenterXAnchorConstraint.swift */,
+				9226D01E21D17D5300DBB143 /* HPSimpleConstraint.swift */,
+				9226D02021D17EA400DBB143 /* HPSimpleProportionalConstraint.swift */,
+				9226D02221D181A000DBB143 /* HPPairedConstraint.swift */,
+				9226D02421D184D300DBB143 /* HPPairedProportionalConstraint.swift */,
+				9226CFA721CEC53E00DBB143 /* HPViewConstraint.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -355,28 +340,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				924B51FC21CAAED200A8464B /* HPImportable.swift in Sources */,
-				9226CFA621CEC1DD00DBB143 /* HPWidthAnchorConstraint.swift in Sources */,
-				9226CF9C21CEC19F00DBB143 /* HPTopAnchorConstraint.swift in Sources */,
-				9226CFAC21CEF2CC00DBB143 /* HPCenterXAnchorConstraint.swift in Sources */,
-				9226CFA221CEC1DD00DBB143 /* HPHeightAnchorConstraint.swift in Sources */,
 				924B51FB21CAAED200A8464B /* HPTextStyle.swift in Sources */,
-				9226CFA321CEC1DD00DBB143 /* HPLeftAnchorConstraint.swift in Sources */,
 				9226CFF921D04FD000DBB143 /* HPLayout.swift in Sources */,
 				924B51F821CAAED200A8464B /* HPColorEntity.swift in Sources */,
 				9226CFF421D04E0300DBB143 /* HPUnimplementedLayer.swift in Sources */,
-				9226CFAA21CEF2C200DBB143 /* HPCenterYAnchorConstraint.swift in Sources */,
+				9226D02521D184D300DBB143 /* HPPairedProportionalConstraint.swift in Sources */,
 				9226CF9621CEC0E300DBB143 /* HPLayoutFactory.swift in Sources */,
 				9226CFEC21D04E0300DBB143 /* HPLayerTransformer.swift in Sources */,
 				924B51DC21CAAC5300A8464B /* ViewController.swift in Sources */,
 				9226CF8421CDB24800DBB143 /* HPConstraint.swift in Sources */,
 				9226CFEA21D04E0300DBB143 /* HPBorder.swift in Sources */,
-				9226CFA521CEC1DD00DBB143 /* HPRightAnchorConstraint.swift in Sources */,
-				9226CFA821CEC53E00DBB143 /* HPBaseAnchorConstraint.swift in Sources */,
+				9226D02321D181A000DBB143 /* HPPairedConstraint.swift in Sources */,
+				9226CFA821CEC53E00DBB143 /* HPViewConstraint.swift in Sources */,
 				924B51DA21CAAC5300A8464B /* AppDelegate.swift in Sources */,
-				9226CFA421CEC1DD00DBB143 /* HPBottomAnchorConstraint.swift in Sources */,
+				9226D02121D17EA400DBB143 /* HPSimpleProportionalConstraint.swift in Sources */,
 				9226CFF121D04E0300DBB143 /* HPFill.swift in Sources */,
 				9226CFEE21D04E0300DBB143 /* HPStop.swift in Sources */,
-				9226CF9A21CEC12200DBB143 /* HPViewConstraint.swift in Sources */,
 				92CFF99B21CAB6E00052CE86 /* SKLayer.swift in Sources */,
 				9226CFE921D04E0300DBB143 /* HPArtboardLayer.swift in Sources */,
 				9226CFF321D04E0300DBB143 /* HPTextLayer.swift in Sources */,
@@ -384,6 +363,7 @@
 				9226CFF521D04E0300DBB143 /* HPStyle.swift in Sources */,
 				9226CFEF21D04E0300DBB143 /* HPRectangleLayer.swift in Sources */,
 				9226CFED21D04E0300DBB143 /* HPAssociatedLayer.swift in Sources */,
+				9226D01F21D17D5300DBB143 /* HPSimpleConstraint.swift in Sources */,
 				924B51F621CAAED200A8464B /* HPFont.swift in Sources */,
 				924B51F521CAAED200A8464B /* HPConfiguration.swift in Sources */,
 				924B51F921CAAED200A8464B /* HPColor.swift in Sources */,

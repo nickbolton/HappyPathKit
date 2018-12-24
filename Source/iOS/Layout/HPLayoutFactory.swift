@@ -17,37 +17,37 @@ public struct HPLayoutFactory {
             switch c.type {
             case .top:
                 if !hasHorizontalCentering {
-                    constraints.append(HPTopAnchorConstraint(constraint: c, layers: layers))
+                    constraints.append(HPViewConstraint(constraint: c, layers: layers))
                 }
             case .bottom:
                 if !hasHorizontalCentering {
-                    constraints.append(HPBottomAnchorConstraint(constraint: c, layers: layers))
+                    constraints.append(HPViewConstraint(constraint: c, layers: layers))
                 }
             case .left:
                 if !hasVerticalCentering {
-                    constraints.append(HPLeftAnchorConstraint(constraint: c, layers: layers))
+                    constraints.append(HPViewConstraint(constraint: c, layers: layers))
                 }
             case .right:
                 if !hasVerticalCentering {
-                    constraints.append(HPRightAnchorConstraint(constraint: c, layers: layers))
+                    constraints.append(HPViewConstraint(constraint: c, layers: layers))
                 }
             case .width:
                 if !hasVerticalCentering {
-                    constraints.append(HPWidthAnchorConstraint(constraint: c, layers: layers))
+                    constraints.append(HPViewConstraint(constraint: c, layers: layers))
                 }
             case .height:
                 if !hasHorizontalCentering {
-                    constraints.append(HPHeightAnchorConstraint(constraint: c, layers: layers))
+                    constraints.append(HPViewConstraint(constraint: c, layers: layers))
                 }
             case .centerY:
-                constraints.append(HPCenterYAnchorConstraint(constraint: c, layers: layers))
+                constraints.append(HPViewConstraint(constraint: c, layers: layers))
             case .centerX:
-                constraints.append(HPCenterXAnchorConstraint(constraint: c, layers: layers))
+                constraints.append(HPViewConstraint(constraint: c, layers: layers))
             case .verticalSpacing:
-                constraints.append(HPBottomAnchorConstraint(constraint: c, layers: layers))
+                constraints.append(HPViewConstraint(constraint: c, layers: layers))
                 break
             case .horizontalSpacing:
-                constraints.append(HPRightAnchorConstraint(constraint: c, layers: layers))
+                constraints.append(HPViewConstraint(constraint: c, layers: layers))
                 break
             }
         }
@@ -55,14 +55,14 @@ public struct HPLayoutFactory {
             if layer.componentConfig?.type == .verticalCentering {
                 let leftConstraint = HPConstraint(type: .left, values: [0.0], proportionalValues: [], isProportional: false)
                 let rightConstraint = HPConstraint(type: .right, values: [0.0], proportionalValues: [], isProportional: false)
-                constraints.append(HPLeftAnchorConstraint(constraint: leftConstraint, layers: [layer]))
-                constraints.append(HPRightAnchorConstraint(constraint: rightConstraint, layers: [layer]))
+                constraints.append(HPViewConstraint(constraint: leftConstraint, layers: [layer]))
+                constraints.append(HPViewConstraint(constraint: rightConstraint, layers: [layer]))
             }
             if layer.componentConfig?.type == .horizontalCentering {
                 let topConstraint = HPConstraint(type: .top, values: [0.0], proportionalValues: [], isProportional: false)
                 let bottomConstraint = HPConstraint(type: .bottom, values: [0.0], proportionalValues: [], isProportional: false)
-                constraints.append(HPTopAnchorConstraint(constraint: topConstraint, layers: [layer]))
-                constraints.append(HPBottomAnchorConstraint(constraint: bottomConstraint, layers: [layer]))
+                constraints.append(HPViewConstraint(constraint: topConstraint, layers: [layer]))
+                constraints.append(HPViewConstraint(constraint: bottomConstraint, layers: [layer]))
             }
         }
         return HPViewLayout(constraints: constraints)
@@ -71,10 +71,10 @@ public struct HPLayoutFactory {
     static public func defaultLayout(layer: HPLayer) -> HPViewLayout {
         var constraints = [HPViewConstraint]()
         let frame = layer.frame
-        constraints.append(HPTopAnchorConstraint(constraint: HPConstraint(type: .top, values: [frame.minY], proportionalValues: [], isProportional: false), layers: [layer]))
-        constraints.append(HPLeftAnchorConstraint(constraint: HPConstraint(type: .left, values: [frame.minX], proportionalValues: [], isProportional: false), layers: [layer]))
-        constraints.append(HPWidthAnchorConstraint(constraint: HPConstraint(type: .width, values: [frame.width], proportionalValues: [], isProportional: false), layers: [layer]))
-        constraints.append(HPHeightAnchorConstraint(constraint: HPConstraint(type: .height, values: [frame.height], proportionalValues: [], isProportional: false), layers: [layer]))
+        constraints.append(HPViewConstraint(constraint: HPConstraint(type: .top, values: [frame.minY], proportionalValues: [], isProportional: false), layers: [layer]))
+        constraints.append(HPViewConstraint(constraint: HPConstraint(type: .left, values: [frame.minX], proportionalValues: [], isProportional: false), layers: [layer]))
+        constraints.append(HPViewConstraint(constraint: HPConstraint(type: .width, values: [frame.width], proportionalValues: [], isProportional: false), layers: [layer]))
+        constraints.append(HPViewConstraint(constraint: HPConstraint(type: .height, values: [frame.height], proportionalValues: [], isProportional: false), layers: [layer]))
         return HPViewLayout(constraints: constraints)
     }
 }
