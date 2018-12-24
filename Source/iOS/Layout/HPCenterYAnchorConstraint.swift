@@ -9,10 +9,7 @@
 import UIKit
 
 class HPCenterYAnchorConstraint: HPBaseAnchorConstraint, HPViewConstraint {
-    public func applyConstraint(to view: UIView) -> NSLayoutConstraint {
-        guard let parent = view.superview else {
-            assert(false, "view must be part of a view hierarchy.")
-        }
-        return view.centerYAnchor.constraint(equalTo: parent.centerYAnchor, constant: constraint.value.halfPointRoundValue)
+    override internal func applyConstraint(source: UIView, target: UIView, value: CGFloat) -> NSLayoutConstraint {
+        return source.centerYAnchor.constraint(equalTo: target.centerYAnchor, constant: value.halfPointRoundValue)
     }
 }

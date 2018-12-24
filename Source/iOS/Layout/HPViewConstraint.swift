@@ -10,5 +10,5 @@ import UIKit
 
 public protocol HPViewConstraint {
     var constraint: HPConstraint { get }
-    func applyConstraint(to view: UIView) -> NSLayoutConstraint
+    func applyConstraint(to views: [UIView]) -> NSLayoutConstraint
 }

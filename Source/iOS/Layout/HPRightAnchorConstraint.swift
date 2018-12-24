@@ -10,10 +10,7 @@ import UIKit
 import Nub
 
 public class HPRightAnchorConstraint: HPBaseAnchorConstraint, HPViewConstraint {
-    public func applyConstraint(to view: UIView) -> NSLayoutConstraint {
-        guard let parent = view.superview else {
-            assert(false, "view must be part of a view hierarchy.")
-        }
-        return view.rightAnchor.constraint(equalTo: parent.rightAnchor, constant: -constraint.value.halfPointRoundValue)
+    override internal func applyConstraint(source: UIView, target: UIView, value: CGFloat) -> NSLayoutConstraint {
+        return source.rightAnchor.constraint(equalTo: target.rightAnchor, constant: -value.halfPointRoundValue)
     }
 }

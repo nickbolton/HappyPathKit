@@ -10,10 +10,10 @@ import UIKit
 
 public struct HPViewLayout {
     let constraints: [HPViewConstraint]
-    public func applyLayout(view: UIView) {
+    public func applyLayout(to views: [UIView]) {
         var layoutConstraints = [NSLayoutConstraint]()
         for c in constraints {
-            layoutConstraints.append(c.applyConstraint(to: view))
+            layoutConstraints.append(c.applyConstraint(to: views))
         }
         NSLayoutConstraint.activate(layoutConstraints)
     }
