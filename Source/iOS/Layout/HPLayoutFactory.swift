@@ -15,40 +15,14 @@ public struct HPLayoutFactory {
         let hasHorizontalCentering = layers.reduce(false) { (acc, cur) in acc || (cur.componentConfig?.type == .horizontalCentering)}
         for c in layout.layout {
             switch c.type {
-            case .top:
+            case .top, .bottom, .height, .centerY, .verticalSpacing, .verticalCenters:
                 if !hasHorizontalCentering {
                     constraints.append(HPViewConstraint(constraint: c, layers: layers))
                 }
-            case .bottom:
-                if !hasHorizontalCentering {
-                    constraints.append(HPViewConstraint(constraint: c, layers: layers))
-                }
-            case .left:
+            case .left, .right, .width, .centerX, .horizontalSpacing, .horizontalCenters:
                 if !hasVerticalCentering {
                     constraints.append(HPViewConstraint(constraint: c, layers: layers))
                 }
-            case .right:
-                if !hasVerticalCentering {
-                    constraints.append(HPViewConstraint(constraint: c, layers: layers))
-                }
-            case .width:
-                if !hasVerticalCentering {
-                    constraints.append(HPViewConstraint(constraint: c, layers: layers))
-                }
-            case .height:
-                if !hasHorizontalCentering {
-                    constraints.append(HPViewConstraint(constraint: c, layers: layers))
-                }
-            case .centerY:
-                constraints.append(HPViewConstraint(constraint: c, layers: layers))
-            case .centerX:
-                constraints.append(HPViewConstraint(constraint: c, layers: layers))
-            case .verticalSpacing:
-                constraints.append(HPViewConstraint(constraint: c, layers: layers))
-                break
-            case .horizontalSpacing:
-                constraints.append(HPViewConstraint(constraint: c, layers: layers))
-                break
             }
         }
         for layer in layers {

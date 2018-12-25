@@ -22,7 +22,9 @@ public enum HPConstraintType: Int, Codable {
     case centerY           = 0x080
     case verticalSpacing   = 0x100
     case horizontalSpacing = 0x200
-    
+    case verticalCenters   = 0x400
+    case horizontalCenters = 0x800
+
     public var sourceAttribute: NSLayoutConstraint.Attribute {
         switch self {
         case .top:
@@ -45,6 +47,10 @@ public enum HPConstraintType: Int, Codable {
             return .bottom
         case .horizontalSpacing:
             return .trailing
+        case .verticalCenters:
+            return .centerY
+        case .horizontalCenters:
+            return .centerX
         }
     }
     
@@ -70,6 +76,10 @@ public enum HPConstraintType: Int, Codable {
             return .top
         case .horizontalSpacing:
             return .leading
+        case .verticalCenters:
+            return .centerY
+        case .horizontalCenters:
+            return .centerX
         }
     }
 }
