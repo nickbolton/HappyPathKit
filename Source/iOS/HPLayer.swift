@@ -20,6 +20,7 @@ public class HPLayer: NSObject {
     public var backgroundLayers = [HPLayer]()
     public var subLayers = [HPLayer]()
     public var isUnimplemented: Bool { return false }
+    public var imageLocationURL: URL?
     public var style = HPStyle(opacity: 1.0,
                                fills: [],
                                borders: [],

@@ -82,6 +82,15 @@ public struct SKLayer: Codable, Equatable, Hashable {
     public let intendedDPI: Int?
     public var layers: SKLayerGroup?
     public var isRootLayer = false
+    
+    public var isImageLayer: Bool {
+        switch layerType {
+        case .bitmap, .shapePath, .slice, .oval, .polygon, .star, .triangle:
+            return true
+        default:
+            return false
+        }
+    }
         
     public var layerType: SKLayerType {
         switch layerClass {
@@ -105,7 +114,7 @@ public struct SKLayer: Codable, Equatable, Hashable {
             return .oval
         case "MSPolygonShape", "MSImmutablePolygonShape", "SVGPolygonShape":
             return .polygon
-        case "MSRectangleShape", "MSImmutableRectangleShape", "SVGRectangleShape.h":
+        case "MSRectangleShape", "MSImmutableRectangleShape", "SVGRectangleShape":
             return .rectangle
         case "MSStarShape", "MSImmutableStarShape":
             return .star

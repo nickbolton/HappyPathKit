@@ -19,7 +19,7 @@ public enum ComponentType: String, Codable {
 
 public struct HPComponentConfig: Codable {
     public let layerID: String
-    public let type: ComponentType
+    public var type: ComponentType
     public let name: String
     public let isSubclass: Bool
     public let associatedLayers: [String]

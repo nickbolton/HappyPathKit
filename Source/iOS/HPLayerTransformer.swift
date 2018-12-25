@@ -60,9 +60,27 @@ public struct HPLayerTransformer {
         case .group:
             return HPLayer(skLayer: layer)
         default:
+            if layer.isImageLayer {
+                let result = HPLayer(skLayer: layer)
+                if attachImageLocation(layer: layer, hpLayer: result, configuration: configuration) {
+                    return result
+                }
+            }
             print("unimplemented layer type: \(layer.layerType)")
             return HPUnimplementedLayer(skLayer: layer)
         }
+    }
+    
+    @discardableResult
+    private func attachImageLocation(layer: SKLayer, hpLayer: HPLayer, configuration: HPConfiguration) -> Bool {
+        var locationURL = URL(fileURLWithPath: configuration.assetsLocation)
+        locationURL.appendPathComponent(layer.objectID)
+        let assetURL = locationURL.appendingPathExtension("png")
+        if FileManager.default.fileExists(atPath: assetURL.path) {
+            hpLayer.imageLocationURL = locationURL
+            return true
+        }
+        return false
     }
     
     private func attachAssociatedLayers(layer: HPLayer, layerMap: [String: SKLayer], configuration: HPConfiguration) {
@@ -71,6 +89,9 @@ public struct HPLayerTransformer {
             for id in componentConfig.associatedLayers {
                 if let l = layerMap[id] {
                     let associatedLayer = HPAssociatedLayer(skLayer: l)
+                    if l.isImageLayer {
+                        attachImageLocation(layer: l, hpLayer: associatedLayer, configuration: configuration)
+                    }
                     attachStyle(layer: associatedLayer)
                     result.append(associatedLayer)
                 }
@@ -166,7 +187,7 @@ public struct HPLayerTransformer {
     
     private func buildBorders(_ skStyle: SKLayerStyle) -> [HPBorder] {
         var result = [HPBorder]()
-        var enabledBorders = skStyle.borders.filter { $0.isEnabled.skBoolValue }
+        let enabledBorders = skStyle.borders.filter { $0.isEnabled.skBoolValue }
         for border in enabledBorders {
             result.append(HPBorder(thickness: border.thickness,
                                    color: border.color.uiColor,
@@ -190,20 +211,22 @@ public struct HPLayerTransformer {
         }
         
         // only allow pure corner radius clipping path points
-        if let points = layer.points, points.count > 0 {
-            guard points.count == 4 else {
-                return false
-            }
-            
-            let cornerRadius: CGFloat? = points.reduce(points.first!.cornerRadius) { (acc, cur) in cur.cornerRadius == acc ? acc : nil}
-            if cornerRadius == nil {
-                return false
+        if layer.layerType == .rectangle {
+            if let points = layer.points, points.count > 0 {
+                guard points.count == 4 else {
+                    return false
+                }
+                
+                let cornerRadius: CGFloat? = points.reduce(points.first!.cornerRadius) { (acc, cur) in cur.cornerRadius == acc ? acc : nil}
+                if cornerRadius == nil {
+                    return false
+                }
             }
         }
         
         // only allow one inside border
         if let style = layer.style {
-            var enabledBorders = style.borders.filter { $0.isEnabled.skBoolValue }
+            let enabledBorders = style.borders.filter { $0.isEnabled.skBoolValue }
             guard enabledBorders.count <= 1 else {
                 return false
             }
