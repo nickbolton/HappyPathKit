@@ -33,10 +33,10 @@ public class HPLayer: NSObject {
     
     public var defaultLayout: HPLayout {
         let key = HPLayer.buildLayoutKey(layers: [self])
-        let top = HPConstraint(type: .top, values: [frame.minY], proportionalValues: [], isProportional: false)
-        let left = HPConstraint(type: .left, values: [frame.minX], proportionalValues: [], isProportional: false)
-        let width = HPConstraint(type: .width, values: [frame.width], proportionalValues: [], isProportional: false)
-        let height = HPConstraint(type: .height, values: [frame.height], proportionalValues: [], isProportional: false)
+        let top = HPConstraint(type: .top, value: frame.minY, proportionalValue: 0.0, isProportional: false)
+        let left = HPConstraint(type: .left, value: frame.minX, proportionalValue: 0.0, isProportional: false)
+        let width = HPConstraint(type: .width, value: frame.width, proportionalValue: 0.0, isProportional: false)
+        let height = HPConstraint(type: .height, value: frame.height, proportionalValue: 0.0, isProportional: false)
         return HPLayout(key: key, layout: [top, left, width, height])
     }
 

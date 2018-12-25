@@ -22,16 +22,12 @@ public class HPViewConstraint: NSObject {
     
     public func applyConstraint(to views: [UIView]) -> NSLayoutConstraint {
         if views.count == 2 {
-            assert(constraint.values.count > 0, "No value was supplied")
-            assert(constraint.values.count == 1, "Multiple values were supplied")
             assert(layers.count == views.count, "Layers didn't match views")
             if constraint.isProportional {
                 return buildPairedProportionalConstraint(source: views[0], target: views[1])
             }
             return buildPairedConstraint(source: views[0], target: views[1])
         } else if views.count == 1 {
-            assert(constraint.values.count > 0, "No value was supplied")
-            assert(constraint.values.count == 1, "Multiple values were supplied")
             assert(layers.count == views.count, "Layers didn't match views")
             if constraint.isProportional {
                 return buildSimpleProportionalConstraint(view: views[0])
@@ -43,27 +39,27 @@ public class HPViewConstraint: NSObject {
     
     private func buildSimpleProportionalConstraint(view: UIView) -> NSLayoutConstraint {
         let builder = HPSimpleProportionalConstraint(attribute: constraint.type.sourceAttribute,
-                                                     proportionalityConstant: constraint.proportionalValues.first!)
+                                                     proportionalityConstant: constraint.proportionalValue)
         return builder.applyConstraint(to: view)
     }
     
     private func buildSimpleConstraint(view: UIView) -> NSLayoutConstraint {
         let builder = HPSimpleConstraint(attribute: constraint.type.sourceAttribute,
-                                         constant: constraint.values.first!)
+                                         constant: constraint.value)
         return builder.applyConstraint(to: view)
     }
     
     private func buildPairedProportionalConstraint(source: UIView, target: UIView) -> NSLayoutConstraint {
         let builder = HPPairedProportionalConstraint(sourceAttribute: constraint.type.sourceAttribute,
                                                      targetAttribute: constraint.type.targetAttribute,
-                                                     proportionalityConstant: constraint.proportionalValues.first!)
+                                                     proportionalityConstant: constraint.proportionalValue)
         return builder.applyConstraint(source: source, target: target)
     }
     
     private func buildPairedConstraint(source: UIView, target: UIView) -> NSLayoutConstraint {
         let builder = HPPairedConstraint(sourceAttribute: constraint.type.sourceAttribute,
                                          targetAttribute: constraint.type.targetAttribute,
-                                         constant: constraint.values.first!)
+                                         constant: constraint.value)
         return builder.applyConstraint(source: source, target: target)
     }
     
