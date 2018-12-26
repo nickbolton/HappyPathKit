@@ -30,22 +30,24 @@ public class HPViewConstraint: NSObject {
         } else if views.count == 1 {
             assert(layers.count == views.count, "Layers didn't match views")
             if constraint.isProportional {
-                return buildSimpleProportionalConstraint(view: views[0])
+                return buildSimpleProportionalConstraint(layer: layers[0], view: views[0])
             }
-            return buildSimpleConstraint(view: views[0])
+            return buildSimpleConstraint(layer: layers[0], view: views[0])
         }
         assert(false, "Unimplemented")
     }
     
-    private func buildSimpleProportionalConstraint(view: UIView) -> NSLayoutConstraint {
+    private func buildSimpleProportionalConstraint(layer: HPLayer, view: UIView) -> NSLayoutConstraint {
         let builder = HPSimpleProportionalConstraint(attribute: constraint.type.sourceAttribute,
-                                                     proportionalityConstant: constraint.proportionalValue)
+                                                     proportionalityConstant: constraint.proportionalValue,
+                                                     isSafeArea: layer.componentConfig?.isSafeArea ?? false)
         return builder.applyConstraint(to: view)
     }
     
-    private func buildSimpleConstraint(view: UIView) -> NSLayoutConstraint {
+    private func buildSimpleConstraint(layer: HPLayer, view: UIView) -> NSLayoutConstraint {
         let builder = HPSimpleConstraint(attribute: constraint.type.sourceAttribute,
-                                         constant: constraint.value)
+                                         constant: constraint.value,
+                                         isSafeArea: layer.componentConfig?.isSafeArea ?? false)
         return builder.applyConstraint(to: view)
     }
     

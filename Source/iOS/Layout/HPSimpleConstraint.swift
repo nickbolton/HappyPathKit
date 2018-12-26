@@ -12,10 +12,13 @@ class HPSimpleConstraint: NSObject {
 
     private (set) public var constant: CGFloat
     private (set) public var attribute: NSLayoutConstraint.Attribute
+    private (set) public var isSafeArea: Bool
 
-    init(attribute: NSLayoutConstraint.Attribute, constant: CGFloat) {
+    init(attribute: NSLayoutConstraint.Attribute, constant: CGFloat, isSafeArea: Bool) {
         self.attribute = attribute
         self.constant = constant
+        self.isSafeArea = isSafeArea
+        self.isSafeArea = isSafeArea
         super.init()
     }
 
@@ -34,7 +37,7 @@ class HPSimpleConstraint: NSObject {
             return NSLayoutConstraint(item: view,
                                       attribute: attribute,
                                       relatedBy: .equal,
-                                      toItem: view.superview,
+                                      toItem: isSafeArea ? view.superview?.safeAreaLayoutGuide : view.superview,
                                       attribute: attribute,
                                       multiplier: 1.0,
                                       constant: constant)

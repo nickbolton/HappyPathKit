@@ -20,6 +20,7 @@ public enum SKLayerType {
     case hotspot
     case openGL
     case shapePath
+    case shapeGroup
     case slice
     case text
     case oval
@@ -85,7 +86,7 @@ public struct SKLayer: Codable, Equatable, Hashable {
     
     public var isImageLayer: Bool {
         switch layerType {
-        case .bitmap, .shapePath, .slice, .oval, .polygon, .star, .triangle:
+        case .bitmap, .shapePath, .slice, .oval, .polygon, .star, .triangle, .shapeGroup:
             return true
         default:
             return false
@@ -106,6 +107,8 @@ public struct SKLayer: Codable, Equatable, Hashable {
             return .openGL
         case "MSShapePathLayer", "MSImmutableShapePathLayer":
             return .shapePath
+        case "MSShapeGroup", "MSImmutableShapeGroup":
+            return .shapeGroup
         case "MSSliceLayer", "MSImmutableSliceLayer":
             return .slice
         case "MSTextLayer", "MSImmutableTextLayer":

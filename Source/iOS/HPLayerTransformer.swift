@@ -8,71 +8,139 @@
 
 import UIKit
 
-public struct HPLayerTransformer {
+public class HPLayerTransformer: NSObject {
     
-    public init() {}
+    private var layerMap = [String: SKLayer]()
+    private var transformedLayerMap = [String: HPLayer]()
+    private var collectionViewMap = [String: SKLayer]()
+    private var associatedLayerMap = [String: [SKLayer]]()
+    private var configuration: HPConfiguration!
+    private var holder: HPLayer?
     
     public func transform(layer: SKLayer, configuration: HPConfiguration) -> HPLayer? {
-        let layerMap = buildLayerMap(layer: layer)
-        let associatedLayerIDs = buildAssociatedLayerIDs(configuration: configuration)
-        if let result = _transform(layer: layer, layerMap: layerMap, associatedLayerIDs: associatedLayerIDs, configuration: configuration) {
-            attachAssociatedLayers(layer: result, layerMap: layerMap, configuration: configuration)
+        self.configuration = configuration
+        layerMap = buildLayerMap(layer: layer)
+        buildAssociatedLayerMap()
+        collectionViewMap = findCollections(layer: layer)
+        let associatedLayerIDs = buildAssociatedLayerIDs()
+        if let result = _transform(layer: layer, layerMap: layerMap, associatedLayerIDs: associatedLayerIDs) {
+            attachAssociatedLayers(layer: result, layerMap: layerMap)
+            dumpLayer(result, indent: 0)
             return result
         }
         return nil
     }
+    
+    private func dumpLayer(_ layer: HPLayer, indent: Int) {
+        var padding = ""
+        for _ in 0..<indent {
+            padding += "    "
+        }
+        print("\(padding)\(layer.id) \(layer.layerType) \(layer.componentConfig?.type)")
+        print("\(padding)\tassoc: \(layer.associatedLayers.map { $0.id })")
+        for child in layer.subLayers {
+            dumpLayer(child, indent: indent+1)
+        }
+    }
+    
+    private func isAssociatedTraversableType(_ type: ComponentType?) -> Bool {
+        guard let type = type else { return false }
+        switch type {
+        case .table, .tableHeader, .tableSectionHeader,
+             .tableCell, .tableSectionFooter, .tableFooter,
+             .collection, .collectionCell:
+            return true
+        default:
+            return false
+        }
+    }
+
+    private func isCollectionSubType(_ type: ComponentType?) -> Bool {
+        guard let type = type else { return false }
+        switch type {
+        case .tableHeader, .tableSectionHeader,
+             .tableCell, .tableSectionFooter, .tableFooter,
+             .collectionCell:
+            return true
+        default:
+            return false
+        }
+    }
 
     private func _transform(layer: SKLayer,
                             layerMap: [String: SKLayer],
-                            associatedLayerIDs: Set<String>,
-                            configuration: HPConfiguration) -> HPLayer? {
+                            associatedLayerIDs: Set<String>) -> HPLayer? {
+        if layer.objectID == "2951C632-18B6-4962-A32A-1AD27E8AD5EB" {
+            print("ZZZ")
+        }
+        if layer.objectID == "708A372C-045C-41F0-9AA4-3550CC6E8997" {
+            print("ZZZ")
+        }
         let componentConfig = configuration.componentMap[layer.objectID]
         guard componentConfig?.type != .background else { return nil }
-        guard !associatedLayerIDs.contains(layer.objectID) else { return nil}
-        if let hpLayer = buildHPLayer(layer: layer, configuration: configuration) {
+        guard !associatedLayerIDs.contains(layer.objectID) || isAssociatedTraversableType(componentConfig?.type) else {
+            print("layer: \(layer.layerType)")
+            return nil
+        }
+        guard !isInsideCollection(layer: layer) else {
+            return nil
+        }
+        if let hpLayer = buildHPLayer(layer: layer) {
+            transformedLayerMap[hpLayer.id] = hpLayer
             attachStyle(layer: hpLayer)
-            var subLayers = [HPLayer]()
-            for child in layer.layers ?? [] {
-                if let subLayer = _transform(layer: child, layerMap: layerMap, associatedLayerIDs: associatedLayerIDs, configuration: configuration) {
-                    subLayers.append(subLayer)
+            if hpLayer.imageLocationURL == nil {
+                var subLayers = [HPLayer]()
+                for child in layer.layers ?? [] {
+                    if let subLayer = _transform(layer: child, layerMap: layerMap, associatedLayerIDs: associatedLayerIDs) {
+                        if !isCollectionSubType(subLayer.componentConfig?.type) {
+                            subLayers.append(subLayer)
+                        }
+                    }
                 }
+                hpLayer.subLayers = subLayers
             }
-            hpLayer.subLayers = subLayers
             return hpLayer
         }
         return nil
     }
     
-    private func buildHPLayer(layer: SKLayer, configuration: HPConfiguration) -> HPLayer? {
+    private func buildHPLayer(layer: SKLayer) -> HPLayer? {
+        if layer.objectID == "708A372C-045C-41F0-9AA4-3550CC6E8997" {
+            print("ZZZ")
+        }
         guard layer.isVisible.skBoolValue else { return nil }
         guard isValidNativeLayer(layer) else { return HPUnimplementedLayer(skLayer: layer) }
+        var result: HPLayer?
         switch layer.layerType {
         case .artboard:
-            let result = HPArtboardLayer(skLayer: layer)
+            result = HPArtboardLayer(skLayer: layer)
             var backgroundLayers = [HPBackgroundLayer]()
-            findBackgroundLayers(layer: layer, configuration: configuration, result: &backgroundLayers)
-            result.backgroundLayers = backgroundLayers
-            return result
+            findBackgroundLayers(layer: layer, result: &backgroundLayers)
+            result?.backgroundLayers = backgroundLayers
         case .text:
-            return HPTextLayer(skLayer: layer)
+            result = HPTextLayer(skLayer: layer)
         case .rectangle:
-            return HPRectangleLayer(skLayer: layer)
+            result = HPRectangleLayer(skLayer: layer)
         case .group:
-            return HPLayer(skLayer: layer)
+            result = HPLayer(skLayer: layer)
         default:
             if layer.isImageLayer {
-                let result = HPLayer(skLayer: layer)
-                if attachImageLocation(layer: layer, hpLayer: result, configuration: configuration) {
-                    return result
+                result = HPLayer(skLayer: layer)
+                if !attachImageLocation(layer: layer, hpLayer: result!) {
+                    result = nil
                 }
             }
-            print("unimplemented layer type: \(layer.layerType)")
-            return HPUnimplementedLayer(skLayer: layer)
+            if result == nil {
+                print("unimplemented layer type: \(layer.layerType)")
+                return HPUnimplementedLayer(skLayer: layer)
+            }
         }
+        result?.componentConfig = configuration.componentMap[layer.objectID]
+        return result
     }
     
     @discardableResult
-    private func attachImageLocation(layer: SKLayer, hpLayer: HPLayer, configuration: HPConfiguration) -> Bool {
+    private func attachImageLocation(layer: SKLayer, hpLayer: HPLayer) -> Bool {
         var locationURL = URL(fileURLWithPath: configuration.assetsLocation)
         locationURL.appendPathComponent(layer.objectID)
         let assetURL = locationURL.appendingPathExtension("png")
@@ -83,27 +151,70 @@ public struct HPLayerTransformer {
         return false
     }
     
-    private func attachAssociatedLayers(layer: HPLayer, layerMap: [String: SKLayer], configuration: HPConfiguration) {
-        if let componentConfig = configuration.componentMap[layer.id] {
-            var result = [HPLayer]()
-            for id in componentConfig.associatedLayers {
-                if let l = layerMap[id] {
-                    let associatedLayer = HPAssociatedLayer(skLayer: l)
-                    if l.isImageLayer {
-                        attachImageLocation(layer: l, hpLayer: associatedLayer, configuration: configuration)
-                    }
-                    attachStyle(layer: associatedLayer)
-                    result.append(associatedLayer)
-                }
-            }
-            layer.associatedLayers = result
+    private func attachAssociatedLayers(layer: HPLayer, layerMap: [String: SKLayer]) {
+        if layer.id == "2951C632-18B6-4962-A32A-1AD27E8AD5EB" {
+            print("ZZZ")
         }
+        if layer.id == "708A372C-045C-41F0-9AA4-3550CC6E8997" {
+            print("ZZZ")
+        }
+        var result = [HPLayer]()
+        var potentials = associatedLayerMap[layer.id] ?? []
+        if layer.componentConfig?.type == .table {
+            potentials = potentials.filter {
+                if let config = configuration.componentMap[$0.objectID] {
+                   return config.type == .tableCell
+                    || config.type == .tableHeader
+                    || config.type == .tableFooter
+                    || config.type == .tableSectionHeader
+                    || config.type == .tableSectionFooter
+                }
+                return false
+            }
+        } else if layer.componentConfig?.type == .collection {
+            potentials = potentials.filter {
+                if let config = configuration.componentMap[$0.objectID] {
+                    return config.type == .collectionCell
+                }
+                return false
+            }
+        }
+        if layer.componentConfig?.type == .tableCell {
+            print("ZZZ")
+        }
+        for l in potentials {
+            guard l.isVisible.skBoolValue else { continue }
+            let associatedLayer = transformedLayerMap[l.objectID] ?? HPAssociatedLayer(skLayer: l)
+            associatedLayer.componentConfig = configuration.componentMap[l.objectID]
+            if l.isImageLayer {
+                attachImageLocation(layer: l, hpLayer: associatedLayer)
+            }
+            attachStyle(layer: associatedLayer)
+            result.append(associatedLayer)
+            attachAssociatedLayers(layer: associatedLayer, layerMap: layerMap)
+        }
+        layer.associatedLayers = result
+//        if let componentConfig = configuration.componentMap[layer.id] {
+//            var result = [HPLayer]()
+//            for id in componentConfig.associatedLayers {
+//                if let l = layerMap[id] {
+//                    let associatedLayer = HPAssociatedLayer(skLayer: l)
+//                    associatedLayer.componentConfig = configuration.componentMap[l.objectID]
+//                    if l.isImageLayer {
+//                        attachImageLocation(layer: l, hpLayer: associatedLayer, configuration: configuration)
+//                    }
+//                    attachStyle(layer: associatedLayer)
+//                    result.append(associatedLayer)
+//                    attachAssociatedLayers(layer: associatedLayer, rootLayer: rootLayer, layerMap: layerMap, configuration: configuration)
+//                }
+//            }
+//        }
         for child in layer.subLayers {
-            attachAssociatedLayers(layer: child, layerMap: layerMap, configuration: configuration)
+            attachAssociatedLayers(layer: child, layerMap: layerMap)
         }
     }
     
-    private func findBackgroundLayers(layer: SKLayer, configuration: HPConfiguration, result: inout [HPBackgroundLayer]) {
+    private func findBackgroundLayers(layer: SKLayer, result: inout [HPBackgroundLayer]) {
         if layer.isVisible.skBoolValue, let componentConfig = configuration.componentMap[layer.objectID] {
             if componentConfig.type == .background {
                 let backgroundLayer = HPBackgroundLayer(skLayer: layer)
@@ -112,18 +223,45 @@ public struct HPLayerTransformer {
             }
         }
         for child in layer.layers ?? [] {
-            findBackgroundLayers(layer: child, configuration: configuration, result: &result)
+            findBackgroundLayers(layer: child, result: &result)
         }
     }
     
-    private func buildAssociatedLayerIDs(configuration: HPConfiguration) -> Set<String> {
+    private func buildAssociatedLayerIDs() -> Set<String> {
         var result = Set<String>()
-        for c in configuration.components {
-            for id in c.associatedLayers {
-                result.insert(id)
+        for list in associatedLayerMap.values {
+            for item in list {
+                result.insert(item.objectID)
             }
         }
         return result
+    }
+    
+    private func findCollections(layer: SKLayer) -> [String: SKLayer] {
+        var result = [String: SKLayer]()
+        accumulateCollections(layer: layer, result: &result)
+        return result
+    }
+    
+    private func accumulateCollections(layer: SKLayer, result: inout [String: SKLayer]) {
+        let type = configuration.componentMap[layer.objectID]?.type
+        if type == .table || type == .collection {
+            result[layer.objectID] = layer
+        }
+        for child in layer.layers ?? [] {
+            accumulateCollections(layer: child, result: &result)
+        }
+    }
+    
+    private func isInsideCollection(layer: SKLayer) -> Bool {
+        let type = configuration?.componentMap[layer.objectID]?.type
+        guard !isAssociatedTraversableType(type) else { return false }
+        for collection in collectionViewMap.values {
+            if collection.frame.cgRect.contains(layer.frame.cgRect) {
+                return true
+            }
+        }
+        return false
     }
     
     private func buildLayerMap(layer: SKLayer) -> [String: SKLayer] {
@@ -137,6 +275,30 @@ public struct HPLayerTransformer {
         for child in layer.layers ?? [] {
             buildLayerMap(layer: child, result: &result)
         }
+    }
+    
+    private func buildAssociatedLayerMap() {
+        for l1 in layerMap.values {
+            guard let config = configuration.componentMap[l1.objectID] else { continue }
+            guard isAssociatedTraversableType(config.type) || config.type == .button else { continue }
+            if config.type == .tableCell {
+                print("ZZZ")
+            }
+            for l2 in layerMap.values {
+                guard l1.objectID != l2.objectID else { continue }
+                if l1.frame.cgRect.contains(l2.frame.cgRect) {
+                    var list = associatedLayerMap[l1.objectID] ?? []
+                    list.append(l2)
+                    associatedLayerMap[l1.objectID] = list
+                }
+            }
+            if config.type == .tableCell {
+                print("ZZZ cell associated layers: \(associatedLayerMap[l1.objectID])")
+            }
+        }
+    }
+    
+    private func accumulateAssociatedLayers(layer: SKLayer) {
     }
     
     private func attachStyle(layer: HPLayer) {

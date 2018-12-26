@@ -12,10 +12,12 @@ class HPSimpleProportionalConstraint: NSObject {
 
     private (set) public var proportionalityConstant: CGFloat
     private (set) public var attribute: NSLayoutConstraint.Attribute
-    
-    init(attribute: NSLayoutConstraint.Attribute, proportionalityConstant: CGFloat) {
+    private (set) public var isSafeArea: Bool
+
+    init(attribute: NSLayoutConstraint.Attribute, proportionalityConstant: CGFloat, isSafeArea: Bool) {
         self.attribute = attribute
         self.proportionalityConstant = proportionalityConstant
+        self.isSafeArea = isSafeArea
         super.init()
     }
     
@@ -29,7 +31,7 @@ class HPSimpleProportionalConstraint: NSObject {
             return NSLayoutConstraint(item: view,
                                       attribute: attribute,
                                       relatedBy: .equal,
-                                      toItem: view.superview,
+                                      toItem: isSafeArea ? view.superview?.safeAreaLayoutGuide : view.superview,
                                       attribute: attribute,
                                       multiplier: 1.0,
                                       constant: yConstant)
@@ -45,7 +47,7 @@ class HPSimpleProportionalConstraint: NSObject {
             return NSLayoutConstraint(item: view,
                                       attribute: attribute,
                                       relatedBy: .equal,
-                                      toItem: view.superview,
+                                      toItem: isSafeArea ? view.superview?.safeAreaLayoutGuide : view.superview,
                                       attribute: attribute,
                                       multiplier: 1.0,
                                       constant: yConstant)
