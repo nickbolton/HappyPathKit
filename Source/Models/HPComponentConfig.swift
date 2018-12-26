@@ -31,5 +31,4 @@ public struct HPComponentConfig: Codable {
     public let name: String
     public let isSubclass: Bool
     public let isConnection: Bool
-    public let isSafeArea: Bool
 }

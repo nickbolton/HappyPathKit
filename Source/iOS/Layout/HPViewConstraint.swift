@@ -11,9 +11,11 @@ import UIKit
 public class HPViewConstraint: NSObject {
     private (set) public var constraint: HPConstraint
     private (set) public var layers: [HPLayer]
-    init(constraint: HPConstraint, layers: [HPLayer]) {
+    private (set) public var isSafeArea: Bool
+    init(constraint: HPConstraint, layers: [HPLayer], isSafeArea: Bool) {
         self.constraint = constraint
         self.layers = layers
+        self.isSafeArea = isSafeArea
         super.init()
         guard layers.count > 0 else {
             assert(false, "You must provide at least one layer.")
@@ -40,14 +42,14 @@ public class HPViewConstraint: NSObject {
     private func buildSimpleProportionalConstraint(layer: HPLayer, view: UIView) -> NSLayoutConstraint {
         let builder = HPSimpleProportionalConstraint(attribute: constraint.type.sourceAttribute,
                                                      proportionalityConstant: constraint.proportionalValue,
-                                                     isSafeArea: layer.componentConfig?.isSafeArea ?? false)
+                                                     isSafeArea: isSafeArea)
         return builder.applyConstraint(to: view)
     }
     
     private func buildSimpleConstraint(layer: HPLayer, view: UIView) -> NSLayoutConstraint {
         let builder = HPSimpleConstraint(attribute: constraint.type.sourceAttribute,
                                          constant: constraint.value,
-                                         isSafeArea: layer.componentConfig?.isSafeArea ?? false)
+                                         isSafeArea: isSafeArea)
         return builder.applyConstraint(to: view)
     }
     

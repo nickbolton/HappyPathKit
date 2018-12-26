@@ -12,18 +12,19 @@ import Cocoa
 #endif
 
 public enum HPConstraintType: Int, Codable {
-    case right             = 0x001
-    case width             = 0x002
-    case left              = 0x004
-    case bottom            = 0x008
-    case height            = 0x010
-    case top               = 0x020
-    case centerX           = 0x040
-    case centerY           = 0x080
-    case verticalSpacing   = 0x100
-    case horizontalSpacing = 0x200
-    case verticalCenters   = 0x400
-    case horizontalCenters = 0x800
+    case right             = 0x0001
+    case width             = 0x0002
+    case left              = 0x0004
+    case bottom            = 0x0008
+    case height            = 0x0010
+    case top               = 0x0020
+    case centerX           = 0x0040
+    case centerY           = 0x0080
+    case verticalSpacing   = 0x0100
+    case horizontalSpacing = 0x0200
+    case verticalCenters   = 0x0400
+    case horizontalCenters = 0x0800
+    case safeArea          = 0x1000
 
     public var sourceAttribute: NSLayoutConstraint.Attribute {
         switch self {
@@ -51,6 +52,8 @@ public enum HPConstraintType: Int, Codable {
             return .centerY
         case .horizontalCenters:
             return .centerX
+        case .safeArea:
+            return .notAnAttribute
         }
     }
     
@@ -80,6 +83,8 @@ public enum HPConstraintType: Int, Codable {
             return .centerY
         case .horizontalCenters:
             return .centerX
+        case .safeArea:
+            return .notAnAttribute
         }
     }
 }
