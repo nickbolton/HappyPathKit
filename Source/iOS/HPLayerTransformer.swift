@@ -84,9 +84,26 @@ public class HPLayerTransformer: NSObject {
         return nil
     }
     
+    private func findContainerLayer(_ target: SKLayer) -> HPLayer? {
+        for layer in transformedLayerMap.values {
+            guard layer.componentConfig?.type == .container else { return nil }
+            for assoc in associatedLayerMap[layer.id] ?? [] {
+                if assoc.objectID == target.objectID {
+                    return layer
+                }
+            }
+        }
+        return nil
+    }
+    
     private func buildHPLayer(layer: SKLayer) -> HPLayer? {
         guard layer.isVisible.skBoolValue else { return nil }
         guard isValidNativeLayer(layer) else { return HPUnimplementedLayer(skLayer: layer) }
+//        var layer = layer // just make it mutable
+//        if let containerLayer = findContainerLayer(layer) {
+//            layer.frame = layer.frame.offsetBy(CGVector(dx: -containerLayer.frame.minX,
+//                                                        dy: -containerLayer.frame.minY))
+//        }
         var result: HPLayer?
         switch layer.layerType {
         case .artboard:

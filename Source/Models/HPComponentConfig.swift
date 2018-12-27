@@ -8,6 +8,7 @@
 import Foundation
 
 public enum ComponentType: String, Codable {
+    case container = "com.pixelbleed.happyPath.container"
     case button = "com.pixelbleed.happyPath.button"
     case image = "com.pixelbleed.happyPath.imageView"
     case label = "com.pixelbleed.happyPath.label"
