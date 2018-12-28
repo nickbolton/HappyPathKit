@@ -22,8 +22,6 @@ public enum ComponentType: String, Codable {
     case tableFooter = "com.pixelbleed.happyPath.tableFooterView"
     case collection = "com.pixelbleed.happyPath.collectionView"
     case collectionCell = "com.pixelbleed.happyPath.collectionViewCell"
-    case verticalCentering = "com.pixelbleed.happyPath.verticalCentering"
-    case horizontalCentering = "com.pixelbleed.happyPath.horizontalCentering"
 }
 
 public struct HPComponentConfig: Codable {
