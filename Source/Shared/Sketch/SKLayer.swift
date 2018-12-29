@@ -279,20 +279,8 @@ public struct SKBackgroundColor: Codable {
     public let rawValue: String
     
     public var color: SKColor { return SKColor(rawValue: rawValue) }
+    public var nativeColor: HPColor { return HPColor(backgroundColor: self) }
     
-    #if os(iOS)
-    public var uiColor: UIColor {
-        let color = self.color
-        return UIColor(displayP3Red: color.red / 255.0,
-                       green: color.green / 255.0,
-                       blue: color.blue / 255.0,
-                       alpha: color.alpha) }
-    
-    public var cgColor: CGColor { return uiColor.cgColor }
-    
-    #elseif os(macOS)
-    #endif
-
     enum CodingKeys: String, CodingKey {
         case backgroundColorClass = "<class>"
         case rawValue = "value"

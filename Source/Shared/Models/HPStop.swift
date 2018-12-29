@@ -15,5 +15,4 @@ import Cocoa
 public struct HPStop: Codable {
     public let color: SKBackgroundColor
     public let position: CGFloat
-    public var nativeColor: HPColor { return HPColor(backgroundColor: color) }
 }
