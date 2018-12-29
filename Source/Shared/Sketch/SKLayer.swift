@@ -13,7 +13,7 @@ import Cocoa
 
 public typealias SKLayerGroup = [SKLayer]
 
-public enum SKLayerType {
+public enum SKLayerType: Int, Codable {
     case artboard
     case group
     case bitmap
@@ -30,6 +30,10 @@ public enum SKLayerType {
     case triangle
     case symbolInstance
     case unknown
+}
+
+public struct SKPage: Codable {
+    public let layers: SKLayerGroup
 }
 
 public struct SKLayer: Codable, Equatable, Hashable {
@@ -82,11 +86,10 @@ public struct SKLayer: Codable, Equatable, Hashable {
     public let fillReplacesImage: Int?
     public let intendedDPI: Int?
     public var layers: SKLayerGroup?
-    public var isRootLayer = false
     
     public var isImageLayer: Bool {
         switch layerType {
-        case .bitmap, .shapePath, .slice, .oval, .polygon, .star, .triangle, .shapeGroup:
+        case .bitmap, .shapePath, .slice, .oval, .polygon, .star, .triangle, .shapeGroup, .symbolInstance:
             return true
         default:
             return false
@@ -124,6 +127,8 @@ public struct SKLayer: Codable, Equatable, Hashable {
         case "MSTriangleShape", "MSImmutableTriangleShape":
             return .triangle
         case "MSSymbolInstance", "MSImmutableSymbolInstance":
+            return .symbolInstance
+        case "MSSymbolMaster":
             return .symbolInstance
         default:
             assert(false, "Unknown layer type: \(layerClass)")

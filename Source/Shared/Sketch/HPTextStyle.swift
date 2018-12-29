@@ -17,7 +17,7 @@ public struct HPTextStyle: Codable {
 }
 
 public struct HPStyleAttributes: Codable {
-    public let font: HPFont
+    public let font: HPFontConfig
     public let kerning: CGFloat?
     public let underline: Int?
     public let strikethrough: Int?

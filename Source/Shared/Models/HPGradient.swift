@@ -6,9 +6,13 @@
 //  Copyright © 2018 Pixelbleed LLC. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import Cocoa
+#endif
 
-public struct HPGradient {
+public struct HPGradient: Codable {
     public let stops: [HPStop]
     public let gradientType: SKLayerGradientType
     public let from: CGPoint

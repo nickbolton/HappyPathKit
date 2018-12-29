@@ -6,16 +6,20 @@
 //  Copyright © 2018 Pixelbleed LLC. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import Cocoa
+#endif
 
-public enum HPBorderType {
+public enum HPBorderType: Int, Codable {
     case inside
     case outside
     case centered
 }
 
-public struct HPBorder {
+public struct HPBorder: Codable {
     public let thickness: CGFloat
-    public let color: UIColor
+    public let color: SKBackgroundColor
     public let type: HPBorderType
 }

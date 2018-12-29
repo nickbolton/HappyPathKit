@@ -6,12 +6,16 @@
 //  Copyright © 2018 Pixelbleed LLC. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import Cocoa
+#endif
 
-public struct HPStyle {
+public struct HPStyle: Codable {
     public let opacity: CGFloat
     public let fills: [HPFill]
     public let borders: [HPBorder]
-    public let backgroundColor: UIColor?
+    public let backgroundColor: SKBackgroundColor?
     public let cornerRadius: CGFloat
 }

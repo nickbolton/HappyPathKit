@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = '11.0'
   spec.osx.deployment_target = '10.13'
   spec.ios.source_files = 'Source/**/*.swift'
-  spec.osx.source_files = 'Source/Models/**/*.swift'
+  spec.osx.source_files = 'Source/Shared/**/*.swift'
   spec.ios.dependency 'Nub/Core'
   spec.requires_arc = true
 end 

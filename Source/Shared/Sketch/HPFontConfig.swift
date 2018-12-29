@@ -1,5 +1,5 @@
 //
-//  AppFont.swift
+//  HPFontConfig.swift
 //  HappyPathKit
 //
 //  Created by Nick Bolton on 12/16/18.
@@ -11,7 +11,7 @@ import UIKit
 import Cocoa
 #endif
 
-public struct HPFont: Codable {
+public struct HPFontConfig: Codable {
     public let name: String
     public let family: String
     public let systemWeight: String?

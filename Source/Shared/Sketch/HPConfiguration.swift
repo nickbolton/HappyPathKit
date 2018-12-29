@@ -9,8 +9,8 @@ import Foundation
 
 public struct HPConfiguration: Codable {
     public let assetsLocation: String
-    public let fonts: [HPFont]
-    public let colors: [HPColor]
+    public let fonts: [HPFontConfig]
+    public let colors: [HPColorConfig]
     public let textStyles: [HPTextStyle]
     public let components: [HPComponentConfig]
     public let layouts: [HPLayout]
@@ -37,7 +37,7 @@ public struct HPConfiguration: Codable {
         return result
     }
     
-    public init(assetsLocation: String, fonts: [HPFont], colors: [HPColor], textStyles: [HPTextStyle], components: [HPComponentConfig], layouts: [HPLayout]) {
+    public init(assetsLocation: String, fonts: [HPFontConfig], colors: [HPColorConfig], textStyles: [HPTextStyle], components: [HPComponentConfig], layouts: [HPLayout]) {
         self.assetsLocation = assetsLocation
         self.fonts = fonts
         self.colors = colors
@@ -51,8 +51,8 @@ public struct HPConfiguration: Codable {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         self.assetsLocation = try values.decode(String.self, forKey: .assetsLocation)
-        self.fonts = try values.decode([HPFont].self, forKey: .fonts)
-        self.colors = try values.decode([HPColor].self, forKey: .colors)
+        self.fonts = try values.decode([HPFontConfig].self, forKey: .fonts)
+        self.colors = try values.decode([HPColorConfig].self, forKey: .colors)
         self.textStyles = try values.decode([HPTextStyle].self, forKey: .textStyles)
         self.components = try values.decode([HPComponentConfig].self, forKey: .components)
         self.layouts = try values.decode([HPLayout].self, forKey: .layouts)

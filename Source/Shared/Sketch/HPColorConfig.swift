@@ -1,5 +1,5 @@
 //
-//  HPColor.swift
+//  HPColorConfig.swift
 //  HappyPathKit
 //
 //  Created by Nick Bolton on 12/16/18.
@@ -11,7 +11,7 @@ import UIKit
 import Cocoa
 #endif
 
-public struct HPColor: Codable {
+public struct HPColorConfig: Codable {
     public let name: String
     public let value: String
     
