@@ -272,7 +272,6 @@ public struct SKColor {
 public struct SKBackgroundColor: Codable {
     public let backgroundColorClass: SKBackgroundColorClass
     public let rawValue: String
-    public let externalName: String
     
     public var color: SKColor { return SKColor(rawValue: rawValue) }
     
@@ -292,7 +291,6 @@ public struct SKBackgroundColor: Codable {
     enum CodingKeys: String, CodingKey {
         case backgroundColorClass = "<class>"
         case rawValue = "value"
-        case externalName
     }
 }
 
@@ -403,12 +401,12 @@ public struct SKAttributedString: Codable {
 }
 
 public struct SKValueClass: Codable {
-    public let valueClass, text, externalName: String
+    public let valueClass, text: String
     public let attributes: [SKAttribute]
     
     enum CodingKeys: String, CodingKey {
         case valueClass = "<class>"
-        case text, attributes, externalName
+        case text, attributes
     }
 }
 
@@ -435,7 +433,6 @@ public struct SKAttribute: Codable {
 
 public struct SKLayerFont: Codable {
     public let name: String
-    public let externalName: String
     public let attributes: SKAttributes
     public let family: String
 }

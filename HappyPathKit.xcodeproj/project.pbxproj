@@ -188,13 +188,13 @@
 			isa = PBXGroup;
 			children = (
 				9226CFDB21D04E0200DBB143 /* iOS */,
-				924B51EC21CAAED200A8464B /* Models */,
+				924B51EC21CAAED200A8464B /* Sketch */,
 			);
 			name = Source;
 			path = ../Source;
 			sourceTree = "<group>";
 		};
-		924B51EC21CAAED200A8464B /* Models */ = {
+		924B51EC21CAAED200A8464B /* Sketch */ = {
 			isa = PBXGroup;
 			children = (
 				9226CFF821D04FD000DBB143 /* HPLayout.swift */,
@@ -208,7 +208,7 @@
 				924B51F421CAAED200A8464B /* HPImportable.swift */,
 				92CFF99A21CAB6E00052CE86 /* SKLayer.swift */,
 			);
-			path = Models;
+			path = Sketch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
