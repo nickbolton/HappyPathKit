@@ -38,7 +38,8 @@ public struct SKPage: Codable {
 
 public struct SKLayer: Codable, Equatable, Hashable {
     
-    public let shouldBreakMaskChain, rotation: Int
+    public let shouldBreakMaskChain: Int
+    public let rotation: CGFloat
     public let objectID: String
     public var frame: SKLayerFrame
     public let isFlippedVertical: Int

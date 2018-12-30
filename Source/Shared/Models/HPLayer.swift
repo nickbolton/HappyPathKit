@@ -27,6 +27,7 @@ public struct HPLayer: Codable, Equatable, Hashable {
     public var isUnimplemented = false
     public var isRootLayer = false
     public var isLocked = false
+    public var rotation: CGFloat { return skLayer?.rotation ?? 0.0 }
     public var assetLocationURL: URL?
     public var style = HPStyle(opacity: 1.0,
                                fills: [],
@@ -101,6 +102,31 @@ public struct HPLayer: Codable, Equatable, Hashable {
             result.append(contentsOf: layer.flattened)
         }
         return result
+    }
+    
+    public func indexPath(of layer: HPLayer) -> [Int] {
+        var result = [Int]()
+        _indexPath(of: layer, result: &result)
+        return result
+    }
+    
+    private func _indexPath(of target: HPLayer, result: inout [Int]) -> Bool {
+        if let idx = subLayers.firstIndex(of: target) {
+            result.append(idx)
+            return true
+        }
+        var idx = 0
+        for layer in subLayers {
+            var subResult = result
+            subResult.append(idx)
+            if layer._indexPath(of: target, result: &subResult) {
+                result = subResult
+                return true
+            }
+            idx += 1
+        }
+        
+        return false
     }
     
     public init(skLayer: SKLayer) {
