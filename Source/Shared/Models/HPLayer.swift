@@ -28,7 +28,10 @@ public struct HPLayer: Codable, Equatable, Hashable {
     public var isRootLayer = false
     public var isLocked = false
     public var rotation: CGFloat { return skLayer?.rotation ?? 0.0 }
+    public var isRotated: Bool { return abs(rotation) == 90.0 }
+    public var isValidNativeLayer = false
     public var assetLocationURL: URL?
+    public var points = [HPPathPoint]()
     public var style = HPStyle(opacity: 1.0,
                                fills: [],
                                borders: [],

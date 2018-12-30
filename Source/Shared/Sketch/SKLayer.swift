@@ -516,8 +516,15 @@ public struct SKLayerImage: Codable {
     }
 }
 
+public enum SKCurveMode: Int, Codable {
+    case line = 1
+    case curve = 2
+    case four = 4
+}
+
 public struct SKLayerPoint: Codable {
-    public let hasCurveFrom, curveMode: Int
+    public let hasCurveFrom: Int
+    public let curveMode: SKCurveMode
     public let curveFrom, point: SKLayerCenter
     public let pointClass: SKPointClass
     public let cornerRadius: CGFloat
