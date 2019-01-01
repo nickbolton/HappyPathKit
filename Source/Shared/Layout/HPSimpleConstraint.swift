@@ -6,7 +6,11 @@
 //  Copyright © 2018 Pixelbleed LLC. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import Cocoa
+#endif
 
 class HPSimpleConstraint: NSObject {
 
@@ -22,7 +26,7 @@ class HPSimpleConstraint: NSObject {
         super.init()
     }
 
-    func applyConstraint(to view: UIView) -> NSLayoutConstraint {
+    func applyConstraint(to view: ViewClass) -> NSLayoutConstraint {
         switch attribute {
         case .width, .height:
             return NSLayoutConstraint(item: view,
@@ -34,6 +38,7 @@ class HPSimpleConstraint: NSObject {
                                       constant: constant)
         default:
             assert(view.superview != nil, "View must be part of a view hierarchy.")
+            #if os(iOS)
             return NSLayoutConstraint(item: view,
                                       attribute: attribute,
                                       relatedBy: .equal,
@@ -41,6 +46,15 @@ class HPSimpleConstraint: NSObject {
                                       attribute: attribute,
                                       multiplier: 1.0,
                                       constant: constant)
+            #elseif os(macOS)
+            return NSLayoutConstraint(item: view,
+                                      attribute: attribute,
+                                      relatedBy: .equal,
+                                      toItem: view.superview,
+                                      attribute: attribute,
+                                      multiplier: 1.0,
+                                      constant: constant)
+            #endif
         }
     }
 }

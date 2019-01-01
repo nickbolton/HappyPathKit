@@ -6,14 +6,18 @@
 //  Copyright © 2018 Pixelbleed LLC. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import Cocoa
+#endif
 
 public struct HPViewLayout {
     let constraints: [HPViewConstraint]
-    public func applyLayout(to views: [UIView]) {
+    public func applyLayout(to views: [ViewClass], screenSize: CGSize) {
         var layoutConstraints = [NSLayoutConstraint]()
         for c in constraints {
-            layoutConstraints.append(c.applyConstraint(to: views))
+            layoutConstraints.append(c.applyConstraint(to: views, screenSize: screenSize))
         }
         NSLayoutConstraint.activate(layoutConstraints)
     }

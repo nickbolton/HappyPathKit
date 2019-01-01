@@ -11,6 +11,13 @@ import UIKit
 import Cocoa
 #endif
 
-public struct HPPage: Codable {
-    public let layers: [HPLayer]
+public struct HPPage: Codable, Equatable, Hashable {
+    public let id: String
+    public var layers: [HPLayer]
+    
+    public var hashValue: Int { return id.hashValue }
+    
+    public static func == (lhs: HPPage, rhs: HPPage) -> Bool {
+        return lhs.id == rhs.id
+    }
 }

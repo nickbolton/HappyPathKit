@@ -12,13 +12,72 @@ import UIKit
 import Cocoa
 #endif
 
+public enum HPLayerType: Int, Codable {
+    case artboard
+    case group
+    case bitmap
+    case hotspot
+    case openGL
+    case shapePath
+    case shapeGroup
+    case slice
+    case text
+    case oval
+    case polygon
+    case rectangle
+    case star
+    case triangle
+    case symbolInstance
+    case unknown
+    // component types
+    case container
+    
+    static func from(layer: SKLayer) -> HPLayerType {
+        switch layer.layerType {
+        case .artboard:
+            return HPLayerType.artboard
+        case .group:
+            return HPLayerType.group
+        case .bitmap:
+            return HPLayerType.bitmap
+        case .hotspot:
+            return HPLayerType.hotspot
+        case .openGL:
+            return HPLayerType.openGL
+        case .shapePath:
+            return HPLayerType.shapePath
+        case .shapeGroup:
+            return HPLayerType.shapeGroup
+        case .slice:
+            return HPLayerType.slice
+        case .text:
+            return HPLayerType.text
+        case .oval:
+            return HPLayerType.oval
+        case .polygon:
+            return HPLayerType.polygon
+        case .rectangle:
+            return HPLayerType.rectangle
+        case .star:
+            return HPLayerType.star
+        case .triangle:
+            return HPLayerType.triangle
+        case .symbolInstance:
+            return HPLayerType.symbolInstance
+        case .unknown:
+            return HPLayerType.unknown
+        }
+    }
+}
+
 public struct HPLayer: Codable, Equatable, Hashable {
     public let skLayer: SKLayer?
     public var isSourceLayer: Bool { return skLayer != nil }
 
     public let id: String
     public var frame: CGRect
-    public let layerType: SKLayerType
+    public let layerType: HPLayerType
+    public let name: String
     public var attributedString: SKAttributedString? { return skLayer?.attributedString }
     public var componentConfig: HPComponentConfig?
     public var associatedLayers = [HPLayer]()
@@ -31,6 +90,7 @@ public struct HPLayer: Codable, Equatable, Hashable {
     public var isRotated: Bool { return abs(rotation) == 90.0 }
     public var isValidNativeLayer = false
     public var assetLocationURL: URL?
+    public var externalName: String?
     public var points = [HPPathPoint]()
     public var style = HPStyle(opacity: 1.0,
                                fills: [],
@@ -136,7 +196,16 @@ public struct HPLayer: Codable, Equatable, Hashable {
         self.skLayer = skLayer
         self.frame = skLayer.frame.cgRect
         self.id = skLayer.objectID
-        self.layerType = skLayer.layerType
+        self.layerType = HPLayerType.from(layer: skLayer)
+        self.name = skLayer.name
+    }
+    
+    public init(frame: CGRect, name: String) {
+        self.skLayer = nil
+        self.frame = frame
+        self.id = UUID().uuidString
+        self.layerType = .container
+        self.name = name
     }
     
     public var hashValue: Int { return id.hashValue }

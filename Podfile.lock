@@ -1,16 +1,12 @@
 PODS:
-  - Nub/Core (0.0.1)
+  - Cache (4.2.0)
 
 DEPENDENCIES:
-  - Nub/Core (from `~/src/pixelbleed/nub`)
-
-EXTERNAL SOURCES:
-  Nub:
-    :path: ~/src/pixelbleed/nub
+  - Cache (~> 4.1)
 
 SPEC CHECKSUMS:
-  Nub: 0ca735a9959c4d9bc2cbc8f282ac75099e74316a
+  Cache: f28f8dd64b632155aabf9b3906b036a659048251
 
-PODFILE CHECKSUM: 821c926e9c6fa5148cbdebc1f85aed243dffdc6c
+PODFILE CHECKSUM: 5c3cc5b6890aa59b1c3f98c8dd1d7a7494a00789
 
 COCOAPODS: 1.4.0

@@ -10,8 +10,7 @@
 #endif
 #endif
 
-#import "Nub.h"
 
-FOUNDATION_EXPORT double NubVersionNumber;
-FOUNDATION_EXPORT const unsigned char NubVersionString[];
+FOUNDATION_EXPORT double CacheVersionNumber;
+FOUNDATION_EXPORT const unsigned char CacheVersionString[];
 

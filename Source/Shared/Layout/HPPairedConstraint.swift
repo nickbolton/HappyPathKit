@@ -6,7 +6,11 @@
 //  Copyright © 2018 Pixelbleed LLC. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import Cocoa
+#endif
 
 class HPPairedConstraint: NSObject {
 
@@ -23,7 +27,7 @@ class HPPairedConstraint: NSObject {
         super.init()
     }
     
-    func applyConstraint(source: UIView, target: UIView) -> NSLayoutConstraint {
+    func applyConstraint(source: ViewClass, target: ViewClass) -> NSLayoutConstraint {
         return NSLayoutConstraint(item: source,
                                   attribute: sourceAttribute,
                                   relatedBy: .equal,

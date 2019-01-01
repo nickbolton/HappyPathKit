@@ -36,10 +36,22 @@
 		924B51F821CAAED200A8464B /* HPColorEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B51F021CAAED200A8464B /* HPColorEntity.swift */; };
 		924B51F921CAAED200A8464B /* HPColorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B51F121CAAED200A8464B /* HPColorConfig.swift */; };
 		924B51FB21CAAED200A8464B /* HPTextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B51F321CAAED200A8464B /* HPTextStyle.swift */; };
+		926F825721DBB48C00E72CBC /* HPButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926F825621DBB48C00E72CBC /* HPButton.swift */; };
 		92CFF99B21CAB6E00052CE86 /* SKLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CFF99A21CAB6E00052CE86 /* SKLayer.swift */; };
 		92D5513C21D77F1F00E52882 /* HPColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5513B21D77F1F00E52882 /* HPColor.swift */; };
 		92D5513E21D77F5E00E52882 /* HPFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5513D21D77F5E00E52882 /* HPFont.swift */; };
 		92D5514221D799FB00E52882 /* SKImportable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5514121D799FB00E52882 /* SKImportable.swift */; };
+		92D5521621DB8AB000E52882 /* HPPathPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5521521DB8AAF00E52882 /* HPPathPoint.swift */; };
+		92D5521821DB8B2B00E52882 /* NSView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5521721DB8B2B00E52882 /* NSView+Layout.swift */; };
+		92D5524421DBAD4000E52882 /* TextDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5523C21DBAD4000E52882 /* TextDescriptor.swift */; };
+		92D5524521DBAD4000E52882 /* View+TextLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5523D21DBAD4000E52882 /* View+TextLayout.swift */; };
+		92D5524621DBAD4000E52882 /* TextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5523E21DBAD4000E52882 /* TextAttributes.swift */; };
+		92D5524721DBAD4000E52882 /* TextStyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5523F21DBAD4000E52882 /* TextStyleManager.swift */; };
+		92D5524821DBAD4000E52882 /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5524021DBAD4000E52882 /* TextStyle.swift */; };
+		92D5524921DBAD4000E52882 /* UIFont+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5524121DBAD4000E52882 /* UIFont+Utils.swift */; };
+		92D5524A21DBAD4000E52882 /* TextMetricsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5524221DBAD4000E52882 /* TextMetricsCache.swift */; };
+		92D5524B21DBAD4000E52882 /* NSLayoutConstraint+TextLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5524321DBAD4000E52882 /* NSLayoutConstraint+TextLayout.swift */; };
+		92D5524D21DBADFF00E52882 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5524C21DBADFE00E52882 /* Geometry.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,10 +86,22 @@
 		924B51F021CAAED200A8464B /* HPColorEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPColorEntity.swift; sourceTree = "<group>"; };
 		924B51F121CAAED200A8464B /* HPColorConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPColorConfig.swift; sourceTree = "<group>"; };
 		924B51F321CAAED200A8464B /* HPTextStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPTextStyle.swift; sourceTree = "<group>"; };
+		926F825621DBB48C00E72CBC /* HPButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPButton.swift; sourceTree = "<group>"; };
 		92CFF99A21CAB6E00052CE86 /* SKLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKLayer.swift; sourceTree = "<group>"; };
 		92D5513B21D77F1F00E52882 /* HPColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPColor.swift; sourceTree = "<group>"; };
 		92D5513D21D77F5E00E52882 /* HPFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPFont.swift; sourceTree = "<group>"; };
 		92D5514121D799FB00E52882 /* SKImportable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKImportable.swift; sourceTree = "<group>"; };
+		92D5521521DB8AAF00E52882 /* HPPathPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPPathPoint.swift; sourceTree = "<group>"; };
+		92D5521721DB8B2B00E52882 /* NSView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+Layout.swift"; sourceTree = "<group>"; };
+		92D5523C21DBAD4000E52882 /* TextDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextDescriptor.swift; sourceTree = "<group>"; };
+		92D5523D21DBAD4000E52882 /* View+TextLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+TextLayout.swift"; sourceTree = "<group>"; };
+		92D5523E21DBAD4000E52882 /* TextAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAttributes.swift; sourceTree = "<group>"; };
+		92D5523F21DBAD4000E52882 /* TextStyleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextStyleManager.swift; sourceTree = "<group>"; };
+		92D5524021DBAD4000E52882 /* TextStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
+		92D5524121DBAD4000E52882 /* UIFont+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Utils.swift"; sourceTree = "<group>"; };
+		92D5524221DBAD4000E52882 /* TextMetricsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextMetricsCache.swift; sourceTree = "<group>"; };
+		92D5524321DBAD4000E52882 /* NSLayoutConstraint+TextLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+TextLayout.swift"; sourceTree = "<group>"; };
+		92D5524C21DBADFE00E52882 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		EE5E7820AEFCD95A0CE99568 /* Pods_HappyPathKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyPathKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F220D03FD853B385C5376F08 /* Pods-HappyPathKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyPathKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-HappyPathKit/Pods-HappyPathKit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,9 +138,11 @@
 		921E3B7A21D77A9500EB58AC /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				92D5523B21DBAD4000E52882 /* Text */,
 				921E3B8021D77E0400EB58AC /* Interoperability */,
 				921E3B7B21D77AAD00EB58AC /* Models */,
 				924B51EC21CAAED200A8464B /* Sketch */,
+				9226CF9421CEC0C800DBB143 /* Layout */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -124,6 +150,7 @@
 		921E3B7B21D77AAD00EB58AC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				92D5521521DB8AAF00E52882 /* HPPathPoint.swift */,
 				921E3B7E21D77D1A00EB58AC /* HPPage.swift */,
 				9226CFDD21D04E0200DBB143 /* HPBorder.swift */,
 				9226CFDF21D04E0200DBB143 /* HPLayerTransformer.swift */,
@@ -139,8 +166,12 @@
 		921E3B8021D77E0400EB58AC /* Interoperability */ = {
 			isa = PBXGroup;
 			children = (
+				92D5524121DBAD4000E52882 /* UIFont+Utils.swift */,
+				92D5523D21DBAD4000E52882 /* View+TextLayout.swift */,
+				92D5524C21DBADFE00E52882 /* Geometry.swift */,
 				92D5513B21D77F1F00E52882 /* HPColor.swift */,
 				92D5513D21D77F5E00E52882 /* HPFont.swift */,
+				926F825621DBB48C00E72CBC /* HPButton.swift */,
 			);
 			path = Interoperability;
 			sourceTree = "<group>";
@@ -148,6 +179,7 @@
 		9226CF9421CEC0C800DBB143 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
+				92D5521721DB8B2B00E52882 /* NSView+Layout.swift */,
 				9226CF9521CEC0E300DBB143 /* HPLayoutFactory.swift */,
 				9226CF9721CEC0F200DBB143 /* HPViewLayout.swift */,
 				9226D01E21D17D5300DBB143 /* HPSimpleConstraint.swift */,
@@ -162,7 +194,6 @@
 		9226CFDB21D04E0200DBB143 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				9226CF9421CEC0C800DBB143 /* Layout */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -224,6 +255,19 @@
 				92D5514121D799FB00E52882 /* SKImportable.swift */,
 			);
 			path = Sketch;
+			sourceTree = "<group>";
+		};
+		92D5523B21DBAD4000E52882 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				92D5523C21DBAD4000E52882 /* TextDescriptor.swift */,
+				92D5523E21DBAD4000E52882 /* TextAttributes.swift */,
+				92D5523F21DBAD4000E52882 /* TextStyleManager.swift */,
+				92D5524021DBAD4000E52882 /* TextStyle.swift */,
+				92D5524221DBAD4000E52882 /* TextMetricsCache.swift */,
+				92D5524321DBAD4000E52882 /* NSLayoutConstraint+TextLayout.swift */,
+			);
+			path = Text;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,11 +347,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-HappyPathKit/Pods-HappyPathKit-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Nub/Nub.framework",
+				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nub.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -354,14 +398,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92D5524821DBAD4000E52882 /* TextStyle.swift in Sources */,
+				92D5524721DBAD4000E52882 /* TextStyleManager.swift in Sources */,
 				924B51FB21CAAED200A8464B /* HPTextStyle.swift in Sources */,
 				9226CFF921D04FD000DBB143 /* HPLayout.swift in Sources */,
 				924B51F821CAAED200A8464B /* HPColorEntity.swift in Sources */,
+				92D5521621DB8AB000E52882 /* HPPathPoint.swift in Sources */,
 				9226D02521D184D300DBB143 /* HPPairedProportionalConstraint.swift in Sources */,
 				92D5513E21D77F5E00E52882 /* HPFont.swift in Sources */,
 				9226CF9621CEC0E300DBB143 /* HPLayoutFactory.swift in Sources */,
 				92D5513C21D77F1F00E52882 /* HPColor.swift in Sources */,
+				926F825721DBB48C00E72CBC /* HPButton.swift in Sources */,
 				9226CFEC21D04E0300DBB143 /* HPLayerTransformer.swift in Sources */,
+				92D5524A21DBAD4000E52882 /* TextMetricsCache.swift in Sources */,
 				924B51DC21CAAC5300A8464B /* ViewController.swift in Sources */,
 				9226CF8421CDB24800DBB143 /* HPConstraint.swift in Sources */,
 				9226CFEA21D04E0300DBB143 /* HPBorder.swift in Sources */,
@@ -371,18 +420,25 @@
 				924B51DA21CAAC5300A8464B /* AppDelegate.swift in Sources */,
 				9226D02121D17EA400DBB143 /* HPSimpleProportionalConstraint.swift in Sources */,
 				9226CFF121D04E0300DBB143 /* HPFill.swift in Sources */,
+				92D5524B21DBAD4000E52882 /* NSLayoutConstraint+TextLayout.swift in Sources */,
 				9226CFEE21D04E0300DBB143 /* HPStop.swift in Sources */,
+				92D5524421DBAD4000E52882 /* TextDescriptor.swift in Sources */,
 				92CFF99B21CAB6E00052CE86 /* SKLayer.swift in Sources */,
 				9226CF9821CEC0F200DBB143 /* HPViewLayout.swift in Sources */,
 				9226CFF521D04E0300DBB143 /* HPStyle.swift in Sources */,
 				9226D01F21D17D5300DBB143 /* HPSimpleConstraint.swift in Sources */,
 				924B51F621CAAED200A8464B /* HPFontConfig.swift in Sources */,
+				92D5524D21DBADFF00E52882 /* Geometry.swift in Sources */,
 				924B51F521CAAED200A8464B /* HPConfiguration.swift in Sources */,
+				92D5524521DBAD4000E52882 /* View+TextLayout.swift in Sources */,
 				924B51F921CAAED200A8464B /* HPColorConfig.swift in Sources */,
+				92D5524921DBAD4000E52882 /* UIFont+Utils.swift in Sources */,
 				9226CFF021D04E0300DBB143 /* HPLayer.swift in Sources */,
 				924B51F721CAAED200A8464B /* HPComponentConfig.swift in Sources */,
 				9226CFF221D04E0300DBB143 /* HPGradient.swift in Sources */,
+				92D5521821DB8B2B00E52882 /* NSView+Layout.swift in Sources */,
 				921E3B7F21D77D1A00EB58AC /* HPPage.swift in Sources */,
+				92D5524621DBAD4000E52882 /* TextAttributes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

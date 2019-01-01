@@ -20,7 +20,7 @@ public class HPLayerTransformer: NSObject {
     public func transform(pages: [SKPage], assetsLocation: URL) -> [HPPage] {
         var result = [HPPage]()
         for skPage in pages {
-            result.append(HPPage(layers: transform(layers: skPage.layers, assetsLocation: assetsLocation)))
+            result.append(HPPage(id: skPage.objectID, layers: transform(layers: skPage.layers, assetsLocation: assetsLocation)))
         }
         return result
     }

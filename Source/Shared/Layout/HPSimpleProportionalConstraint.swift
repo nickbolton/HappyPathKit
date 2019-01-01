@@ -6,32 +6,47 @@
 //  Copyright © 2018 Pixelbleed LLC. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import Cocoa
+#endif
 
 class HPSimpleProportionalConstraint: NSObject {
 
     private (set) public var proportionalityConstant: CGFloat
     private (set) public var attribute: NSLayoutConstraint.Attribute
     private (set) public var isSafeArea: Bool
+    private (set) public var screenSize: CGSize
 
-    init(attribute: NSLayoutConstraint.Attribute, proportionalityConstant: CGFloat, isSafeArea: Bool) {
+    init(attribute: NSLayoutConstraint.Attribute,
+         proportionalityConstant: CGFloat,
+         isSafeArea: Bool,
+         screenSize: CGSize) {
         self.attribute = attribute
         self.proportionalityConstant = proportionalityConstant
         self.isSafeArea = isSafeArea
+        self.screenSize = screenSize
         super.init()
     }
     
-    func applyConstraint(to view: UIView) -> NSLayoutConstraint {
+    func applyConstraint(to view: ViewClass) -> NSLayoutConstraint {
         assert(view.superview != nil || attribute == .width || attribute == .height, "View must be part of a view hierarchy.")
+        let yConstant = proportionalityConstant * screenSize.height
+        let xConstant = proportionalityConstant * screenSize.width
+        
+        #if os(iOS)
+        let safeAreaItem = isSafeArea ? view.superview?.safeAreaLayoutGuide : view.superview
+        #elseif os(macOS)
+        let safeAreaItem = view.superview
+        #endif
 
-        let yConstant = proportionalityConstant * UIScreen.main.bounds.height
-        let xConstant = proportionalityConstant * UIScreen.main.bounds.width
         switch attribute {
         case .top, .centerY, .bottom:
             return NSLayoutConstraint(item: view,
                                       attribute: attribute,
                                       relatedBy: .equal,
-                                      toItem: isSafeArea ? view.superview?.safeAreaLayoutGuide : view.superview,
+                                      toItem: safeAreaItem,
                                       attribute: attribute,
                                       multiplier: 1.0,
                                       constant: yConstant)
@@ -47,7 +62,7 @@ class HPSimpleProportionalConstraint: NSObject {
             return NSLayoutConstraint(item: view,
                                       attribute: attribute,
                                       relatedBy: .equal,
-                                      toItem: isSafeArea ? view.superview?.safeAreaLayoutGuide : view.superview,
+                                      toItem: safeAreaItem,
                                       attribute: attribute,
                                       multiplier: 1.0,
                                       constant: yConstant)

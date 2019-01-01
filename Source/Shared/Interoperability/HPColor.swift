@@ -15,8 +15,26 @@ public typealias HPColor = NSColor
 #endif
 
 extension HPColor {
+    #if os(iOS)
     convenience init(backgroundColor bg: SKBackgroundColor) {
         let c = bg.color
         self.init(displayP3Red: c.red / 255.0, green: c.green / 255.0, blue: c.blue / 255.0, alpha: c.alpha)
     }
+    
+    #elseif os(macOS)
+    
+    convenience init(backgroundColor bg: SKBackgroundColor) {
+        let c = bg.color
+        self.init(red: c.red / 255.0, green: c.green / 255.0, blue: c.blue / 255.0, alpha: c.alpha)
+    }
+
+    convenience init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+        if red == green && red == blue {
+            self.init(calibratedWhite: red, alpha: alpha)
+        } else {
+            self.init(displayP3Red: red, green: green, blue: blue, alpha: alpha)
+        }
+    }
+    #endif
+
 }

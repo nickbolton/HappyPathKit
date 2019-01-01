@@ -7,7 +7,9 @@
 //
 #if os(iOS)
 import UIKit
-#elseif os(macOS)
+public typealias LineBreakModeType = Int
+#else
+public typealias LineBreakModeType = UInt
 import Cocoa
 #endif
 
@@ -48,7 +50,7 @@ public struct HPParagraph: Codable {
 
 public struct HPParagraphStyle: Codable {
     public let alignment: Int
-    public let lineBreakMode: Int
+    public let lineBreakMode: LineBreakModeType
     public let lineHeightMultiple: CGFloat
     public let lineSpacing: CGFloat
     public let maximumLineHeight: CGFloat

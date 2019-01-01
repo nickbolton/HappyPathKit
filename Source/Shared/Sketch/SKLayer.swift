@@ -33,6 +33,7 @@ public enum SKLayerType: Int, Codable {
 }
 
 public struct SKPage: Codable {
+    public let objectID: String
     public let layers: SKLayerGroup
 }
 

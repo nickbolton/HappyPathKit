@@ -6,26 +6,33 @@
 //  Copyright © 2018 Pixelbleed LLC. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import Cocoa
+#endif
 
 class HPPairedProportionalConstraint: NSObject {
 
     private (set) public var sourceAttribute: NSLayoutConstraint.Attribute
     private (set) public var targetAttribute: NSLayoutConstraint.Attribute
     private (set) public var proportionalityConstant: CGFloat
+    private (set) public var screenSize: CGSize
     
     init(sourceAttribute: NSLayoutConstraint.Attribute,
          targetAttribute: NSLayoutConstraint.Attribute,
-         proportionalityConstant: CGFloat) {
+         proportionalityConstant: CGFloat,
+         screenSize: CGSize) {
         self.sourceAttribute = sourceAttribute
         self.targetAttribute = targetAttribute
         self.proportionalityConstant = proportionalityConstant
+        self.screenSize = screenSize
         super.init()
     }
 
-    func applyConstraint(source: UIView, target: UIView) -> NSLayoutConstraint {
-        let yConstant = proportionalityConstant * UIScreen.main.bounds.height
-        let xConstant = proportionalityConstant * UIScreen.main.bounds.width
+    func applyConstraint(source: ViewClass, target: ViewClass) -> NSLayoutConstraint {
+        let yConstant = proportionalityConstant * screenSize.height
+        let xConstant = proportionalityConstant * screenSize.width
         switch targetAttribute {
         case .top, .centerY, .bottom:
             return NSLayoutConstraint(item: source,
