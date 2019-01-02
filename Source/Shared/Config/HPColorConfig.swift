@@ -12,7 +12,7 @@ import Cocoa
 #endif
 
 public struct HPColorConfig: Codable, Equatable, Hashable {
-    public let name: String
+    public var name: String
     public let value: String
     
     public init(name: String, value: String) {

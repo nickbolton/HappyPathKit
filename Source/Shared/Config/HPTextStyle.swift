@@ -13,22 +13,37 @@ public typealias LineBreakModeType = UInt
 import Cocoa
 #endif
 
-public struct HPTextStyle: Codable {
-    public let name: String
+public struct HPTextStyle: Codable, Equatable, Hashable {
+    public var name: String
     public let attributes: [HPStyleAttributes]
+    
+    public init(name: String, attributes: [HPStyleAttributes]) {
+        self.name = name
+        self.attributes = attributes
+    }
+    
+    public var hashIdentifier: String {
+        return attributes.map { $0.hashIdentifier }.joined(separator: ".")
+    }
+
+    public var hashValue: Int { return hashIdentifier.hashValue }
+    
+    public static func == (lhs: HPTextStyle, rhs: HPTextStyle) -> Bool {
+        return lhs.hashIdentifier == rhs.hashIdentifier
+    }
 }
 
-public struct HPStyleAttributes: Codable {
+public struct HPStyleAttributes: Codable, Equatable, Hashable {
     public let font: HPFontConfig
     public let kerning: CGFloat?
     public let underline: Int?
     public let strikethrough: Int?
     public let baselineOffset: CGFloat?
     public let superscript: Int?
-    public let colorName: String
-    public let fontName: String
+    public var colorName: String
+    public var fontName: String
     public let textStyleVerticalAlignmentKey: Int?
-    public let paragraph: HPParagraph
+    public let paragraph: HPParagraphStyle
     
     enum CodingKeys: String, CodingKey {
         case font = "NSFont"
@@ -42,13 +57,40 @@ public struct HPStyleAttributes: Codable {
         case fontName
         case textStyleVerticalAlignmentKey
     }
+    
+    public init(font: HPFontConfig,
+                kerning: CGFloat?,
+                underline: Int?,
+                strikethrough: Int?,
+                baselineOffset: CGFloat?,
+                superscript: Int?,
+                colorName: String,
+                fontName: String,
+                textStyleVerticalAlignmentKey: Int?,
+                paragraph: HPParagraphStyle) {
+        self.font = font
+        self.kerning = kerning
+        self.underline = underline
+        self.strikethrough = strikethrough
+        self.baselineOffset = baselineOffset
+        self.superscript = superscript
+        self.colorName = colorName
+        self.fontName = fontName
+        self.textStyleVerticalAlignmentKey = textStyleVerticalAlignmentKey
+        self.paragraph = paragraph
+    }
+    
+    public var hashIdentifier: String {
+        return [font.hashIdentifier, "\(kerning ?? 0.0)", "\(underline ?? 0)", "\(strikethrough ?? 0)", "\(baselineOffset ?? 0.0)", "\(superscript ?? 0)", "\(textStyleVerticalAlignmentKey ?? 0)", paragraph.hashIdentifier].joined(separator: ".")
+    }
+    public var hashValue: Int { return hashIdentifier.hashValue }
+    
+    public static func == (lhs: HPStyleAttributes, rhs: HPStyleAttributes) -> Bool {
+        return lhs.hashIdentifier == rhs.hashIdentifier
+    }
 }
 
-public struct HPParagraph: Codable {
-    public let style: HPParagraphStyle
-}
-
-public struct HPParagraphStyle: Codable {
+public struct HPParagraphStyle: Codable, Equatable, Hashable {
     public let alignment: Int
     public let lineBreakMode: LineBreakModeType
     public let lineHeightMultiple: CGFloat
@@ -56,4 +98,29 @@ public struct HPParagraphStyle: Codable {
     public let maximumLineHeight: CGFloat
     public let minimumLineHeight: CGFloat
     public let paragraphSpacing: CGFloat
+    
+    public init(alignment: Int,
+                lineBreakMode: LineBreakModeType,
+                lineHeightMultiple: CGFloat,
+                lineSpacing: CGFloat,
+                maximumLineHeight: CGFloat,
+                minimumLineHeight: CGFloat,
+                paragraphSpacing: CGFloat) {
+        self.alignment = alignment
+        self.lineBreakMode = lineBreakMode
+        self.lineHeightMultiple = lineHeightMultiple
+        self.lineSpacing = lineSpacing
+        self.maximumLineHeight = maximumLineHeight
+        self.minimumLineHeight = minimumLineHeight
+        self.paragraphSpacing = paragraphSpacing
+    }
+    
+    public  var hashIdentifier: String {
+        return ["\(alignment)", "\(lineBreakMode)", "\(lineHeightMultiple)", "\(lineSpacing)", "\(maximumLineHeight)", "\(minimumLineHeight)", "\(paragraphSpacing)"].joined(separator: ".")
+    }
+    public var hashValue: Int { return hashIdentifier.hashValue }
+    
+    public static func == (lhs: HPParagraphStyle, rhs: HPParagraphStyle) -> Bool {
+        return lhs.hashIdentifier == rhs.hashIdentifier
+    }
 }

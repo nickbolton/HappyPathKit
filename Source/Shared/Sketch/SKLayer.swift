@@ -448,7 +448,8 @@ public struct SKParagraphStyleStyle: Codable {
     public let headerLevel: Int
     public let paragraphSpacing: CGFloat
     public let tabStops: [Int]
-    public let headIndent, lineBreakMode, tailIndent, firstLineHeadIndent: Int
+    public let lineBreakMode: LineBreakModeType
+    public let headIndent, tailIndent, firstLineHeadIndent: Int
     public let hyphenationFactor: CGFloat
     public let alignment: Int
     public let paragraphSpacingBefore, minimumLineHeight: CGFloat
