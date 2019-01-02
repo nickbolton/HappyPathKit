@@ -18,7 +18,11 @@ extension HPColor {
     #if os(iOS)
     convenience init(backgroundColor bg: SKBackgroundColor) {
         let c = bg.color
-        self.init(displayP3Red: c.red / 255.0, green: c.green / 255.0, blue: c.blue / 255.0, alpha: c.alpha)
+        self.init(red: c.red / 255.0, green: c.green / 255.0, blue: c.blue / 255.0, alpha: c.alpha)
+    }
+    
+    public func retrieveRed(_ red: UnsafeMutablePointer<CGFloat>?, green: UnsafeMutablePointer<CGFloat>?, blue: UnsafeMutablePointer<CGFloat>?, alpha: UnsafeMutablePointer<CGFloat>?) {
+        getRed(red, green: green, blue: blue, alpha: alpha)
     }
     
     #elseif os(macOS)
@@ -32,9 +36,14 @@ extension HPColor {
         if red == green && red == blue {
             self.init(calibratedWhite: red, alpha: alpha)
         } else {
-            self.init(displayP3Red: red, green: green, blue: blue, alpha: alpha)
+            self.init(calibratedRed: red, green: green, blue: blue, alpha: alpha)
         }
     }
+    
+    public func retrieveRed(_ red: UnsafeMutablePointer<CGFloat>?, green: UnsafeMutablePointer<CGFloat>?, blue: UnsafeMutablePointer<CGFloat>?, alpha: UnsafeMutablePointer<CGFloat>?) {        
+        usingColorSpace(.extendedSRGB)?.getRed(red, green: green, blue: blue, alpha: alpha)
+    }
+
     #endif
 
 }

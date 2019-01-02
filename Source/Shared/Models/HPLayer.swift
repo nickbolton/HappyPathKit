@@ -31,6 +31,7 @@ public enum HPLayerType: Int, Codable {
     case unknown
     // component types
     case container
+    case background
     
     static func from(layer: SKLayer) -> HPLayerType {
         switch layer.layerType {
@@ -80,8 +81,6 @@ public struct HPLayer: Codable, Equatable, Hashable {
     public let name: String
     public var attributedString: SKAttributedString? { return skLayer?.attributedString }
     public var componentConfig: HPComponentConfig?
-    public var associatedLayers = [HPLayer]()
-    public var backgroundLayers = [HPLayer]()
     public var subLayers = [HPLayer]()
     public var isUnimplemented = false
     public var isRootLayer = false
@@ -89,6 +88,7 @@ public struct HPLayer: Codable, Equatable, Hashable {
     public var rotation: CGFloat { return skLayer?.rotation ?? 0.0 }
     public var isRotated: Bool { return abs(rotation) == 90.0 }
     public var isValidNativeLayer = false
+    public var isLandscape: Bool { return isRotated ? frame.height > frame.width : frame.width > frame.height }
     public var assetLocationURL: URL?
     public var externalName: String?
     public var points = [HPPathPoint]()

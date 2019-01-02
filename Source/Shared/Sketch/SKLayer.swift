@@ -214,15 +214,7 @@ public struct SKColor {
     public let blue: CGFloat
     public let alpha: CGFloat
     public let rawValue: String
-    
-#if os(iOS)
-    public var uiColor: UIColor { return UIColor(displayP3Red: red / 255.0, green: green / 255.0, blue: blue / 255.0, alpha: alpha) }
-    
-    public var cgColor: CGColor { return uiColor.cgColor }
-
-#elseif os(macOS)
-#endif
-        
+            
     public init(rawValue: String) {
         self.rawValue = rawValue
         (self.red, self.green, self.blue, self.alpha) =

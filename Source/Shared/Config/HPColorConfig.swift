@@ -11,10 +11,17 @@ import UIKit
 import Cocoa
 #endif
 
-public struct HPColorConfig: Codable {
+public struct HPColorConfig: Codable, Equatable, Hashable {
     public let name: String
     public let value: String
     
+    public init(name: String, value: String) {
+        self.name = name
+        self.value = value
+    }
+    
+    public var nativeColor: HPColor { return HPColor(red: red, green: green, blue: blue, alpha: alpha) }
+
     private var components: [CGFloat] {
         if value.starts(with: "rbga") {
             var colorString = value.replacingOccurrences(of: "rbga(", with: "")
@@ -47,4 +54,10 @@ public struct HPColorConfig: Codable {
     public var green: CGFloat { return components[1] }
     public var blue: CGFloat { return components[2] }
     public var alpha: CGFloat { return components[3] }
+    
+    public var hashValue: Int { return nativeColor.hashValue }
+    
+    public static func == (lhs: HPColorConfig, rhs: HPColorConfig) -> Bool {
+        return lhs.nativeColor == rhs.nativeColor
+    }
 }

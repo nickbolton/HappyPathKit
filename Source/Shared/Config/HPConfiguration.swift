@@ -8,17 +8,16 @@
 import Foundation
 
 public struct HPConfiguration: Codable {
-    public let assetsLocation: String
-    public let fonts: [HPFontConfig]
-    public let colors: [HPColorConfig]
-    public let textStyles: [HPTextStyle]
-    public let components: [HPComponentConfig]
-    public let layouts: [HPLayout]
+    public var fonts: [HPFontConfig]
+    public var colors: [HPColorConfig]
+    public var textStyles: [HPTextStyle]
+    public var components: [HPComponentConfig]
+    public var layouts: [HPLayout]
     private (set) public var layoutMap: [String: HPLayout]
     private (set) public var componentMap: [String: HPComponentConfig]
 
     public enum CodingKeys: String, CodingKey {
-        case assetsLocation, fonts, colors, textStyles, components, layouts
+        case fonts, colors, textStyles, components, layouts
     }
     
     static private func buildLayoutMap(_ layouts: [HPLayout]) -> [String: HPLayout] {
@@ -37,8 +36,11 @@ public struct HPConfiguration: Codable {
         return result
     }
     
-    public init(assetsLocation: String, fonts: [HPFontConfig], colors: [HPColorConfig], textStyles: [HPTextStyle], components: [HPComponentConfig], layouts: [HPLayout]) {
-        self.assetsLocation = assetsLocation
+    public init() {
+        self.init(fonts: [], colors: [], textStyles: [], components: [], layouts: [])
+    }
+    
+    public init(fonts: [HPFontConfig], colors: [HPColorConfig], textStyles: [HPTextStyle], components: [HPComponentConfig], layouts: [HPLayout]) {
         self.fonts = fonts
         self.colors = colors
         self.textStyles = textStyles
@@ -50,7 +52,6 @@ public struct HPConfiguration: Codable {
     
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        self.assetsLocation = try values.decode(String.self, forKey: .assetsLocation)
         self.fonts = try values.decode([HPFontConfig].self, forKey: .fonts)
         self.colors = try values.decode([HPColorConfig].self, forKey: .colors)
         self.textStyles = try values.decode([HPTextStyle].self, forKey: .textStyles)
@@ -62,7 +63,6 @@ public struct HPConfiguration: Codable {
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(assetsLocation, forKey: .assetsLocation)
         try container.encode(fonts, forKey: .fonts)
         try container.encode(colors, forKey: .colors)
         try container.encode(textStyles, forKey: .textStyles)
