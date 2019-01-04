@@ -167,6 +167,13 @@ public struct HPLayer: Codable, Equatable, Hashable {
         return result
     }
     
+    public func traverse(handler: (HPLayer)->Void) {
+        handler(self)
+        for child in subLayers {
+            child.traverse(handler: handler)
+        }
+    }
+    
     public func indexPath(of layer: HPLayer) -> [Int] {
         var result = [Int]()
         _indexPath(of: layer, result: &result)
