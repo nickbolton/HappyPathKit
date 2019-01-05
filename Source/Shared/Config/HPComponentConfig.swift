@@ -7,27 +7,60 @@
 //
 import Foundation
 
-public enum ComponentType: String, Codable {
-    case container = "com.pixelbleed.happyPath.container"
-    case button = "com.pixelbleed.happyPath.button"
-    case image = "com.pixelbleed.happyPath.imageView"
-    case label = "com.pixelbleed.happyPath.label"
-    case textField = "com.pixelbleed.happyPath.textField"
-    case background = "com.pixelbleed.happyPath.background"
-    case table = "com.pixelbleed.happyPath.tableView"
-    case tableHeader = "com.pixelbleed.happyPath.tableHeaderView"
-    case tableSectionHeader = "com.pixelbleed.happyPath.tableSectionHeaderView"
-    case tableCell = "com.pixelbleed.happyPath.tableViewCell"
-    case tableSectionFooter = "com.pixelbleed.happyPath.tableSectionFooterView"
-    case tableFooter = "com.pixelbleed.happyPath.tableFooterView"
-    case collection = "com.pixelbleed.happyPath.collectionView"
-    case collectionCell = "com.pixelbleed.happyPath.collectionViewCell"
+public enum HPComponentType: Int, Codable, CaseIterable {
+    case none
+    case container
+    case button
+    case image
+    case label
+    case textField
+    case background
+    case table
+    case tableHeader
+    case tableSectionHeader
+    case tableCell
+    case tableSectionFooter
+    case tableFooter
+    case collection
+    case collectionCell
+    
+    public static var defaultComponents: [HPComponentType] = [
+        .none,
+        .container,
+        .button,
+        .image,
+        .label,
+        .textField,
+        .background,
+        .table,
+        .collection
+    ]
+    
+    public static var tableComponents: [HPComponentType] = [
+        .none,
+        .tableHeader,
+        .tableSectionHeader,
+        .tableCell,
+        .tableSectionFooter,
+        .tableFooter,
+    ]
+    
+    public static var collectionComponents: [HPComponentType] = [
+        .none,
+        .collectionCell,
+    ]
 }
 
 public struct HPComponentConfig: Codable {
     public let layerID: String
-    public var type: ComponentType
-    public let name: String
-    public let isSubclass: Bool
-    public let isConnection: Bool
+    public var type: HPComponentType
+    public var isSubclass: Bool
+    public var isConnection: Bool
+    
+    public init(type: HPComponentType) {
+        self.layerID = UUID().uuidString
+        self.type = type
+        self.isSubclass = false
+        self.isConnection = false
+    }
 }

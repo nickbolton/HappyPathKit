@@ -29,9 +29,7 @@ public enum HPLayerType: Int, Codable {
     case triangle
     case symbolInstance
     case unknown
-    // component types
-    case container
-    case background
+    case component
     
     static func from(layer: SKLayer) -> HPLayerType {
         switch layer.layerType {
@@ -78,10 +76,11 @@ public struct HPLayer: Codable, Equatable, Hashable {
     public let id: String
     public var frame: CGRect
     public let layerType: HPLayerType
-    public let name: String
+    public var name: String
     public var attributedString: SKAttributedString? { return skLayer?.attributedString }
-    public var componentConfig: HPComponentConfig?
+    public var componentConfig = HPComponentConfig(type: .none)
     public var subLayers = [HPLayer]()
+    public var layout: HPLayout?
     public var isUnimplemented = false
     public var isRootLayer = false
     public var isLocked = false
@@ -98,20 +97,18 @@ public struct HPLayer: Codable, Equatable, Hashable {
                                backgroundColor: nil,
                                cornerRadius: 0.0)
     
-    public static func buildLayoutKey(layers: [HPLayer]) -> String {
-        return layers.map { $0.id }
-            .reduce("") { (acc, cur) in acc.count > 0 ? acc + "|" + cur : cur}
-    }
-    
     public var defaultLayout: HPLayout {
-        let key = HPLayer.buildLayoutKey(layers: [self])
-        let top = HPConstraint(type: .top, value: frame.minY, proportionalValue: 0.0, isProportional: false)
-        let left = HPConstraint(type: .left, value: frame.minX, proportionalValue: 0.0, isProportional: false)
-        let width = HPConstraint(type: .width, value: frame.width, proportionalValue: 0.0, isProportional: false)
-        let height = HPConstraint(type: .height, value: frame.height, proportionalValue: 0.0, isProportional: false)
-        return HPLayout(key: key, layout: [top, left, width, height])
+        return HPLayer.defaultLayout(for: self)
     }
     
+    static public func defaultLayout(for layer: HPLayer) -> HPLayout {
+        let top = HPConstraint(sourceID: layer.id, type: .top, value: layer.frame.minY)
+        let left = HPConstraint(sourceID: layer.id, type: .left, value: layer.frame.minX)
+        let width = HPConstraint(sourceID: layer.id, type: .width, value: layer.frame.width)
+        let height = HPConstraint(sourceID: layer.id, type: .height, value: layer.frame.height)
+        return HPLayout(key: layer.id, layout: [top, left, width, height])
+    }
+
     public var layersSortedByTopLeft: [HPLayer] {
         return HPLayer.layersSortedByTopLeft(subLayers)
     }
@@ -167,11 +164,19 @@ public struct HPLayer: Codable, Equatable, Hashable {
         return result
     }
     
-    public func traverse(handler: (HPLayer)->Void) {
-        handler(self)
+    public func traverse(descendSubclasses: Bool = true, handler: (HPLayer)->Bool) {
+        _traverse(descendSubclasses: descendSubclasses, handler: handler)
+    }
+    
+    private func _traverse(descendSubclasses: Bool, handler: (HPLayer)->Bool) -> Bool {
+        guard !handler(self) else { return true }
         for child in subLayers {
-            child.traverse(handler: handler)
+            if !descendSubclasses {
+                guard !child.componentConfig.isSubclass else { continue }
+            }
+            guard !child._traverse(descendSubclasses: descendSubclasses, handler: handler) else { return true }
         }
+        return false
     }
     
     public func indexPath(of layer: HPLayer) -> [Int] {
@@ -211,7 +216,7 @@ public struct HPLayer: Codable, Equatable, Hashable {
         self.skLayer = nil
         self.frame = frame
         self.id = UUID().uuidString
-        self.layerType = .container
+        self.layerType = .component
         self.name = name
     }
     

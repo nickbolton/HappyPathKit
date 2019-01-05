@@ -11,13 +11,9 @@ public struct HPConfiguration: Codable {
     public var fonts: [HPFontConfig]
     public var colors: [HPColorConfig]
     public var textStyles: [HPTextStyle]
-    public var components: [HPComponentConfig]
-    public var layouts: [HPLayout]
-    private (set) public var layoutMap: [String: HPLayout]
-    private (set) public var componentMap: [String: HPComponentConfig]
 
     public enum CodingKeys: String, CodingKey {
-        case fonts, colors, textStyles, components, layouts
+        case fonts, colors, textStyles
     }
     
     static private func buildLayoutMap(_ layouts: [HPLayout]) -> [String: HPLayout] {
@@ -37,17 +33,13 @@ public struct HPConfiguration: Codable {
     }
     
     public init() {
-        self.init(fonts: [], colors: [], textStyles: [], components: [], layouts: [])
+        self.init(fonts: [], colors: [], textStyles: [])
     }
     
-    public init(fonts: [HPFontConfig], colors: [HPColorConfig], textStyles: [HPTextStyle], components: [HPComponentConfig], layouts: [HPLayout]) {
+    public init(fonts: [HPFontConfig], colors: [HPColorConfig], textStyles: [HPTextStyle]) {
         self.fonts = fonts
         self.colors = colors
         self.textStyles = textStyles
-        self.components = components
-        self.layouts = layouts
-        self.layoutMap = HPConfiguration.buildLayoutMap(layouts)
-        self.componentMap = HPConfiguration.buildComponentMap(components)
     }
     
     public init(from decoder: Decoder) throws {
@@ -55,10 +47,6 @@ public struct HPConfiguration: Codable {
         self.fonts = try values.decode([HPFontConfig].self, forKey: .fonts)
         self.colors = try values.decode([HPColorConfig].self, forKey: .colors)
         self.textStyles = try values.decode([HPTextStyle].self, forKey: .textStyles)
-        self.components = try values.decode([HPComponentConfig].self, forKey: .components)
-        self.layouts = try values.decode([HPLayout].self, forKey: .layouts)
-        self.layoutMap = HPConfiguration.buildLayoutMap(self.layouts)
-        self.componentMap = HPConfiguration.buildComponentMap(self.components)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -66,7 +54,5 @@ public struct HPConfiguration: Codable {
         try container.encode(fonts, forKey: .fonts)
         try container.encode(colors, forKey: .colors)
         try container.encode(textStyles, forKey: .textStyles)
-        try container.encode(components, forKey: .components)
-        try container.encode(layouts, forKey: .layouts)
     }
 }

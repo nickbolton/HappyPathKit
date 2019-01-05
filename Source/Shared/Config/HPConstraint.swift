@@ -90,8 +90,24 @@ public enum HPConstraintType: Int, Codable {
 }
 
 public struct HPConstraint: Codable {
+    public let sourceID: String
+    public let targetID: String?
     public let type: HPConstraintType
     public let value: CGFloat
     public let proportionalValue: CGFloat
     public let isProportional: Bool
+    
+    public init(sourceID: String,
+                targetID: String? = nil,
+                type: HPConstraintType,
+                value: CGFloat,
+                proportionalValue: CGFloat = 0.0,
+                isProportional: Bool = false) {
+        self.sourceID = sourceID
+        self.targetID = targetID
+        self.type = type
+        self.value = value
+        self.proportionalValue = proportionalValue
+        self.isProportional = isProportional
+    }
 }

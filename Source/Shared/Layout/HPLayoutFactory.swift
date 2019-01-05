@@ -32,10 +32,10 @@ public struct HPLayoutFactory {
     static public func defaultLayout(layer: HPLayer, screenSize: CGSize) -> HPViewLayout {
         var constraints = [HPViewConstraint]()
         let frame = layer.frame
-        constraints.append(HPViewConstraint(constraint: HPConstraint(type: .top, value: frame.minY, proportionalValue: 0.0, isProportional: false), layers: [layer], isSafeArea: true, screenSize: screenSize))
-        constraints.append(HPViewConstraint(constraint: HPConstraint(type: .left, value: frame.minX, proportionalValue: 0.0, isProportional: false), layers: [layer], isSafeArea: true, screenSize: screenSize))
-        constraints.append(HPViewConstraint(constraint: HPConstraint(type: .width, value: frame.width, proportionalValue: 0.0, isProportional: false), layers: [layer], isSafeArea: true, screenSize: screenSize))
-        constraints.append(HPViewConstraint(constraint: HPConstraint(type: .height, value: frame.height, proportionalValue: 0.0, isProportional: false), layers: [layer], isSafeArea: true, screenSize: screenSize))
+        constraints.append(HPViewConstraint(constraint: HPConstraint(sourceID: layer.id, type: .top, value: frame.minY), layers: [layer], isSafeArea: true, screenSize: screenSize))
+        constraints.append(HPViewConstraint(constraint: HPConstraint(sourceID: layer.id, type: .left, value: frame.minX), layers: [layer], isSafeArea: true, screenSize: screenSize))
+        constraints.append(HPViewConstraint(constraint: HPConstraint(sourceID: layer.id, type: .width, value: frame.width), layers: [layer], isSafeArea: true, screenSize: screenSize))
+        constraints.append(HPViewConstraint(constraint: HPConstraint(sourceID: layer.id, type: .height, value: frame.height), layers: [layer], isSafeArea: true, screenSize: screenSize))
         return HPViewLayout(constraints: constraints)
     }
 }
