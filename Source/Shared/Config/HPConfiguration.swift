@@ -15,23 +15,7 @@ public struct HPConfiguration: Codable {
     public enum CodingKeys: String, CodingKey {
         case fonts, colors, textStyles
     }
-    
-    static private func buildLayoutMap(_ layouts: [HPLayout]) -> [String: HPLayout] {
-        var result = [String: HPLayout]()
-        for l in layouts {
-            result[l.key] = l
-        }
-        return result
-    }
-    
-    static private func buildComponentMap(_ components: [HPComponentConfig]) -> [String: HPComponentConfig] {
-        var result = [String: HPComponentConfig]()
-        for c in components {
-            result[c.layerID] = c
-        }
-        return result
-    }
-    
+        
     public init() {
         self.init(fonts: [], colors: [], textStyles: [])
     }

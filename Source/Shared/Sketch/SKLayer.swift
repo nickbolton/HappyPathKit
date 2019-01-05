@@ -381,6 +381,10 @@ public struct SKAttributedString: Codable {
     public let attributedStringClass: String
     public let value: SKValueClass
     
+    public var hashIdentifier: String {
+        return value.attributes.map { $0.hashIdentifier }.joined(separator: ".")
+    }
+    
     enum CodingKeys: String, CodingKey {
         case attributedStringClass = "<class>"
         case value
@@ -407,6 +411,10 @@ public struct SKAttribute: Codable {
     public let nsParagraphStyle: SKParagraphStyle
     public let textStyleVerticalAlignmentKey: Int?
     
+    public var hashIdentifier: String {
+        return [nsFont.hashIdentifier, "\(nsKern ?? 0.0)", "\(0)", "\(0)", "\(0.0)", "\(0)", "\(textStyleVerticalAlignmentKey ?? 0)", nsParagraphStyle.hashIdentifier].joined(separator: ".")
+    }
+    
     enum CodingKeys: String, CodingKey {
         case length
         case nsFont = "NSFont"
@@ -422,6 +430,26 @@ public struct SKLayerFont: Codable {
     public let name: String
     public let attributes: SKAttributes
     public let family: String
+    
+    public var systemWeight: String? {
+        let components = attributes.nsFontNameAttribute.split(separator: "-")
+        if components.count > 1 {
+            let fontName = String(components[0])
+            let weight = String(components[1])
+            switch fontName {
+            case "SFProText", "SFProDisplay", "SFUIDisplay",
+                 "SFUIText", "SFCompactDisplay", "SFCompactText":
+                return weight
+            default:
+                break
+            }
+        }
+        return nil
+    }
+
+    public var hashIdentifier: String {
+        return [name, family, systemWeight ?? "", attributes.nsFontNameAttribute, "\(attributes.nsFontSizeAttribute)"].joined(separator: ".")
+    }
 }
 
 public struct SKAttributes: Codable {
@@ -438,6 +466,10 @@ public struct SKParagraphStyle: Codable {
     public let nsParagraphStyleClass: String
     public let style: SKParagraphStyleStyle
     
+    public  var hashIdentifier: String {
+        return ["\(style.alignment)", "\(style.lineBreakMode)", "\(style.lineHeightMultiple)", "\(style.lineSpacing)", "\(style.maximumLineHeight)", "\(style.minimumLineHeight)", "\(style.paragraphSpacing)"].joined(separator: ".")
+    }
+
     enum CodingKeys: String, CodingKey {
         case nsParagraphStyleClass = "<class>"
         case style

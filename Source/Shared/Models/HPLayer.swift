@@ -84,6 +84,7 @@ public struct HPLayer: Codable, Equatable, Hashable {
     public var isUnimplemented = false
     public var isRootLayer = false
     public var isLocked = false
+    public var isVisible = false
     public var rotation: CGFloat { return skLayer?.rotation ?? 0.0 }
     public var isRotated: Bool { return abs(rotation) == 90.0 }
     public var isValidNativeLayer = false
@@ -210,6 +211,7 @@ public struct HPLayer: Codable, Equatable, Hashable {
         self.id = skLayer.objectID
         self.layerType = HPLayerType.from(layer: skLayer)
         self.name = skLayer.name
+        self.isVisible = skLayer.isVisible.skBoolValue
     }
     
     public init(frame: CGRect, name: String) {
@@ -218,6 +220,7 @@ public struct HPLayer: Codable, Equatable, Hashable {
         self.id = UUID().uuidString
         self.layerType = .component
         self.name = name
+        self.isVisible = true
     }
     
     public var hashValue: Int { return id.hashValue }
