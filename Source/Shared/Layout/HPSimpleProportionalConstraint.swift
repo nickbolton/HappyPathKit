@@ -32,8 +32,8 @@ class HPSimpleProportionalConstraint: NSObject {
     
     func applyConstraint(to view: ViewClass) -> NSLayoutConstraint {
         assert(view.superview != nil || attribute == .width || attribute == .height, "View must be part of a view hierarchy.")
-        let yConstant = proportionalityConstant * screenSize.height
-        let xConstant = proportionalityConstant * screenSize.width
+        let yConstant = (proportionalityConstant * screenSize.height).halfPointAligned
+        let xConstant = (proportionalityConstant * screenSize.width).halfPointAligned
         
         #if os(iOS)
         let safeAreaItem = isSafeArea ? view.superview?.safeAreaLayoutGuide : view.superview

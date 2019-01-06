@@ -23,7 +23,7 @@ class HPPairedConstraint: NSObject {
          constant: CGFloat) {
         self.sourceAttribute = sourceAttribute
         self.targetAttribute = targetAttribute
-        self.constant = constant
+        self.constant = constant.halfPointAligned
         super.init()
     }
     

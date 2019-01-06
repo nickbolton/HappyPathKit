@@ -20,7 +20,7 @@ class HPSimpleConstraint: NSObject {
 
     init(attribute: NSLayoutConstraint.Attribute, constant: CGFloat, isSafeArea: Bool) {
         self.attribute = attribute
-        self.constant = constant
+        self.constant = constant.halfPointAligned
         self.isSafeArea = isSafeArea
         self.isSafeArea = isSafeArea
         super.init()
