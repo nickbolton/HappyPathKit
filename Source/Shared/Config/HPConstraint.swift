@@ -11,20 +11,47 @@ import UIKit
 import Cocoa
 #endif
 
-public enum HPConstraintType: Int, Codable {
-    case right             = 0x0001
-    case width             = 0x0002
-    case left              = 0x0004
-    case bottom            = 0x0008
-    case height            = 0x0010
-    case top               = 0x0020
-    case centerX           = 0x0040
-    case centerY           = 0x0080
-    case verticalSpacing   = 0x0100
-    case horizontalSpacing = 0x0200
-    case verticalCenters   = 0x0400
-    case horizontalCenters = 0x0800
-    case safeArea          = 0x1000
+public struct HPConstraintType: OptionSet, Codable, Hashable {
+    public let rawValue: Int
+    public typealias RawValue = Int
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
+    }
+
+    public static let right             = HPConstraintType(rawValue: 1 << 0)
+    public static let width             = HPConstraintType(rawValue: 1 << 1)
+    public static let left              = HPConstraintType(rawValue: 1 << 2)
+    public static let bottom            = HPConstraintType(rawValue: 1 << 3)
+    public static let height            = HPConstraintType(rawValue: 1 << 4)
+    public static let top               = HPConstraintType(rawValue: 1 << 5)
+    public static let centerX           = HPConstraintType(rawValue: 1 << 6)
+    public static let centerY           = HPConstraintType(rawValue: 1 << 7)
+    public static let verticalSpacing   = HPConstraintType(rawValue: 1 << 8)
+    public static let horizontalSpacing = HPConstraintType(rawValue: 1 << 9)
+    public static let verticalCenters   = HPConstraintType(rawValue: 1 << 10)
+    public static let horizontalCenters = HPConstraintType(rawValue: 1 << 11)
+    public static let safeArea          = HPConstraintType(rawValue: 1 << 12)
+    
+    public static let expand = HPConstraintType.top.union(.bottom).union(.left).union(.right)
+    public static let topLeft = HPConstraintType.top.union(.left)
+    public static let topRight = HPConstraintType.top.union(.right)
+    public static let bottomLeft = HPConstraintType.bottom.union(.left)
+    public static let bottomRight = HPConstraintType.bottom.union(.right)
+    
+    public var isVertical: Bool {
+        switch self {
+        case .top, .bottom, .centerY, .height, .verticalSpacing, .verticalCenters:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    public var isHorizontal: Bool {
+        return !isVertical && self != .safeArea
+    }
+    
+    public var hashValue: Int { return rawValue.hashValue }
 
     public var sourceAttribute: NSLayoutConstraint.Attribute {
         switch self {
@@ -52,7 +79,7 @@ public enum HPConstraintType: Int, Codable {
             return .centerY
         case .horizontalCenters:
             return .centerX
-        case .safeArea:
+        default:
             return .notAnAttribute
         }
     }
@@ -83,7 +110,7 @@ public enum HPConstraintType: Int, Codable {
             return .centerY
         case .horizontalCenters:
             return .centerX
-        case .safeArea:
+        default:
             return .notAnAttribute
         }
     }

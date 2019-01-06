@@ -9,5 +9,5 @@ import Foundation
 
 public struct HPLayout: Codable {
     public let key: String
-    public let layout: [HPConstraint]    
+    public var constraints: [HPConstraint]    
 }

@@ -80,7 +80,7 @@ public struct HPLayer: Codable, Equatable, Hashable {
     public var attributedString: SKAttributedString? { return skLayer?.attributedString }
     public var componentConfig = HPComponentConfig(type: .none)
     public var subLayers = [HPLayer]()
-    public var layout: HPLayout?
+    public var layout: HPLayout
     public var isUnimplemented = false
     public var isRootLayer = false
     public var isLocked = false
@@ -107,7 +107,7 @@ public struct HPLayer: Codable, Equatable, Hashable {
         let left = HPConstraint(sourceID: layer.id, type: .left, value: layer.frame.minX)
         let width = HPConstraint(sourceID: layer.id, type: .width, value: layer.frame.width)
         let height = HPConstraint(sourceID: layer.id, type: .height, value: layer.frame.height)
-        return HPLayout(key: layer.id, layout: [top, left, width, height])
+        return HPLayout(key: layer.id, constraints: [top, left, width, height])
     }
 
     public var layersSortedByTopLeft: [HPLayer] {
@@ -206,21 +206,35 @@ public struct HPLayer: Codable, Equatable, Hashable {
     }
     
     public init(skLayer: SKLayer) {
+        let frame = skLayer.frame.cgRect
         self.skLayer = skLayer
-        self.frame = skLayer.frame.cgRect
+        self.frame = frame
         self.id = skLayer.objectID
         self.layerType = HPLayerType.from(layer: skLayer)
         self.name = skLayer.name
         self.isVisible = skLayer.isVisible.skBoolValue
+        
+        let top = HPConstraint(sourceID: skLayer.objectID, type: .top, value: frame.minY)
+        let left = HPConstraint(sourceID: skLayer.objectID, type: .left, value: frame.minX)
+        let width = HPConstraint(sourceID: skLayer.objectID, type: .width, value: frame.width)
+        let height = HPConstraint(sourceID: skLayer.objectID, type: .height, value: frame.height)
+        self.layout = HPLayout(key: skLayer.objectID, constraints: [top, left, width, height])
     }
     
     public init(frame: CGRect, name: String) {
+        let id = UUID().uuidString
         self.skLayer = nil
         self.frame = frame
-        self.id = UUID().uuidString
+        self.id = id
         self.layerType = .component
         self.name = name
         self.isVisible = true
+        
+        let top = HPConstraint(sourceID: id, type: .top, value: frame.minY)
+        let left = HPConstraint(sourceID: id, type: .left, value: frame.minX)
+        let width = HPConstraint(sourceID: id, type: .width, value: frame.width)
+        let height = HPConstraint(sourceID: id, type: .height, value: frame.height)
+        self.layout = HPLayout(key: id, constraints: [top, left, width, height])
     }
     
     public var hashValue: Int { return id.hashValue }

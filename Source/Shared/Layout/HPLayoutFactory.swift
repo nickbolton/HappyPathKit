@@ -15,14 +15,14 @@ import Cocoa
 public struct HPLayoutFactory {
     static public func buildLayout(_ layout: HPLayout, layers: [HPLayer], screenSize: CGSize) -> HPViewLayout {
         var constraints = [HPViewConstraint]()
-        let isSafeArea = layout.layout.filter { $0.type == .safeArea }.first != nil
-        for c in layout.layout {
+        let isSafeArea = layout.constraints.filter { $0.type == .safeArea }.first != nil
+        for c in layout.constraints {
             switch c.type {
             case .top, .bottom, .height, .centerY, .verticalSpacing, .verticalCenters:
                 constraints.append(HPViewConstraint(constraint: c, layers: layers, isSafeArea: isSafeArea, screenSize: screenSize))
             case .left, .right, .width, .centerX, .horizontalSpacing, .horizontalCenters:
                 constraints.append(HPViewConstraint(constraint: c, layers: layers, isSafeArea: isSafeArea, screenSize: screenSize))
-            case .safeArea:
+            default:
                 break
             }
         }
