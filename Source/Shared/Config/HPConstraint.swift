@@ -32,10 +32,11 @@ public struct HPConstraintType: OptionSet, Codable, Hashable {
     public static let horizontalCenters = HPConstraintType(rawValue: 1 << 11)
     public static let safeArea          = HPConstraintType(rawValue: 1 << 12)
     
-    public static let expand = HPConstraintType.top.union(.bottom).union(.left).union(.right)
-    public static let topLeft = HPConstraintType.top.union(.left)
-    public static let topRight = HPConstraintType.top.union(.right)
-    public static let bottomLeft = HPConstraintType.bottom.union(.left)
+    public static let expand      = HPConstraintType.top.union(.bottom).union(.left).union(.right)
+    public static let center      = HPConstraintType.centerY.union(.centerX)
+    public static let topLeft     = HPConstraintType.top.union(.left)
+    public static let topRight    = HPConstraintType.top.union(.right)
+    public static let bottomLeft  = HPConstraintType.bottom.union(.left)
     public static let bottomRight = HPConstraintType.bottom.union(.right)
     
     public var isVertical: Bool {
