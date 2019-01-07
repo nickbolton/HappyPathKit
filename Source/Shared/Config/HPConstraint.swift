@@ -117,7 +117,7 @@ public struct HPConstraintType: OptionSet, Codable, Hashable {
     }
 }
 
-public struct HPConstraint: Codable {
+public struct HPConstraint: Codable, Equatable {
     public let sourceID: String
     public let targetID: String?
     public let type: HPConstraintType
@@ -137,5 +137,14 @@ public struct HPConstraint: Codable {
         self.value = value
         self.proportionalValue = proportionalValue
         self.isProportional = isProportional
+    }
+    
+    public static func == (lhs: HPConstraint, rhs: HPConstraint) -> Bool {
+        return lhs.sourceID == rhs.sourceID &&
+            lhs.targetID == rhs.targetID &&
+            lhs.type == rhs.type &&
+            lhs.value == rhs.value &&
+            lhs.proportionalValue == rhs.proportionalValue &&
+            lhs.isProportional == rhs.isProportional
     }
 }
