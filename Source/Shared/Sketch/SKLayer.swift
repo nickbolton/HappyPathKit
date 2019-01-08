@@ -275,6 +275,16 @@ public struct SKBackgroundColor: Codable {
     public var color: SKColor { return SKColor(rawValue: rawValue) }
     public var nativeColor: HPColor { return HPColor(backgroundColor: self) }
     
+    public init(backgroundColorClass: SKBackgroundColorClass, rawValue: String) {
+        self.backgroundColorClass = backgroundColorClass
+        self.rawValue = rawValue
+    }
+    
+    public init(rawValue: String) {
+        self.backgroundColorClass = .msColor
+        self.rawValue = rawValue
+    }
+    
     enum CodingKeys: String, CodingKey {
         case backgroundColorClass = "<class>"
         case rawValue = "value"

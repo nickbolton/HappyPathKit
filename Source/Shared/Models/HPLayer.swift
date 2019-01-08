@@ -92,11 +92,7 @@ public struct HPLayer: Codable, Equatable, Hashable {
     public var assetLocationURL: URL?
     public var externalName: String?
     public var points = [HPPathPoint]()
-    public var style = HPStyle(opacity: 1.0,
-                               fills: [],
-                               borders: [],
-                               backgroundColor: nil,
-                               cornerRadius: 0.0)
+    public var style = HPStyle()
     
     public var defaultLayout: HPLayout {
         return HPLayer.defaultLayout(for: self)

@@ -18,4 +18,12 @@ public struct HPStyle: Codable {
     public let borders: [HPBorder]
     public let backgroundColor: SKBackgroundColor?
     public let cornerRadius: CGFloat
+    
+    public init(opacity: CGFloat = 1.0, fills: [HPFill] = [], borders: [HPBorder] = [], backgroundColor: SKBackgroundColor? = nil, cornerRadius: CGFloat = 0.0) {
+        self.opacity = opacity
+        self.fills = fills
+        self.borders = borders
+        self.backgroundColor = backgroundColor
+        self.cornerRadius = cornerRadius
+    }
 }
