@@ -23,6 +23,21 @@ public enum HPComponentType: Int, Codable, CaseIterable {
     case tableFooter
     case collection
     case collectionCell
+    case viewController
+    
+    public func layoutTypeComponents(for layer: HPLayer) -> [HPComponentType] {
+        switch self {
+        case .table:
+            return HPComponentType.tableComponents
+        case .collection:
+            return HPComponentType.collectionComponents
+        default:
+            if layer.layerType == .artboard {
+                return HPComponentType.defaultComponents + [.viewController]
+            }
+            return HPComponentType.defaultComponents
+        }
+    }
     
     public static var defaultComponents: [HPComponentType] = [
         .none,
@@ -33,7 +48,7 @@ public enum HPComponentType: Int, Codable, CaseIterable {
         .textField,
         .background,
         .table,
-        .collection
+        .collection,
     ]
     
     public static var tableComponents: [HPComponentType] = [
@@ -48,7 +63,7 @@ public enum HPComponentType: Int, Codable, CaseIterable {
     public static var collectionComponents: [HPComponentType] = [
         .none,
         .collectionCell,
-    ]
+    ]    
 }
 
 public struct HPComponentConfig: Codable {
