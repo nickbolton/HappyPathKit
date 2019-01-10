@@ -12,7 +12,7 @@ import UIKit
 import Cocoa
 #endif
 
-public struct HPStop: Codable {
+public struct HPStop: Codable, Inspectable {
     public let color: SKBackgroundColor
     public let position: CGFloat
 }

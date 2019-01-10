@@ -449,7 +449,7 @@ public struct SKLayerFont: Codable {
             switch fontName {
             case "SFProText", "SFProDisplay", "SFUIDisplay",
                  "SFUIText", "SFCompactDisplay", "SFCompactText":
-                return weight
+                return weight.properIdentifier
             default:
                 break
             }

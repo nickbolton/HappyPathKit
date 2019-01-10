@@ -15,7 +15,7 @@ import Cocoa
 
 public struct HPTextStyle: Codable, Equatable, Hashable {
     public var name: String
-    public let attributes: [HPStyleAttributes]
+    public var attributes: [HPStyleAttributes]
     
     public init(name: String, attributes: [HPStyleAttributes]) {
         self.name = name
@@ -35,53 +35,51 @@ public struct HPTextStyle: Codable, Equatable, Hashable {
 
 public struct HPStyleAttributes: Codable, Equatable, Hashable {
     public let font: HPFontConfig
+    public let textColor: SKBackgroundColor
     public let kerning: CGFloat?
     public let underline: Int?
     public let strikethrough: Int?
     public let baselineOffset: CGFloat?
     public let superscript: Int?
-    public var colorName: String
-    public var fontName: String
+    public var colorName: String = ""
+    public var fontName: String = ""
     public let textStyleVerticalAlignmentKey: Int?
     public let paragraph: HPParagraphStyle
     
     enum CodingKeys: String, CodingKey {
         case font = "NSFont"
+        case textColor = "MSAttributedStringColorAttribute"
         case kerning = "NSKern"
         case paragraph = "NSParagraphStyle"
         case underline = "NSUnderline"
         case strikethrough = "NSStrikethrough"
         case baselineOffset = "NSBaselineOffset"
         case superscript = "NSSuperScript"
-        case colorName
-        case fontName
         case textStyleVerticalAlignmentKey
     }
     
     public init(font: HPFontConfig,
+                textColor: SKBackgroundColor,
                 kerning: CGFloat?,
                 underline: Int?,
                 strikethrough: Int?,
                 baselineOffset: CGFloat?,
                 superscript: Int?,
-                colorName: String,
-                fontName: String,
                 textStyleVerticalAlignmentKey: Int?,
                 paragraph: HPParagraphStyle) {
         self.font = font
+        self.textColor = textColor
         self.kerning = kerning
         self.underline = underline
         self.strikethrough = strikethrough
         self.baselineOffset = baselineOffset
         self.superscript = superscript
-        self.colorName = colorName
-        self.fontName = fontName
         self.textStyleVerticalAlignmentKey = textStyleVerticalAlignmentKey
         self.paragraph = paragraph
     }
     
     public var hashIdentifier: String {
-        return [font.hashIdentifier, "\(kerning ?? 0.0)", "\(underline ?? 0)", "\(strikethrough ?? 0)", "\(baselineOffset ?? 0.0)", "\(superscript ?? 0)", "\(textStyleVerticalAlignmentKey ?? 0)", paragraph.hashIdentifier].joined(separator: ".")
+        return [font.hashIdentifier, textColor.rawValue, "\(kerning ?? 0.0)", "\(underline ?? 0)", "\(strikethrough ?? 0)", "\(baselineOffset ?? 0.0)", "\(superscript ?? 0)", "\(textStyleVerticalAlignmentKey ?? 0)", paragraph.hashIdentifier].joined(separator: ".")
     }
     public var hashValue: Int { return hashIdentifier.hashValue }
     

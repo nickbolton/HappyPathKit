@@ -55,9 +55,9 @@ public struct HPColorConfig: Codable, Equatable, Hashable {
     public var blue: CGFloat { return components[2] }
     public var alpha: CGFloat { return components[3] }
     
-    public var hashValue: Int { return nativeColor.hashValue }
+    public var hashValue: Int { return value.hashValue }
     
     public static func == (lhs: HPColorConfig, rhs: HPColorConfig) -> Bool {
-        return lhs.nativeColor == rhs.nativeColor
+        return lhs.value == rhs.value
     }
 }

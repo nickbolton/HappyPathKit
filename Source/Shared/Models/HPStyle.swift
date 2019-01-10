@@ -12,7 +12,7 @@ import UIKit
 import Cocoa
 #endif
 
-public struct HPStyle: Codable {
+public struct HPStyle: Codable, Inspectable {
     public let opacity: CGFloat
     public let fills: [HPFill]
     public let borders: [HPBorder]

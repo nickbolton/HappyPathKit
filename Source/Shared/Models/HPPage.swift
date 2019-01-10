@@ -11,7 +11,7 @@ import UIKit
 import Cocoa
 #endif
 
-public struct HPPage: Codable, Equatable, Hashable {
+public struct HPPage: Codable, Equatable, Hashable, Inspectable {
     public let id: String
     public var layers: [HPLayer]
     

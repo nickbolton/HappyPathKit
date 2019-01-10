@@ -7,9 +7,28 @@
 
 import Foundation
 
-public struct HPLayout: Codable, Equatable {
+public struct HPLayout: Codable, Equatable, Inspectable {
     public let key: String
     public var constraints: [HPConstraint]
+    
+    public init(key: String, constraints: [HPConstraint]) {
+        self.key = key
+        self.constraints = constraints
+    }
+    
+    public var isDefaultLayout: Bool {
+        let types = Set(constraints.map { $0.type })
+        return types.count == 4 && types.contains(.width) && types.contains(.height) &&
+                ((types.contains(.top) && types.contains(.left)) ||
+                (types.contains(.top) && types.contains(.right)) ||
+                (types.contains(.top) && types.contains(.centerX)) ||
+                (types.contains(.bottom) && types.contains(.left)) ||
+                (types.contains(.bottom) && types.contains(.right)) ||
+                (types.contains(.bottom) && types.contains(.centerX)) ||
+                (types.contains(.centerY) && types.contains(.left)) ||
+                (types.contains(.centerY) && types.contains(.right)) ||
+                (types.contains(.centerY) && types.contains(.centerX)))
+    }
     
     public func isEqualWithProportionality(to: HPLayout) -> Bool {
         guard constraints.count == to.constraints.count else { return false }

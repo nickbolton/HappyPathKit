@@ -18,8 +18,14 @@ public enum HPBorderType: Int, Codable {
     case centered
 }
 
-public struct HPBorder: Codable {
+public struct HPBorder: Codable, Inspectable {
     public let thickness: CGFloat
     public let color: SKBackgroundColor
     public let type: HPBorderType
+    
+    public init(thickness: CGFloat, color: SKBackgroundColor, type: HPBorderType) {
+        self.thickness = thickness
+        self.color = color
+        self.type = type
+    }
 }

@@ -139,7 +139,7 @@ public struct HPConstraint: Codable, Hashable, Equatable {
         self.isProportional = isProportional
     }
     
-    public var hashValue: Int { return "\(sourceID).\(targetID).\(type.rawValue)".hashValue }
+    public var hashValue: Int { return "\(sourceID).\(targetID ?? "").\(type.rawValue)".hashValue }
     
     public static func == (lhs: HPConstraint, rhs: HPConstraint) -> Bool {
         return lhs.sourceID == rhs.sourceID &&

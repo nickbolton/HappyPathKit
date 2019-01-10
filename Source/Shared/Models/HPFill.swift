@@ -12,10 +12,20 @@ import UIKit
 import Cocoa
 #endif
 
-public struct HPFill: Codable {
-    public let blendMode: Int32
-    public let opacity: CGFloat
+public struct HPFill: Codable, Inspectable {
     public let color: SKBackgroundColor
+    public let opacity: CGFloat
     public let gradient: HPGradient?
+    public let blendMode: Int32
     public var cgBlendMode: CGBlendMode { return CGBlendMode(rawValue: blendMode) ?? .normal }
+    
+    public init(color: SKBackgroundColor,
+                opacity: CGFloat,
+                gradient: HPGradient?,
+                blendMode: Int32) {
+        self.color = color
+        self.opacity = opacity
+        self.gradient = gradient
+        self.blendMode = blendMode
+    }
 }

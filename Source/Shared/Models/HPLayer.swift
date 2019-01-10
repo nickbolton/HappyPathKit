@@ -69,7 +69,7 @@ public enum HPLayerType: Int, Codable {
     }
 }
 
-public struct HPLayer: Codable, Equatable, Hashable {
+public struct HPLayer: Codable, Equatable, Hashable, Inspectable {
     public let skLayer: SKLayer?
     public var isSourceLayer: Bool { return skLayer != nil }
 

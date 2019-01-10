@@ -148,10 +148,10 @@ public class HPLayerTransformer: NSObject {
         var result = [HPFill]()
         let enabledFills = skStyle.fills.filter { $0.isEnabled.skBoolValue }
         for skFill in enabledFills {
-            let fill = HPFill(blendMode: Int32(skFill.contextSettings.blendMode),
+            let fill = HPFill(color: skFill.color,
                               opacity: skFill.contextSettings.opacity,
-                              color: skFill.color,
-                              gradient: buildGradient(skFill))
+                              gradient: buildGradient(skFill),
+                              blendMode: Int32(skFill.contextSettings.blendMode))
             result.append(fill)
         }
         return result

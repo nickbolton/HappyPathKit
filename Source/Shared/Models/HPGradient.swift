@@ -12,7 +12,7 @@ import UIKit
 import Cocoa
 #endif
 
-public struct HPGradient: Codable {
+public struct HPGradient: Codable, Inspectable {
     public let stops: [HPStop]
     public let gradientType: SKLayerGradientType
     public let from: CGPoint
