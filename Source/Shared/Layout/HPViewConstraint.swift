@@ -13,27 +13,29 @@ import Cocoa
 #endif
 
 public class HPViewConstraint: NSObject {
-    private (set) public var constraint: HPConstraint
+    let constraint: HPConstraint
+    let sourceView: ViewClass
+    let targetView: ViewClass?
     private (set) public var isSafeArea: Bool
-    init(constraint: HPConstraint, isSafeArea: Bool) {
+    init(constraint: HPConstraint, isSafeArea: Bool, sourceView: ViewClass, targetView: ViewClass? = nil) {
         self.constraint = constraint
         self.isSafeArea = isSafeArea
+        self.sourceView = sourceView
+        self.targetView = targetView
         super.init()
     }
     
-    public func applyConstraint(to views: [ViewClass], screenSize: CGSize) -> NSLayoutConstraint {
-        if views.count == 2 {
+    public func applyConstraint(screenSize: CGSize) -> NSLayoutConstraint {
+        if let targetView = targetView {
             if constraint.isProportional {
-                return buildPairedProportionalConstraint(source: views[0], target: views[1], screenSize: screenSize)
+                return buildPairedProportionalConstraint(source: sourceView, target: targetView, screenSize: screenSize)
             }
-            return buildPairedConstraint(source: views[0], target: views[1])
-        } else if views.count == 1 {
-            if constraint.isProportional {
-                return buildSimpleProportionalConstraint(view: views[0], screenSize: screenSize)
-            }
-            return buildSimpleConstraint(view: views[0])
+            return buildPairedConstraint(source: sourceView, target: targetView)
         }
-        assert(false, "Unimplemented")
+        if constraint.isProportional {
+            return buildSimpleProportionalConstraint(view: sourceView, screenSize: screenSize)
+        }
+        return buildSimpleConstraint(view: sourceView)
     }
     
     private func buildSimpleProportionalConstraint(view: ViewClass, screenSize: CGSize) -> NSLayoutConstraint {

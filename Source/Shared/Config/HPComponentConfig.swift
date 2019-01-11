@@ -25,6 +25,15 @@ public enum HPComponentType: Int, Codable, CaseIterable {
     case collectionCell
     case viewController
     
+    public var isContainingType: Bool {
+        switch self {
+        case .container, .button, .table, .collection:
+            return true
+        default:
+            return false
+        }
+    }
+    
     public func layoutTypeComponents(for layer: HPLayer) -> [HPComponentType] {
         switch self {
         case .table:

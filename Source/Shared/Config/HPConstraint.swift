@@ -73,9 +73,9 @@ public struct HPConstraintType: OptionSet, Codable, Hashable {
         case .height:
             return .height
         case .verticalSpacing:
-            return .bottom
+            return .top
         case .horizontalSpacing:
-            return .trailing
+            return .leading
         case .verticalCenters:
             return .centerY
         case .horizontalCenters:
@@ -104,9 +104,9 @@ public struct HPConstraintType: OptionSet, Codable, Hashable {
         case .height:
             return .notAnAttribute
         case .verticalSpacing:
-            return .top
+            return .bottom
         case .horizontalSpacing:
-            return .leading
+            return .trailing
         case .verticalCenters:
             return .centerY
         case .horizontalCenters:

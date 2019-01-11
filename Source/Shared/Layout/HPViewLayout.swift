@@ -14,10 +14,10 @@ import Cocoa
 
 public struct HPViewLayout {
     let constraints: [HPViewConstraint]
-    public func applyLayout(to views: [ViewClass], screenSize: CGSize) {
+    public func applyLayout(screenSize: CGSize) {
         var layoutConstraints = [NSLayoutConstraint]()
         for c in constraints {
-            layoutConstraints.append(c.applyConstraint(to: views, screenSize: screenSize))
+            layoutConstraints.append(c.applyConstraint(screenSize: screenSize))
         }
         NSLayoutConstraint.activate(layoutConstraints)
     }

@@ -161,17 +161,17 @@ public struct HPLayer: Codable, Equatable, Hashable, Inspectable {
         return result
     }
     
-    public func traverse(descendSubclasses: Bool = true, handler: (HPLayer)->Bool) {
-        _traverse(descendSubclasses: descendSubclasses, handler: handler)
+    public func traverse(descendSubclasses: Bool = true, handler: (_ layer: HPLayer, _ parent: HPLayer?)->Bool) {
+        _traverse(parent: nil, descendSubclasses: descendSubclasses, handler: handler)
     }
     
-    private func _traverse(descendSubclasses: Bool, handler: (HPLayer)->Bool) -> Bool {
-        guard !handler(self) else { return true }
+    private func _traverse(parent: HPLayer?, descendSubclasses: Bool, handler: (_ layer: HPLayer, _ parent: HPLayer?)->Bool) -> Bool {
+        guard !handler(self, parent) else { return true }
         for child in subLayers {
             if !descendSubclasses {
                 guard !child.componentConfig.isSubclass else { continue }
             }
-            guard !child._traverse(descendSubclasses: descendSubclasses, handler: handler) else { return true }
+            guard !child._traverse(parent: self, descendSubclasses: descendSubclasses, handler: handler) else { return true }
         }
         return false
     }
