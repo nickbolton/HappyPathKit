@@ -16,7 +16,7 @@ public class BaseViewInitializer: NSObject {
                            opacity: CGFloat,
                            cornerRadius: CGFloat,
                            view: UIView) {
-        view.backgroundColor = backgroundColor
+        view.backgroundColor = backgroundColor ?? .clear
         view.layer.cornerRadius = cornerRadius
         view.alpha = opacity
         apply(border: border, view: view)

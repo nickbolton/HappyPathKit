@@ -29,6 +29,7 @@
 		9228C7A621E7945C004F99EC /* String+HPK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9228C7A521E7945C004F99EC /* String+HPK.swift */; };
 		924A7A5E21E9483F00C5D881 /* BaseViewInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924A7A5D21E9483F00C5D881 /* BaseViewInitializer.swift */; };
 		924A7A6321E94E4700C5D881 /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924A7A6221E94E4700C5D881 /* UIView+Helpers.swift */; };
+		924A7A7121EA28BE00C5D881 /* UIFont+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924A7A7021EA28BE00C5D881 /* UIFont+Helpers.swift */; };
 		924B51DA21CAAC5300A8464B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B51D921CAAC5300A8464B /* AppDelegate.swift */; };
 		924B51DC21CAAC5300A8464B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B51DB21CAAC5300A8464B /* ViewController.swift */; };
 		924B51DF21CAAC5300A8464B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 924B51DD21CAAC5300A8464B /* Main.storyboard */; };
@@ -79,6 +80,7 @@
 		9228C7A521E7945C004F99EC /* String+HPK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+HPK.swift"; sourceTree = "<group>"; };
 		924A7A5D21E9483F00C5D881 /* BaseViewInitializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewInitializer.swift; sourceTree = "<group>"; };
 		924A7A6221E94E4700C5D881 /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
+		924A7A7021EA28BE00C5D881 /* UIFont+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Helpers.swift"; sourceTree = "<group>"; };
 		924B51D621CAAC5300A8464B /* HappyPathKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyPathKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		924B51D921CAAC5300A8464B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		924B51DB21CAAC5300A8464B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				924A7A6221E94E4700C5D881 /* UIView+Helpers.swift */,
+				924A7A7021EA28BE00C5D881 /* UIFont+Helpers.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				9226CFEE21D04E0300DBB143 /* HPStop.swift in Sources */,
 				9228C79421E75937004F99EC /* Swift+Utils.swift in Sources */,
 				92D5524421DBAD4000E52882 /* TextDescriptor.swift in Sources */,
+				924A7A7121EA28BE00C5D881 /* UIFont+Helpers.swift in Sources */,
 				92CFF99B21CAB6E00052CE86 /* SKLayer.swift in Sources */,
 				9226CF9821CEC0F200DBB143 /* HPViewLayout.swift in Sources */,
 				9226CFF521D04E0300DBB143 /* HPStyle.swift in Sources */,

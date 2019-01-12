@@ -422,7 +422,7 @@ public struct SKAttribute: Codable {
     public let textStyleVerticalAlignmentKey: Int?
     
     public var hashIdentifier: String {
-        return [nsFont.hashIdentifier, "\(nsKern ?? 0.0)", "\(0)", "\(0)", "\(0.0)", "\(0)", "\(textStyleVerticalAlignmentKey ?? 0)", nsParagraphStyle.hashIdentifier].joined(separator: ".")
+        return [nsFont.hashIdentifier, msAttributedStringColorAttribute.rawValue, "\(nsKern ?? 0.0)", "\(0)", "\(0)", "\(0.0)", "\(0)", "\(textStyleVerticalAlignmentKey ?? 0)", nsParagraphStyle.hashIdentifier].joined(separator: ".")
     }
     
     enum CodingKeys: String, CodingKey {

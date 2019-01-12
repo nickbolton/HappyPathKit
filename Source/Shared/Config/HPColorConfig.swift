@@ -20,14 +20,22 @@ public struct HPColorConfig: Codable, Equatable, Hashable {
         self.value = value
     }
     
-    public var nativeColor: HPColor { return HPColor(red: red, green: green, blue: blue, alpha: alpha) }
+    public var nativeColor: HPColor {
+        if value == "rgba(216,216,216,0.10)" {
+            print("ZZZ")
+        }
+        return HPColor(red: red, green: green, blue: blue, alpha: alpha)
+    }
 
     private var components: [CGFloat] {
-        if value.starts(with: "rbga") {
-            var colorString = value.replacingOccurrences(of: "rbga(", with: "")
+        if value.starts(with: "rgba") {
+            var colorString = value.replacingOccurrences(of: "rgba(", with: "")
             colorString = colorString.replacingOccurrences(of: ")", with: "")
-            let values = colorString.split(separator: ",")
-            return values.map { CGFloat(NumberFormatter().number(from: String($0))?.floatValue ?? 0.0) }
+            var values = colorString.split(separator: ",")
+            let alpha =  CGFloat(NumberFormatter().number(from: String(values[3]))?.floatValue ?? 0.0)
+            values.popLast()
+            let result = (values.map { CGFloat(NumberFormatter().number(from: String($0))?.floatValue ?? 0.0) / 255.0 }) + [alpha]
+            return result
         }
         
         let scanner = Scanner(string: value)

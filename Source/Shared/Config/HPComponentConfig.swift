@@ -14,6 +14,7 @@ public enum HPComponentType: Int, Codable, CaseIterable {
     case image
     case label
     case textField
+    case textView
     case background
     case table
     case tableHeader
@@ -33,8 +34,32 @@ public enum HPComponentType: Int, Codable, CaseIterable {
             return false
         }
     }
+
+    public var isConsumingType: Bool {
+        switch self {
+        case .button, .table, .collection:
+            return true
+        default:
+            return false
+        }
+    }
+
+    public var isEmbeddedType: Bool {
+        switch self {
+        case .background,
+             .tableHeader,
+             .tableSectionHeader,
+             .tableCell,
+             .tableSectionFooter,
+             .tableFooter,
+             .collectionCell:
+            return true
+        default:
+            return false
+        }
+    }
     
-    public func layoutTypeComponents(for layer: HPLayer) -> [HPComponentType] {
+    public func layoutTypeComponents(for layer: HPLayer, parent: HPLayer?) -> [HPComponentType] {
         switch self {
         case .table:
             return HPComponentType.tableComponents
@@ -43,6 +68,8 @@ public enum HPComponentType: Int, Codable, CaseIterable {
         default:
             if layer.layerType == .artboard {
                 return HPComponentType.defaultComponents + [.viewController]
+            } else if parent?.layerType == .artboard {
+                return HPComponentType.artboardChildrenComponents
             }
             return HPComponentType.defaultComponents
         }
@@ -55,10 +82,21 @@ public enum HPComponentType: Int, Codable, CaseIterable {
         .image,
         .label,
         .textField,
-        .background,
         .table,
         .collection,
-    ]
+        ]
+    
+    public static var artboardChildrenComponents: [HPComponentType] = [
+        .none,
+        .background,
+        .container,
+        .button,
+        .image,
+        .label,
+        .textField,
+        .table,
+        .collection,
+        ]
     
     public static var tableComponents: [HPComponentType] = [
         .none,
