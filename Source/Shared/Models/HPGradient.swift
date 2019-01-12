@@ -18,4 +18,10 @@ public struct HPGradient: Codable, Inspectable {
     public let from: CGPoint
     public let to: CGPoint
 
+    public init(stops: [HPStop], gradientType: SKLayerGradientType, from: CGPoint, to: CGPoint) {
+        self.stops = stops
+        self.gradientType = gradientType
+        self.from = from
+        self.to = to
+    }
 }

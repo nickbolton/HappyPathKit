@@ -15,4 +15,9 @@ import Cocoa
 public struct HPStop: Codable, Inspectable {
     public let color: SKBackgroundColor
     public let position: CGFloat
+    
+    public init(color: SKBackgroundColor, position: CGFloat) {
+        self.color = color
+        self.position = position
+    }
 }

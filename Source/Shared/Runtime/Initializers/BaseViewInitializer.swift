@@ -1,5 +1,5 @@
 //
-//  BaseInitializer.swift
+//  BaseViewInitializer.swift
 //  HappyPathKit
 //
 //  Created by Nick Bolton on 1/10/19.
@@ -9,15 +9,14 @@
 #if os(iOS)
 import UIKit
 
-public class BaseInitializer: NSObject {
+public class BaseViewInitializer: NSObject {
 
     public func initialize(backgroundColor: UIColor?,
-                           fills: [HPFill],
                            border: HPBorder?,
                            opacity: CGFloat,
                            cornerRadius: CGFloat,
                            view: UIView) {
-        FillInitializer().initialize(backgroundColor: backgroundColor, fills: fills, view: view)
+        view.backgroundColor = backgroundColor
         view.layer.cornerRadius = cornerRadius
         view.alpha = opacity
         apply(border: border, view: view)

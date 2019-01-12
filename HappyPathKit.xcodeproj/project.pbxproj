@@ -25,10 +25,10 @@
 		9226D02121D17EA400DBB143 /* HPSimpleProportionalConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226D02021D17EA400DBB143 /* HPSimpleProportionalConstraint.swift */; };
 		9226D02321D181A000DBB143 /* HPPairedConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226D02221D181A000DBB143 /* HPPairedConstraint.swift */; };
 		9226D02521D184D300DBB143 /* HPPairedProportionalConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226D02421D184D300DBB143 /* HPPairedProportionalConstraint.swift */; };
-		9228C78E21E754A4004F99EC /* FillInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9228C78D21E754A4004F99EC /* FillInitializer.swift */; };
 		9228C79421E75937004F99EC /* Swift+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9228C79321E75937004F99EC /* Swift+Utils.swift */; };
-		9228C79821E77785004F99EC /* BaseInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9228C79721E77785004F99EC /* BaseInitializer.swift */; };
 		9228C7A621E7945C004F99EC /* String+HPK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9228C7A521E7945C004F99EC /* String+HPK.swift */; };
+		924A7A5E21E9483F00C5D881 /* BaseViewInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924A7A5D21E9483F00C5D881 /* BaseViewInitializer.swift */; };
+		924A7A6321E94E4700C5D881 /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924A7A6221E94E4700C5D881 /* UIView+Helpers.swift */; };
 		924B51DA21CAAC5300A8464B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B51D921CAAC5300A8464B /* AppDelegate.swift */; };
 		924B51DC21CAAC5300A8464B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B51DB21CAAC5300A8464B /* ViewController.swift */; };
 		924B51DF21CAAC5300A8464B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 924B51DD21CAAC5300A8464B /* Main.storyboard */; };
@@ -75,10 +75,10 @@
 		9226D02021D17EA400DBB143 /* HPSimpleProportionalConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPSimpleProportionalConstraint.swift; sourceTree = "<group>"; };
 		9226D02221D181A000DBB143 /* HPPairedConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPPairedConstraint.swift; sourceTree = "<group>"; };
 		9226D02421D184D300DBB143 /* HPPairedProportionalConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPPairedProportionalConstraint.swift; sourceTree = "<group>"; };
-		9228C78D21E754A4004F99EC /* FillInitializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillInitializer.swift; sourceTree = "<group>"; };
 		9228C79321E75937004F99EC /* Swift+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Swift+Utils.swift"; sourceTree = "<group>"; };
-		9228C79721E77785004F99EC /* BaseInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInitializer.swift; sourceTree = "<group>"; };
 		9228C7A521E7945C004F99EC /* String+HPK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+HPK.swift"; sourceTree = "<group>"; };
+		924A7A5D21E9483F00C5D881 /* BaseViewInitializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewInitializer.swift; sourceTree = "<group>"; };
+		924A7A6221E94E4700C5D881 /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
 		924B51D621CAAC5300A8464B /* HappyPathKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyPathKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		924B51D921CAAC5300A8464B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		924B51DB21CAAC5300A8464B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +209,7 @@
 		9228C76721E6BE6F004F99EC /* Runtime */ = {
 			isa = PBXGroup;
 			children = (
+				924A7A6121E94E3100C5D881 /* Extensions */,
 				9228C78C21E754A4004F99EC /* Initializers */,
 				9228C78B21E75312004F99EC /* Models */,
 			);
@@ -225,8 +226,7 @@
 		9228C78C21E754A4004F99EC /* Initializers */ = {
 			isa = PBXGroup;
 			children = (
-				9228C78D21E754A4004F99EC /* FillInitializer.swift */,
-				9228C79721E77785004F99EC /* BaseInitializer.swift */,
+				924A7A5D21E9483F00C5D881 /* BaseViewInitializer.swift */,
 			);
 			path = Initializers;
 			sourceTree = "<group>";
@@ -235,6 +235,14 @@
 			isa = PBXGroup;
 			children = (
 				9228C7A521E7945C004F99EC /* String+HPK.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		924A7A6121E94E3100C5D881 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				924A7A6221E94E4700C5D881 /* UIView+Helpers.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -451,6 +459,7 @@
 				92D5521621DB8AB000E52882 /* HPPathPoint.swift in Sources */,
 				9226D02521D184D300DBB143 /* HPPairedProportionalConstraint.swift in Sources */,
 				92D5513E21D77F5E00E52882 /* HPFont.swift in Sources */,
+				924A7A6321E94E4700C5D881 /* UIView+Helpers.swift in Sources */,
 				9226CF9621CEC0E300DBB143 /* HPLayoutFactory.swift in Sources */,
 				92D5513C21D77F1F00E52882 /* HPColor.swift in Sources */,
 				926F825721DBB48C00E72CBC /* HPButton.swift in Sources */,
@@ -472,13 +481,12 @@
 				92CFF99B21CAB6E00052CE86 /* SKLayer.swift in Sources */,
 				9226CF9821CEC0F200DBB143 /* HPViewLayout.swift in Sources */,
 				9226CFF521D04E0300DBB143 /* HPStyle.swift in Sources */,
-				9228C78E21E754A4004F99EC /* FillInitializer.swift in Sources */,
+				924A7A5E21E9483F00C5D881 /* BaseViewInitializer.swift in Sources */,
 				9226D01F21D17D5300DBB143 /* HPSimpleConstraint.swift in Sources */,
 				924B51F621CAAED200A8464B /* HPFontConfig.swift in Sources */,
 				9228C7A621E7945C004F99EC /* String+HPK.swift in Sources */,
 				92D5524D21DBADFF00E52882 /* Geometry.swift in Sources */,
 				92D5524521DBAD4000E52882 /* View+TextLayout.swift in Sources */,
-				9228C79821E77785004F99EC /* BaseInitializer.swift in Sources */,
 				924B51F921CAAED200A8464B /* HPColorConfig.swift in Sources */,
 				92D5524921DBAD4000E52882 /* UIFont+Utils.swift in Sources */,
 				9226CFF021D04E0300DBB143 /* HPLayer.swift in Sources */,

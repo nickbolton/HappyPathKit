@@ -1,72 +1,42 @@
 //
-//  FillInitializer.swift
+//  UIView+Helpers.swift
 //  HappyPathKit
 //
-//  Created by Nick Bolton on 1/9/19.
+//  Created by Nick Bolton on 1/11/19.
+//  Copyright © 2019 Pixelbleed LLC. All rights reserved.
 //
 
 #if os(iOS)
 import UIKit
 
-class FillInitializer: NSObject {
+public extension UIView {
 
-    func initialize(backgroundColor: UIColor?, fills: [HPFill], view: UIView) {
-        
-        var layers = [CALayer]()
-
-        if let backgroundColor = backgroundColor {
-            // background color
-            let fillLayer = CALayer()
-            fillLayer.opacity = 1.0
-            fillLayer.backgroundColor = backgroundColor.cgColor
-            layers.append(fillLayer)
-        }
-        
-        for fill in fills {
-            if let gradient = fill.gradient {
-                let gradientLayer = CAGradientLayer()
-                gradientLayer.type = .axial
-                gradientLayer.opacity = Float(fill.opacity)
-                gradientLayer.colors = gradient.stops.map { $0.color.nativeColor.cgColor }
-                gradientLayer.startPoint = gradient.from
-                gradientLayer.locations = gradient.stops.map { NSNumber(value: Float($0.position)) }
-                gradientLayer.endPoint = gradient.to
-                gradientLayer.compositingFilter = buildBlendMode(CGBlendMode(rawValue: fill.blendMode))
-                layers.append(gradientLayer)
-            } else {
-                let fillLayer = CALayer()
-                fillLayer.opacity = Float(fill.opacity)
-                fillLayer.backgroundColor = fill.color.nativeColor.cgColor
-                fillLayer.compositingFilter = buildBlendMode(CGBlendMode(rawValue: fill.blendMode))
-                layers.append(fillLayer)
-            }
-        }
-        
-        var addLayers = layers.count > 1
-        if layers.count == 1 {
-            if let _ = layers[0] as? CAGradientLayer {
-                addLayers = true
-            }
-        }
-        
-        if addLayers {
-            for l in layers.reversed() {
-                view.layer.insertSublayer(l, at: 0)
-            }
-        } else if layers.count > 0 {
-            if let backgroundColor = backgroundColor {
-                view.backgroundColor = backgroundColor
-            } else if let backgroundColor = layers[0].backgroundColor {
-                var color = UIColor(cgColor: backgroundColor)
-                var colorAlpha: CGFloat = 1.0
-                color.retrieveRed(nil, green: nil, blue: nil, alpha: &colorAlpha)
-                color = color.color(withAlpha: colorAlpha * CGFloat(layers[0].opacity))
-                view.backgroundColor = color
-            }
-        }
+    public func insertSolidFillLayer(color: UIColor, opacity: Float, blendMode: CGBlendMode, at pos: Int) {
+        let fillLayer = CALayer()
+        fillLayer.opacity = opacity
+        fillLayer.backgroundColor = color.cgColor
+        fillLayer.compositingFilter = CIFilter.compositingFilter(blendMode: blendMode)
+        layer.insertSublayer(fillLayer, at: UInt32(pos))
     }
     
-    private func buildBlendMode(_ blendMode: CGBlendMode?) -> CIFilter? {
+    public func insertAxialGradientLayer(colors: [UIColor], locations: [Float], start: CGPoint, end: CGPoint, opacity: Float, blendMode: CGBlendMode, at pos: Int) -> CALayer {
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.type = .axial
+        gradientLayer.opacity = opacity
+        gradientLayer.colors = colors.map { $0.cgColor }
+        gradientLayer.locations = locations.map { NSNumber(value: $0) }
+        gradientLayer.startPoint = start
+        gradientLayer.endPoint = end
+        gradientLayer.compositingFilter = CIFilter.compositingFilter(blendMode: blendMode)
+        layer.insertSublayer(gradientLayer, at: UInt32(pos))
+        return gradientLayer
+    }
+}
+
+public extension CIFilter {
+    
+    static public func compositingFilter(blendMode: CGBlendMode?) -> CIFilter? {
         guard let blendMode = blendMode else { return nil }
         var filter: CIFilter?
         switch blendMode {
@@ -133,4 +103,5 @@ class FillInitializer: NSObject {
         return nil
     }
 }
+
 #endif
