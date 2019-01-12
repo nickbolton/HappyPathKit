@@ -66,12 +66,13 @@ public class HPLayerTransformer: NSObject {
     private func buildHPLayer(layer: SKLayer, isRootLayer: Bool, assetsLocation: URL) -> HPLayer? {
         guard layer.isVisible.skBoolValue else { return nil }
         var result = HPLayer(skLayer: layer)
-        result.isValidNativeLayer = isValidNativeLayer(layer)
+        result.isRasterized = isRasterized(layer)
         result.isRootLayer = isRootLayer
         if isRootLayer {
             result.frame = CGRect(origin: .zero, size: result.frame.size)
         }
         if !attachImageLocation(layer: layer, hpLayer: &result, assetsLocation: assetsLocation) {
+            result.isRasterized = false
             switch layer.layerType {
             case .artboard, .text, .rectangle, .group:
                 break
@@ -187,7 +188,14 @@ public class HPLayerTransformer: NSObject {
         return result
     }
     
-    private func isValidNativeLayer(_ layer: SKLayer) -> Bool {
+    private func isRasterized(_ layer: SKLayer) -> Bool {
+        
+        switch layer.layerType {
+        case .bitmap, .shapePath, .shapeGroup, .slice:
+            return true
+        default:
+            break
+        }
         
         // only allow linear gradients
         if let style = layer.style {
@@ -195,7 +203,7 @@ public class HPLayerTransformer: NSObject {
             for fill in enabledFills {
                 if fill.fillType == .gradient {
                     guard fill.gradient.gradientType == .linear else {
-                        return false
+                        return true
                     }
                 }
             }
@@ -205,12 +213,12 @@ public class HPLayerTransformer: NSObject {
         if layer.layerType == .rectangle {
             if let points = layer.points, points.count > 0 {
                 guard points.count == 4 else {
-                    return false
+                    return true
                 }
                 
                 let cornerRadius: CGFloat? = points.reduce(points.first!.cornerRadius) { (acc, cur) in cur.cornerRadius == acc ? acc : nil}
                 if cornerRadius == nil {
-                    return false
+                    return true
                 }
             }
         }
@@ -219,15 +227,15 @@ public class HPLayerTransformer: NSObject {
         if let style = layer.style {
             let enabledBorders = style.borders.filter { $0.isEnabled.skBoolValue }
             guard enabledBorders.count <= 1 else {
-                return false
+                return true
             }
             if let border = enabledBorders.first {
                 guard border.position == .inside else {
-                    return false
+                    return true
                 }
             }
         }
         
-        return true
+        return false
     }
 }

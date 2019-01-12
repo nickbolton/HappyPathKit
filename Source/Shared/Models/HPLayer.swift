@@ -87,7 +87,7 @@ public struct HPLayer: Codable, Equatable, Hashable, Inspectable {
     public var isVisible = false
     public var rotation: CGFloat { return skLayer?.rotation ?? 0.0 }
     public var isRotated: Bool { return abs(rotation) == 90.0 }
-    public var isValidNativeLayer = false
+    public var isRasterized = false
     public var isLandscape: Bool { return isRotated ? frame.height > frame.width : frame.width > frame.height }
     public var assetLocationURL: URL?
     public var externalName: String?
