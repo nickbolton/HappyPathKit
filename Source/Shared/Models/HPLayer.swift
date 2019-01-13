@@ -94,6 +94,10 @@ public struct HPLayer: Codable, Equatable, Hashable, Inspectable {
     public var points = [HPPathPoint]()
     public var style = HPStyle()
     
+    public var isClassBacked: Bool {
+        return isRootLayer || (componentConfig.type != .none && componentConfig.isReusable)
+    }
+    
     public var defaultLayout: HPLayout {
         return HPLayer.defaultLayout(for: self)
     }
@@ -236,7 +240,7 @@ public struct HPLayer: Codable, Equatable, Hashable, Inspectable {
     }
     
     private func _traverse(parent: HPLayer?, descendReusable: Bool, descendEmbeddables: Bool, handler: (_ layer: HPLayer, _ parent: HPLayer?)->Bool) -> Bool {
-        if !descendReusable {
+        if parent != nil && !descendReusable {
             guard !componentConfig.isReusable else { return false }
         }
         if !descendEmbeddables {
