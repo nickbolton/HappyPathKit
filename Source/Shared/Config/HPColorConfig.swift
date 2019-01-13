@@ -21,9 +21,6 @@ public struct HPColorConfig: Codable, Equatable, Hashable {
     }
     
     public var nativeColor: HPColor {
-        if value == "rgba(216,216,216,0.10)" {
-            print("ZZZ")
-        }
         return HPColor(red: red, green: green, blue: blue, alpha: alpha)
     }
 

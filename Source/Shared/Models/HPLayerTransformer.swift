@@ -29,32 +29,55 @@ public class HPLayerTransformer: NSObject {
     public func transform(layers: [SKLayer], assetsLocation: URL) -> [HPLayer] {
         var result = [HPLayer]()
         for skLayer in layers {
-            if let layer = transform(layer: skLayer, assetsLocation: assetsLocation) {
+            var layerNames = Set<String>()
+            if var layer = transform(layer: skLayer, layerNames: &layerNames, assetsLocation: assetsLocation) {
                 result.append(layer)
             }
         }
         return result
     }
     
-    private func transform(layer: SKLayer, assetsLocation: URL) -> HPLayer? {
+    private func transform(layer: SKLayer, layerNames: inout Set<String>, assetsLocation: URL) -> HPLayer? {
         layerMap = buildLayerMap(layer: layer)
-        if let result = _transform(layer: layer, isRootLayer: true, layerMap: layerMap, assetsLocation: assetsLocation) {
+        if let result = _transform(layer: layer,
+                                   isRootLayer: true,
+                                   layerMap: layerMap,
+                                   layerNames: &layerNames,
+                                   assetsLocation: assetsLocation) {
             return result
         }
         return nil
     }
     
+    private func ensureUniqueLayerName(layer: inout HPLayer, layerNames: inout Set<String>) {
+        var name = layer.name
+        let origName = layer.name
+        var idx = 2
+        while layerNames.contains(name) {
+            name = "\(origName)\(idx)"
+            idx += 1
+        }
+        layer.name = name
+        layerNames.insert(name)
+    }
+    
     private func _transform(layer: SKLayer,
                             isRootLayer: Bool,
                             layerMap: [String: SKLayer],
+                            layerNames: inout Set<String>,
                             assetsLocation: URL) -> HPLayer? {
         if var hpLayer = buildHPLayer(layer: layer, isRootLayer: isRootLayer, assetsLocation: assetsLocation) {
+            ensureUniqueLayerName(layer: &hpLayer, layerNames: &layerNames)
             transformedLayerMap[hpLayer.id] = hpLayer
             attachStyle(layer: &hpLayer)
             hpLayer.points = buildPathPoints(layer: layer)
             var subLayers = [HPLayer]()
             for child in layer.layers ?? [] {
-                if var subLayer = _transform(layer: child, isRootLayer: false, layerMap: layerMap, assetsLocation: assetsLocation) {
+                if var subLayer = _transform(layer: child,
+                                             isRootLayer: false,
+                                             layerMap: layerMap,
+                                             layerNames: &layerNames,
+                                             assetsLocation: assetsLocation) {
                     subLayer.layout = subLayer.defaultLayout(parent: hpLayer)
                     subLayers.append(subLayer)
                 }

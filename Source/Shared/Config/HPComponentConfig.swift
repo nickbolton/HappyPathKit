@@ -115,12 +115,12 @@ public enum HPComponentType: Int, Codable, CaseIterable {
 
 public struct HPComponentConfig: Codable {
     public var type: HPComponentType
-    public var isSubclass: Bool
+    public var isReusable: Bool
     public var isConnection: Bool
     
     public init(type: HPComponentType) {
         self.type = type
-        self.isSubclass = false
+        self.isReusable = false
         self.isConnection = false
     }
 }

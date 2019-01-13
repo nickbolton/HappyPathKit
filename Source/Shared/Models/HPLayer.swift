@@ -231,20 +231,20 @@ public struct HPLayer: Codable, Equatable, Hashable, Inspectable {
         return result
     }
     
-    public func traverse(descendSubclasses: Bool = true, descendEmbeddables: Bool = true, handler: (_ layer: HPLayer, _ parent: HPLayer?)->Bool) {
-        _traverse(parent: nil, descendSubclasses: descendSubclasses, descendEmbeddables: descendEmbeddables, handler: handler)
+    public func traverse(descendReusable: Bool = true, descendEmbeddables: Bool = true, handler: (_ layer: HPLayer, _ parent: HPLayer?)->Bool) {
+        _traverse(parent: nil, descendReusable: descendReusable, descendEmbeddables: descendEmbeddables, handler: handler)
     }
     
-    private func _traverse(parent: HPLayer?, descendSubclasses: Bool, descendEmbeddables: Bool, handler: (_ layer: HPLayer, _ parent: HPLayer?)->Bool) -> Bool {
-        if !descendSubclasses {
-            guard !componentConfig.isSubclass else { return false }
+    private func _traverse(parent: HPLayer?, descendReusable: Bool, descendEmbeddables: Bool, handler: (_ layer: HPLayer, _ parent: HPLayer?)->Bool) -> Bool {
+        if !descendReusable {
+            guard !componentConfig.isReusable else { return false }
         }
         if !descendEmbeddables {
             guard !(parent?.componentConfig.type.isConsumingType ?? false) else { return false }
         }
         guard !handler(self, parent) else { return true }
         for child in subLayers {
-            guard !child._traverse(parent: self, descendSubclasses: descendSubclasses, descendEmbeddables: descendEmbeddables, handler: handler) else { return true }
+            guard !child._traverse(parent: self, descendReusable: descendReusable, descendEmbeddables: descendEmbeddables, handler: handler) else { return true }
         }
         return false
     }
@@ -280,7 +280,7 @@ public struct HPLayer: Codable, Equatable, Hashable, Inspectable {
         self.frame = frame
         self.id = skLayer.objectID
         self.layerType = HPLayerType.from(layer: skLayer)
-        self.name = skLayer.name
+        self.name = skLayer.name.properIdentifier
         self.isVisible = skLayer.isVisible.skBoolValue
         
         let top = HPConstraint(sourceID: skLayer.objectID, type: .top, value: frame.minY)
@@ -296,7 +296,7 @@ public struct HPLayer: Codable, Equatable, Hashable, Inspectable {
         self.frame = frame
         self.id = id
         self.layerType = .component
-        self.name = name
+        self.name = name.properIdentifier
         self.isVisible = true
         
         let top = HPConstraint(sourceID: id, type: .top, value: frame.minY)
