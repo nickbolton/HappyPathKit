@@ -105,6 +105,76 @@ public struct HPLayer: Codable, Equatable, Hashable, Inspectable {
         let height = HPConstraint(sourceID: layer.id, type: .height, value: layer.frame.height)
         return HPLayout(key: layer.id, constraints: [top, left, width, height])
     }
+    
+    mutating public func resetDefaultLayout(parent: HPLayer?) {
+        self.layout = defaultLayout(parent: parent)
+    }
+    
+    public func defaultLayout(parent: HPLayer?) -> HPLayout {
+        guard let parent = parent else { return defaultLayout }
+        
+        let expandingMarginFactor: CGFloat = 0.16
+        let horizontalMarginThreshold = expandingMarginFactor * frame.width
+        let verticalMarginThreshold = expandingMarginFactor * frame.height
+        
+        let width = HPConstraint(sourceID: id, type: .width, value: frame.width)
+        let height = HPConstraint(sourceID: id, type: .height, value: frame.height)
+        var constraints = [HPConstraint]()
+        
+        let parentMidX = parent.frame.width / 2.0
+        let parentMidY = parent.frame.height / 2.0
+        let parentMaxX = parent.frame.width
+        let parentMaxY = parent.frame.height
+        
+        let dMinX = frame.minX
+        let dMidX = frame.midX - parentMidX
+        let dMaxX = frame.maxX - parentMaxX
+        
+        let dMinY = frame.minY
+        let dMidY = frame.midY - parentMidY
+        let dMaxY = frame.maxY - parentMaxY
+        
+        let hSortedDistances = [dMinX, dMidX, dMaxX].sorted { abs($0) < abs($1) }
+        let vSortedDistances = [dMinY, dMidY, dMaxY].sorted { abs($0) < abs($1) }
+        
+        if (abs(dMinX) <= horizontalMarginThreshold && abs(dMaxX) <= horizontalMarginThreshold) {
+            // use side margins
+            constraints.append(HPConstraint(sourceID: id, type: .left, value: dMinX))
+            constraints.append(HPConstraint(sourceID: id, type: .right, value: dMaxX))
+        } else if hSortedDistances.first == dMinX {
+            // pin left
+            constraints.append(HPConstraint(sourceID: id, type: .left, value: dMinX))
+            constraints.append(width)
+        } else if hSortedDistances.first == dMidX {
+            // pin center
+            constraints.append(HPConstraint(sourceID: id, type: .centerX, value: dMidX))
+            constraints.append(width)
+        } else {
+            // pin right
+            constraints.append(HPConstraint(sourceID: id, type: .right, value: dMaxX))
+            constraints.append(width)
+        }
+        
+        if abs(dMinY) <= verticalMarginThreshold && abs(dMaxY) <= verticalMarginThreshold {
+            // use vertical margins
+            constraints.append(HPConstraint(sourceID: id, type: .top, value: dMinY))
+            constraints.append(HPConstraint(sourceID: id, type: .bottom, value: dMaxY))
+        } else if vSortedDistances.first == dMinY {
+            // pin top
+            constraints.append(HPConstraint(sourceID: id, type: .top, value: dMinY))
+            constraints.append(height)
+        } else if vSortedDistances.first == dMidY {
+            // pin center
+            constraints.append(HPConstraint(sourceID: id, type: .centerY, value: dMidY))
+            constraints.append(height)
+        } else {
+            // pin bottom
+            constraints.append(HPConstraint(sourceID: id, type: .bottom, value: dMaxY))
+            constraints.append(height)
+        }
+        
+        return HPLayout(key: id, constraints: constraints)
+    }
 
     public var layersSortedByTopLeft: [HPLayer] {
         return HPLayer.layersSortedByTopLeft(subLayers)

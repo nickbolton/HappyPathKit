@@ -22,6 +22,7 @@ public class HPLayerTransformer: NSObject {
         for skPage in pages {
             result.append(HPPage(id: skPage.objectID, layers: transform(layers: skPage.layers, assetsLocation: assetsLocation)))
         }
+        
         return result
     }
     
@@ -53,7 +54,8 @@ public class HPLayerTransformer: NSObject {
             hpLayer.points = buildPathPoints(layer: layer)
             var subLayers = [HPLayer]()
             for child in layer.layers ?? [] {
-                if let subLayer = _transform(layer: child, isRootLayer: false, layerMap: layerMap, assetsLocation: assetsLocation) {
+                if var subLayer = _transform(layer: child, isRootLayer: false, layerMap: layerMap, assetsLocation: assetsLocation) {
+                    subLayer.layout = subLayer.defaultLayout(parent: hpLayer)
                     subLayers.append(subLayer)
                 }
             }
