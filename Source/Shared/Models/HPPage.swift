@@ -17,9 +17,9 @@ public struct HPPage: Codable, Equatable, Hashable, Inspectable {
     
     public var hashValue: Int { return id.hashValue }
     
-    public func traverse(descendReusable: Bool = true, descendEmbeddables: Bool = true, handler: (_ layer: HPLayer, _ parent: HPLayer?)->Bool) {
+    public func traverse(options: HPLayerTraversalOption = .deep, handler: (_ layer: HPLayer, _ parent: HPLayer?)->Bool) {
         for layer in layers {
-            layer.traverse(descendReusable: descendReusable, descendEmbeddables: descendEmbeddables, handler: handler)
+            layer.traverse(options: options, handler: handler)
         }
     }
     

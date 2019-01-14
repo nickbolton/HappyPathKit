@@ -69,6 +69,21 @@ public enum HPLayerType: Int, Codable {
     }
 }
 
+public struct HPLayerTraversalOption: OptionSet {
+    public let rawValue: Int
+    public typealias RawValue = Int
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
+    }
+    
+    static public let deep                     = HPLayerTraversalOption(rawValue: 0)
+    static public let ignoreReusable           = HPLayerTraversalOption(rawValue: 1 << 0)
+    static public let ignoreEmbedded           = HPLayerTraversalOption(rawValue: 1 << 1)
+    static public let ignoreConsumingChildren  = HPLayerTraversalOption(rawValue: 1 << 2)
+    
+    static public let shallow  = HPLayerTraversalOption.ignoreReusable.union(ignoreEmbedded).union(ignoreConsumingChildren)
+}
+
 public struct HPLayer: Codable, Equatable, Hashable, Inspectable {
     public let skLayer: SKLayer?
     public var isSourceLayer: Bool { return skLayer != nil }
@@ -179,6 +194,57 @@ public struct HPLayer: Codable, Equatable, Hashable, Inspectable {
         
         return HPLayout(key: id, constraints: constraints)
     }
+    
+    public var isContainingType: Bool {
+        return componentConfig.type.isContainingType
+    }
+    
+    public var hasTextSource: Bool {
+        switch componentConfig.type {
+        case .button, .label, .textField, .textView:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    public var isContentModeAdjusting: Bool {
+        switch componentConfig.type {
+        case .button, .image:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    public var isConsumingType: Bool {
+        switch componentConfig.type {
+        case .button, .table, .collection:
+            return true
+        default:
+            switch layerType {
+            case .shapeGroup:
+                return true
+            default:
+                return false
+            }
+        }
+    }
+    
+    public var isEmbeddedType: Bool {
+        switch componentConfig.type {
+        case .background,
+             .tableHeader,
+             .tableSectionHeader,
+             .tableCell,
+             .tableSectionFooter,
+             .tableFooter,
+             .collectionCell:
+            return true
+        default:
+            return false
+        }
+    }
 
     public var layersSortedByTopLeft: [HPLayer] {
         return HPLayer.layersSortedByTopLeft(subLayers)
@@ -235,20 +301,23 @@ public struct HPLayer: Codable, Equatable, Hashable, Inspectable {
         return result
     }
     
-    public func traverse(descendReusable: Bool = true, descendEmbeddables: Bool = true, handler: (_ layer: HPLayer, _ parent: HPLayer?)->Bool) {
-        _traverse(parent: nil, descendReusable: descendReusable, descendEmbeddables: descendEmbeddables, handler: handler)
+    public func traverse(options: HPLayerTraversalOption = .deep, handler: (_ layer: HPLayer, _ parent: HPLayer?)->Bool) {
+        _traverse(parent: nil, options: options, handler: handler)
     }
     
-    private func _traverse(parent: HPLayer?, descendReusable: Bool, descendEmbeddables: Bool, handler: (_ layer: HPLayer, _ parent: HPLayer?)->Bool) -> Bool {
-        if parent != nil && !descendReusable {
-            guard !componentConfig.isReusable else { return false }
-        }
-        if !descendEmbeddables {
-            guard !(parent?.componentConfig.type.isConsumingType ?? false) else { return false }
+    private func _traverse(parent: HPLayer?, options: HPLayerTraversalOption, handler: (_ layer: HPLayer, _ parent: HPLayer?)->Bool) -> Bool {
+        if options.contains(.ignoreEmbedded) {
+            guard !(isEmbeddedType ?? false) else { return false }
         }
         guard !handler(self, parent) else { return true }
         for child in subLayers {
-            guard !child._traverse(parent: self, descendReusable: descendReusable, descendEmbeddables: descendEmbeddables, handler: handler) else { return true }
+            if options.contains(.ignoreReusable) {
+                guard !child.componentConfig.isReusable else { continue }
+            }
+            if options.contains(.ignoreConsumingChildren) {
+                guard !isConsumingType else { continue }
+            }
+            guard !child._traverse(parent: self, options: options, handler: handler) else { return true }
         }
         return false
     }

@@ -34,49 +34,7 @@ public enum HPComponentType: Int, Codable, CaseIterable {
             return false
         }
     }
-    
-    public var hasTextSource: Bool {
-        switch self {
-        case .button, .label, .textField, .textView:
-            return true
-        default:
-            return false
-        }
-    }
-    
-    public var isContentModeAdjusting: Bool {
-        switch self {
-        case .button, .image:
-            return true
-        default:
-            return false
-        }
-    }
 
-    public var isConsumingType: Bool {
-        switch self {
-        case .button, .table, .collection:
-            return true
-        default:
-            return false
-        }
-    }
-
-    public var isEmbeddedType: Bool {
-        switch self {
-        case .background,
-             .tableHeader,
-             .tableSectionHeader,
-             .tableCell,
-             .tableSectionFooter,
-             .tableFooter,
-             .collectionCell:
-            return true
-        default:
-            return false
-        }
-    }
-    
     public func layoutTypeComponents(for layer: HPLayer, parent: HPLayer?) -> [HPComponentType] {
         switch self {
         case .table:
