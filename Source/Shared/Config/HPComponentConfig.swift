@@ -35,6 +35,15 @@ public enum HPComponentType: Int, Codable, CaseIterable {
         }
     }
     
+    public var hasTextSource: Bool {
+        switch self {
+        case .button, .label, .textField, .textView:
+            return true
+        default:
+            return false
+        }
+    }
+    
     public var isContentModeAdjusting: Bool {
         switch self {
         case .button, .image:
