@@ -252,13 +252,12 @@ public enum HPContentMode: Int, CaseIterable, Codable {
 
 public struct HPComponentConfig: Codable {
     public var type: HPComponentType
-    public var isReusable: Bool
-    public var isConnection: Bool
+    public var isReusable = false
+    public var hasConnection = true
     public var contentMode: HPContentMode = .scaleToFill
+    public var contentSourceKey: String? = nil
 
     public init(type: HPComponentType) {
         self.type = type
-        self.isReusable = false
-        self.isConnection = false
     }
 }

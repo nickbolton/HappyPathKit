@@ -142,7 +142,11 @@ public class TextStyle: NSObject {
         return result
     }
     
-    public func applyValues(_ values: [String]) {
+    public func apply(value: String) {
+        apply(values: [value])
+    }
+    
+    public func apply(values: [String]) {
         var values = values
         while (values.count > textDescriptors.count) {
             values.removeLast()
