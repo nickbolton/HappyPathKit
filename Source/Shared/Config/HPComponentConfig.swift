@@ -231,6 +231,7 @@ public struct HPComponentConfig: Codable {
     public var contentMode: HPContentMode = .scaleToFill
     public var contentSourceKey: String? = nil
     public var collectionSections = [0]
+    public var backgroundColor: SKBackgroundColor?
 
     public init(type: HPComponentType) {
         self.type = type

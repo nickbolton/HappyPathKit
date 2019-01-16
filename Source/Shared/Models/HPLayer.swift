@@ -128,6 +128,13 @@ public struct HPLayer: Codable, Equatable, Hashable, Inspectable {
         }
     }
     
+    public var backgroundColor: SKBackgroundColor? {
+        if componentConfig.type != .none, let color = componentConfig.backgroundColor {
+            return color
+        }
+        return style.backgroundColor
+    }
+    
     public var isReusable: Bool {
         return componentConfig.isReusable || componentConfig.type.isForcedResuableType
     }
