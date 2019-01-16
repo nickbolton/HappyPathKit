@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = 'HappyPathKit'
-  spec.version = '0.0.1'
+  spec.version = '0.0.2'
   spec.license = 'Apache2.0'
   spec.summary = 'HappyPath runtime library.'
   spec.homepage = 'http://www.happypath.com'
