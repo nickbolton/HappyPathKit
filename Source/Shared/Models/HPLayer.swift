@@ -69,6 +69,12 @@ public enum HPLayerType: Int, Codable {
     }
 }
 
+public enum HPConnectorType: String, CaseIterable {
+    case none
+    case string = "String"
+    case image  = "UIImage"
+}
+
 public struct HPLayerTraversalOption: OptionSet {
     public let rawValue: Int
     public typealias RawValue = Int
@@ -80,8 +86,10 @@ public struct HPLayerTraversalOption: OptionSet {
     static public let ignoreReusable           = HPLayerTraversalOption(rawValue: 1 << 0)
     static public let ignoreEmbedded           = HPLayerTraversalOption(rawValue: 1 << 1)
     static public let ignoreConsumingChildren  = HPLayerTraversalOption(rawValue: 1 << 2)
-    
-    static public let shallow  = HPLayerTraversalOption.ignoreReusable.union(ignoreEmbedded).union(ignoreConsumingChildren)
+    static public let reverseChildOrder        = HPLayerTraversalOption(rawValue: 1 << 3)
+
+    static public let shallow = HPLayerTraversalOption.ignoreReusable.union(ignoreEmbedded).union(ignoreConsumingChildren)
+    static public let shallowReverseChildren = HPLayerTraversalOption.shallow.union(reverseChildOrder)
 }
 
 public struct HPLayer: Codable, Equatable, Hashable, Inspectable {
@@ -109,8 +117,23 @@ public struct HPLayer: Codable, Equatable, Hashable, Inspectable {
     public var points = [HPPathPoint]()
     public var style = HPStyle()
     
+    public var connectorType: HPConnectorType {
+        switch componentConfig.type {
+        case .label:
+            return .string
+        case .image:
+            return .image
+        default:
+            return .none
+        }
+    }
+    
+    public var isReusable: Bool {
+        return componentConfig.isReusable || componentConfig.type.isForcedResuableType
+    }
+    
     public var isClassBacked: Bool {
-        return isRootLayer || (componentConfig.type != .none && componentConfig.isReusable)
+        return isRootLayer || (componentConfig.type != .none && isReusable)
     }
     
     public var defaultLayout: HPLayout {
@@ -302,15 +325,15 @@ public struct HPLayer: Codable, Equatable, Hashable, Inspectable {
     }
     
     public func traverse(options: HPLayerTraversalOption = .deep, handler: (_ layer: HPLayer, _ parent: HPLayer?)->Bool) {
-        _traverse(parent: nil, options: options, handler: handler)
+        let _ = _traverse(parent: nil, options: options, handler: handler)
     }
     
     private func _traverse(parent: HPLayer?, options: HPLayerTraversalOption, handler: (_ layer: HPLayer, _ parent: HPLayer?)->Bool) -> Bool {
-        if options.contains(.ignoreEmbedded) {
-            guard !(isEmbeddedType ?? false) else { return false }
+        if options.contains(.ignoreEmbedded) && !isReusable {
+            guard !isEmbeddedType else { return false }
         }
         guard !handler(self, parent) else { return true }
-        for child in subLayers {
+        for child in options.contains(.reverseChildOrder) ? subLayers.reversed() : subLayers {
             if options.contains(.ignoreReusable) {
                 guard !child.componentConfig.isReusable else { continue }
             }
@@ -324,7 +347,7 @@ public struct HPLayer: Codable, Equatable, Hashable, Inspectable {
     
     public func indexPath(of layer: HPLayer) -> [Int] {
         var result = [Int]()
-        _indexPath(of: layer, result: &result)
+        let _ = _indexPath(of: layer, result: &result)
         return result
     }
     

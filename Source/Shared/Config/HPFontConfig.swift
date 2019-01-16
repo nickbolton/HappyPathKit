@@ -12,13 +12,15 @@ import Cocoa
 #endif
 
 public struct HPFontConfig: Codable, Equatable, Hashable {
-    public var name: String
+    public var userName: String
+    public let fontName: String
     public let family: String
     public let systemWeight: String?
     public let attributes: HPFontAttributes
     
-    public init(name: String, family: String, systemWeight: String?, attributes: HPFontAttributes) {
-        self.name = name
+    public init(userName: String = "", fontName: String, family: String, systemWeight: String?, attributes: HPFontAttributes) {
+        self.userName = userName
+        self.fontName = fontName
         self.family = family
         self.systemWeight = systemWeight
         self.attributes = attributes
@@ -53,7 +55,7 @@ public struct HPFontConfig: Codable, Equatable, Hashable {
 #endif
     
     public var hashIdentifier: String {
-        return [name, family, systemWeight ?? "", attributes.fontName, "\(attributes.pointSize)"].joined(separator: ".")
+        return [fontName, family, systemWeight ?? "", attributes.fontName, "\(attributes.pointSize)"].joined(separator: ".")
     }
     public var hashValue: Int { return hashIdentifier.hashValue }
     

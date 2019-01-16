@@ -30,7 +30,7 @@ public struct HPColorConfig: Codable, Equatable, Hashable {
             colorString = colorString.replacingOccurrences(of: ")", with: "")
             var values = colorString.split(separator: ",")
             let alpha =  CGFloat(NumberFormatter().number(from: String(values[3]))?.floatValue ?? 0.0)
-            values.popLast()
+            let _ = values.popLast()
             let result = (values.map { CGFloat(NumberFormatter().number(from: String($0))?.floatValue ?? 0.0) / 255.0 }) + [alpha]
             return result
         }

@@ -30,7 +30,7 @@ public class HPLayerTransformer: NSObject {
         var result = [HPLayer]()
         for skLayer in layers {
             var layerNames = Set<String>()
-            if var layer = transform(layer: skLayer, layerNames: &layerNames, assetsLocation: assetsLocation) {
+            if let layer = transform(layer: skLayer, layerNames: &layerNames, assetsLocation: assetsLocation) {
                 result.append(layer)
             }
         }
@@ -170,7 +170,6 @@ public class HPLayerTransformer: NSObject {
     }
     
     private func buildFills(layer: SKLayer?, skStyle: SKLayerStyle) -> [HPFill] {
-        guard let layer = layer else { return [] }
         var result = [HPFill]()
         let enabledFills = skStyle.fills.filter { $0.isEnabled.skBoolValue }
         for skFill in enabledFills {

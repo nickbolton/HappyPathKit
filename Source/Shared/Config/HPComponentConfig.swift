@@ -34,21 +34,37 @@ public enum HPComponentType: Int, Codable, CaseIterable {
             return false
         }
     }
+    
+    public var isForcedResuableType: Bool {
+        switch self {
+        case .tableHeader, .tableSectionHeader, .tableCell, .tableSectionFooter, .tableFooter,
+             .collectionCell:
+            return true
+        default:
+            return false
+        }
+    }
 
     public func layoutTypeComponents(for layer: HPLayer, parent: HPLayer?) -> [HPComponentType] {
-        switch self {
-        case .table:
-            return HPComponentType.tableComponents
-        case .collection:
-            return HPComponentType.collectionComponents
-        default:
-            if layer.layerType == .artboard {
-                return HPComponentType.defaultComponents + [.viewController]
-            } else if parent?.layerType == .artboard {
-                return HPComponentType.artboardChildrenComponents
+        if layer.layerType == .artboard {
+            return HPComponentType.defaultComponents + [.viewController]
+        } else if let parent = parent {
+            switch parent.componentConfig.type {
+            case .table:
+                return HPComponentType.tableComponents
+            case .collection:
+                return HPComponentType.collectionComponents
+            default:
+                break
             }
-            return HPComponentType.defaultComponents
+            switch parent.layerType {
+            case .artboard:
+                return HPComponentType.artboardChildrenComponents
+            default:
+                break
+            }
         }
+        return HPComponentType.defaultComponents
     }
     
     public static var defaultComponents: [HPComponentType] = [
@@ -211,9 +227,10 @@ public enum HPContentMode: Int, CaseIterable, Codable {
 public struct HPComponentConfig: Codable {
     public var type: HPComponentType
     public var isReusable = false
-    public var hasConnection = true
+    public var isConnectable = true
     public var contentMode: HPContentMode = .scaleToFill
     public var contentSourceKey: String? = nil
+    public var collectionSections = [0]
 
     public init(type: HPComponentType) {
         self.type = type
