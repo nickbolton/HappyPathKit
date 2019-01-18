@@ -224,6 +224,19 @@ public enum HPContentMode: Int, CaseIterable, Codable {
     }
 }
 
+public enum HPCollectionType: Int, Codable {
+    case none
+    case horizontal
+    case vertical
+    case custom
+}
+
+public enum HPCollectionItemPosition: Int, Codable {
+    case none
+    case absolute
+    case relative
+}
+
 public struct HPComponentConfig: Codable {
     public var type: HPComponentType
     public var isReusable = false
@@ -232,6 +245,8 @@ public struct HPComponentConfig: Codable {
     public var contentSourceKey: String? = nil
     public var collectionSections = [0]
     public var backgroundColor: SKBackgroundColor?
+    public var collectionType = HPCollectionType.none
+    public var collectionItemPosition = HPCollectionItemPosition.none
 
     public init(type: HPComponentType) {
         self.type = type
