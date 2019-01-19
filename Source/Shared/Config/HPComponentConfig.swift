@@ -224,17 +224,35 @@ public enum HPContentMode: Int, CaseIterable, Codable {
     }
 }
 
-public enum HPCollectionType: Int, Codable {
-    case none
-    case horizontal
-    case vertical
+public enum HPCollectionType: Int, CaseIterable, Codable {
+    case verticalFlow
+    case horizontalFlow
     case custom
+    
+    public var label: String {
+        switch self {
+        case .verticalFlow:
+            return "Vertical Flow"
+        case .horizontalFlow:
+            return "Horizontal Flow"
+        case .custom:
+            return "Custom"
+        }
+    }
 }
 
-public enum HPCollectionItemPosition: Int, Codable {
-    case none
+public enum HPFlowCollectionItemPosition: Int, CaseIterable, Codable {
+    case flow
     case absolute
-    case relative
+    
+    public var label: String {
+        switch self {
+        case .flow:
+            return "Flow"
+        case .absolute:
+            return "Absolute"
+        }
+    }
 }
 
 public struct HPComponentConfig: Codable {
@@ -245,8 +263,8 @@ public struct HPComponentConfig: Codable {
     public var contentSourceKey: String? = nil
     public var collectionSections = [0]
     public var backgroundColor: SKBackgroundColor?
-    public var collectionType = HPCollectionType.none
-    public var collectionItemPosition = HPCollectionItemPosition.none
+    public var collectionType = HPCollectionType.verticalFlow
+    public var flowCollectionItemPosition = HPFlowCollectionItemPosition.flow
 
     public init(type: HPComponentType) {
         self.type = type
