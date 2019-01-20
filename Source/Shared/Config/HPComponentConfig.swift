@@ -243,14 +243,20 @@ public enum HPCollectionType: Int, CaseIterable, Codable {
 
 public enum HPFlowCollectionItemPosition: Int, CaseIterable, Codable {
     case flow
+    case full
     case absolute
+    case relative
     
     public var label: String {
         switch self {
         case .flow:
             return "Flow"
+        case .full:
+            return "Full"
         case .absolute:
             return "Absolute"
+        case .relative:
+            return "Relative"
         }
     }
 }
