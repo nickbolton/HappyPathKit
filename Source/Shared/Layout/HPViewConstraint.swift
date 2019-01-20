@@ -16,9 +16,11 @@ public class HPViewConstraint: NSObject {
     let constraint: HPConstraint
     let sourceView: ViewClass
     let targetView: ViewClass?
+    let scale: CGFloat
     private (set) public var isSafeArea: Bool
-    init(constraint: HPConstraint, isSafeArea: Bool, sourceView: ViewClass, targetView: ViewClass? = nil) {
+    init(constraint: HPConstraint, scale: CGFloat, isSafeArea: Bool, sourceView: ViewClass, targetView: ViewClass? = nil) {
         self.constraint = constraint
+        self.scale = scale
         self.isSafeArea = isSafeArea
         self.sourceView = sourceView
         self.targetView = targetView
@@ -42,6 +44,7 @@ public class HPViewConstraint: NSObject {
         let builder = HPSimpleProportionalConstraint(attribute: constraint.type.sourceAttribute,
                                                      proportionalityConstant: constraint.proportionalValue,
                                                      isSafeArea: isSafeArea,
+                                                     scale: scale,
                                                      screenSize: screenSize)
         return builder.applyConstraint(to: view)
     }
@@ -49,6 +52,7 @@ public class HPViewConstraint: NSObject {
     private func buildSimpleConstraint(view: ViewClass) -> NSLayoutConstraint {
         let builder = HPSimpleConstraint(attribute: constraint.type.sourceAttribute,
                                          constant: constraint.value,
+                                         scale: scale,
                                          isSafeArea: isSafeArea)
         return builder.applyConstraint(to: view)
     }
@@ -59,6 +63,7 @@ public class HPViewConstraint: NSObject {
         let builder = HPPairedProportionalConstraint(sourceAttribute: constraint.type.sourceAttribute,
                                                      targetAttribute: constraint.type.targetAttribute,
                                                      proportionalityConstant: constraint.proportionalValue,
+                                                     scale: scale,
                                                      screenSize: screenSize)
         return builder.applyConstraint(source: source, target: target)
     }
@@ -66,7 +71,8 @@ public class HPViewConstraint: NSObject {
     private func buildPairedConstraint(source: ViewClass, target: ViewClass) -> NSLayoutConstraint {
         let builder = HPPairedConstraint(sourceAttribute: constraint.type.sourceAttribute,
                                          targetAttribute: constraint.type.targetAttribute,
-                                         constant: constraint.value)
+                                         constant: constraint.value,
+                                         scale: scale)
         return builder.applyConstraint(source: source, target: target)
     }
     

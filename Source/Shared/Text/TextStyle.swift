@@ -52,6 +52,17 @@ public class TextStyle: NSObject {
         return result
     }
     
+    public func attributedString(scale: CGFloat) -> NSAttributedString {
+        let result = NSMutableAttributedString()
+        for descriptor in textDescriptors {
+            let attributedString = descriptor.attributedString(scale: scale)
+            if attributedString.length > 0 {
+                result.append(attributedString)
+            }
+        }
+        return result
+    }
+    
     public var baselineAdjustment: CGFloat {
         var result: CGFloat = 0.0
         for descriptor in textDescriptors {

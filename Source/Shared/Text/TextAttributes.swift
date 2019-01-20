@@ -192,37 +192,41 @@ public struct TextAttributes {
         self.maximumLineHeight = maximumLineHeight
     }
     
-    public var attributes: [NSAttributedString.Key: Any] {
+    public func attributes(scale: CGFloat) -> [NSAttributedString.Key: Any] {
         let font = self.font
         var result = [NSAttributedString.Key: Any]()
         let paragraphStyle = NSMutableParagraphStyle()
-
+        
         paragraphStyle.lineBreakMode = lineBreakMode
         paragraphStyle.alignment = textAlignment.nativeAlignment()
-        paragraphStyle.paragraphSpacing = paragraphSpacing
+        paragraphStyle.paragraphSpacing = paragraphSpacing * scale
         
         if let lineHeightMultiple = lineHeightMultiple {
-            paragraphStyle.lineHeightMultiple = lineHeightMultiple
+            paragraphStyle.lineHeightMultiple = lineHeightMultiple * scale
         }
-        paragraphStyle.maximumLineHeight = maximumLineHeight
-        paragraphStyle.minimumLineHeight = minimumLineHeight
+        paragraphStyle.maximumLineHeight = maximumLineHeight * scale
+        paragraphStyle.minimumLineHeight = minimumLineHeight * scale
         
         paragraphStyle.allowsDefaultTighteningForTruncation = lineBreakMode != .byWordWrapping && lineBreakMode != .byCharWrapping && lineBreakMode != .byClipping
         
         result[NSAttributedString.Key.paragraphStyle] = paragraphStyle
-        result[NSAttributedString.Key.kern] = kerning
+        result[NSAttributedString.Key.kern] = kerning * scale
         result[NSAttributedString.Key.underlineStyle] = underlineStyle
         
         if isStrikeThrough {
             result[NSAttributedString.Key.strikethroughStyle] = true
         }
         
-        result[NSAttributedString.Key.baselineOffset] = baselineOffset
+        result[NSAttributedString.Key.baselineOffset] = baselineOffset * scale
         
         result[NSAttributedString.Key.font] = font
         result[NSAttributedString.Key.foregroundColor] = textColor
         
         return result
+    }
+    
+    public var attributes: [NSAttributedString.Key: Any] {
+        return  attributes(scale: 1.0)
     }
 }
 

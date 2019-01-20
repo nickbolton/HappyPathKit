@@ -33,6 +33,10 @@ public class TextDescriptor: NSObject {
         return result
     }
     
+    public func attributedString(scale: CGFloat) -> NSAttributedString {
+        return NSAttributedString(string: text, attributes: textAttributes.attributes(scale: scale)) 
+    }
+    
     public init(text: String) {
         self.text = text
     }

@@ -17,12 +17,13 @@ class HPSimpleConstraint: NSObject {
     private (set) public var constant: CGFloat
     private (set) public var attribute: NSLayoutConstraint.Attribute
     private (set) public var isSafeArea: Bool
+    private (set) public var scale: CGFloat
 
-    init(attribute: NSLayoutConstraint.Attribute, constant: CGFloat, isSafeArea: Bool) {
+    init(attribute: NSLayoutConstraint.Attribute, constant: CGFloat, scale: CGFloat, isSafeArea: Bool) {
         self.attribute = attribute
         self.constant = constant.halfPointAligned
         self.isSafeArea = isSafeArea
-        self.isSafeArea = isSafeArea
+        self.scale = scale
         super.init()
     }
 
@@ -35,7 +36,7 @@ class HPSimpleConstraint: NSObject {
                                       toItem: nil,
                                       attribute: .notAnAttribute,
                                       multiplier: 1.0,
-                                      constant: constant)
+                                      constant: constant * scale)
         default:
             assert(view.superview != nil, "View must be part of a view hierarchy.")
             #if os(iOS)
@@ -45,7 +46,7 @@ class HPSimpleConstraint: NSObject {
                                       toItem: isSafeArea ? view.superview?.safeAreaLayoutGuide : view.superview,
                                       attribute: attribute,
                                       multiplier: 1.0,
-                                      constant: constant)
+                                      constant: constant * scale)
             #elseif os(macOS)
             return NSLayoutConstraint(item: view,
                                       attribute: attribute,
@@ -53,7 +54,7 @@ class HPSimpleConstraint: NSObject {
                                       toItem: view.superview,
                                       attribute: attribute,
                                       multiplier: 1.0,
-                                      constant: constant)
+                                      constant: constant * scale)
             #endif
         }
     }

@@ -17,13 +17,16 @@ class HPPairedConstraint: NSObject {
     private (set) public var sourceAttribute: NSLayoutConstraint.Attribute
     private (set) public var targetAttribute: NSLayoutConstraint.Attribute
     private (set) public var constant: CGFloat
+    private (set) public var scale: CGFloat
 
     init(sourceAttribute: NSLayoutConstraint.Attribute,
          targetAttribute: NSLayoutConstraint.Attribute,
-         constant: CGFloat) {
+         constant: CGFloat,
+         scale: CGFloat) {
         self.sourceAttribute = sourceAttribute
         self.targetAttribute = targetAttribute
         self.constant = constant.halfPointAligned
+        self.scale = scale
         super.init()
     }
     
@@ -34,6 +37,6 @@ class HPPairedConstraint: NSObject {
                                   toItem: target,
                                   attribute: targetAttribute,
                                   multiplier: 1.0,
-                                  constant: constant)
+                                  constant: constant * scale)
     }
 }

@@ -18,21 +18,24 @@ class HPPairedProportionalConstraint: NSObject {
     private (set) public var targetAttribute: NSLayoutConstraint.Attribute
     private (set) public var proportionalityConstant: CGFloat
     private (set) public var screenSize: CGSize
+    private (set) public var scale: CGFloat
     
     init(sourceAttribute: NSLayoutConstraint.Attribute,
          targetAttribute: NSLayoutConstraint.Attribute,
          proportionalityConstant: CGFloat,
+         scale: CGFloat,
          screenSize: CGSize) {
         self.sourceAttribute = sourceAttribute
         self.targetAttribute = targetAttribute
         self.proportionalityConstant = proportionalityConstant
+        self.scale = scale
         self.screenSize = screenSize
         super.init()
     }
 
     func applyConstraint(source: ViewClass, target: ViewClass) -> NSLayoutConstraint {
-        let yConstant = (proportionalityConstant * screenSize.height).halfPointAligned
-        let xConstant = (proportionalityConstant * screenSize.width).halfPointAligned
+        let yConstant = (proportionalityConstant * screenSize.height * scale).halfPointAligned
+        let xConstant = (proportionalityConstant * screenSize.width * scale).halfPointAligned
         switch targetAttribute {
         case .top, .centerY, .bottom:
             return NSLayoutConstraint(item: source,
