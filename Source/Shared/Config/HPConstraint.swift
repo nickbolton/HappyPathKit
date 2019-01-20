@@ -124,19 +124,22 @@ public struct HPConstraint: Codable, Hashable, Equatable {
     public let value: CGFloat
     public let proportionalValue: CGFloat
     public let isProportional: Bool
-    
+    public let isContentConstrained: Bool
+
     public init(sourceID: String,
                 targetID: String? = nil,
                 type: HPConstraintType,
                 value: CGFloat,
                 proportionalValue: CGFloat = 0.0,
-                isProportional: Bool = false) {
+                isProportional: Bool = false,
+                isContentConstrained: Bool = false) {
         self.sourceID = sourceID
         self.targetID = targetID
         self.type = type
         self.value = value
         self.proportionalValue = proportionalValue
         self.isProportional = isProportional
+        self.isContentConstrained = isContentConstrained
     }
     
     public var hashValue: Int { return "\(sourceID).\(targetID ?? "").\(type.rawValue)".hashValue }
