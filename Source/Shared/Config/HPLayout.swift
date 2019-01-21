@@ -11,6 +11,12 @@ public struct HPLayout: Codable, Equatable, Inspectable {
     public let key: String
     public var constraints: [HPConstraint]
     
+    public var isSizeConstraining: Bool {
+        return (constraints.filter {
+            ($0.type == .width || $0.type == .height) && $0.isContentConstrained
+        }).first?.isContentConstrained ?? false
+    }
+    
     public init(key: String, constraints: [HPConstraint]) {
         self.key = key
         self.constraints = constraints
