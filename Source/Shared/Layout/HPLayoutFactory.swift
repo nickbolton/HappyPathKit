@@ -13,13 +13,14 @@ import Cocoa
 #endif
 
 public struct HPLayoutFactory {
-    static public func build(layout: HPLayout, scale: CGFloat, viewMap: [String: ViewClass]) -> HPViewLayout {
+    static public func build(layer: HPLayer, scale: CGFloat, viewMap: [String: ViewClass]) -> HPViewLayout {
         var constraints = [HPViewConstraint]()
-        let isSafeArea = layout.constraints.filter { $0.type == .safeArea }.first != nil
-        for c in layout.constraints {
+        let isSafeArea = layer.layout.constraints.filter { $0.type == .safeArea }.first != nil
+        for c in layer.layout.constraints {
             switch c.type {
             case .top, .bottom, .height, .centerY,
                  .left, .right, .width, .centerX:
+                guard !layer.isRootLayer else { continue }
                 if let sourceView = viewMap[c.sourceID] {
                     constraints.append(HPViewConstraint(constraint: c, scale: scale, isSafeArea: isSafeArea, sourceView: sourceView))
                 } else {
